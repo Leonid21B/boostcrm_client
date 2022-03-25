@@ -1,0 +1,159 @@
+.paymodal {
+    &__title {
+        font-weight: 900;
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    &__wayOFpay {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #F4F6FA;
+        padding: 3px;
+        border-radius: 8px;
+        margin-bottom: 24px;
+
+        &>button {
+            &.active {
+                border-color: #73AAFC;
+                color: #73AAFC;
+            }
+
+            padding: 6px 16px;
+            border: 1px solid transparent;
+            border-radius: 6px;
+            margin-right: 3px;
+            color: #333342;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 18px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+    }
+
+    &__paymentSystem {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 24px;
+        border-bottom: 1px solid #F1F2F5;
+        margin-bottom: 24px;
+    }
+
+    &__result {
+        &-title {
+            font-weight: 900;
+            font-size: 20px;
+            line-height: 24px;
+            margin-bottom: 16px;
+        }
+
+        &-info {
+
+            &-topline,
+            &-secondlien {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 12px;
+
+                &>span {
+                    &:first-child {
+                        font-weight: 400;
+                        font-size: 18px;
+                        line-height: 24px;
+                        color: #333342;
+                    }
+
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 24px;
+                }
+            }
+
+            &-remind {
+                color: #777A8F;
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 18px;
+                display: block;
+                margin-bottom: 24px;
+
+                &>span {
+                    color: #73AAFC;
+                    cursor: pointer;
+                }
+            }
+        }
+
+        &-checkbox {
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+
+            &>label {
+                display: flex;
+                align-items: center;
+                margin-right: 8px;
+
+                &>input {
+                    margin-right: 12px;
+                }
+            }
+
+            &>img {
+                cursor: pointer;
+            }
+
+            &>label {
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            .checkbox {
+                display: none;
+            }
+
+            .checkbox:checked+.toggleCustom::after {
+                opacity: 1;
+            }
+
+            .checkbox:checked+.toggleCustom {
+                background-color: #73AAFC;
+            }
+
+            .toggleCustom {
+                display: block;
+                width: 20px;
+                height: 20px;
+                border-radius: 6px;
+                border: 2px solid #73AAFC;
+                margin-right: 12px;
+                cursor: pointer;
+                position: relative;
+                padding: 2px;
+                background-color: transparent;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    background: url('../../img/checkbox.svg') top center / cover no-repeat;
+                    width: 10px;
+                    height: 10px;
+                    display: block;
+                    opacity: 0;
+                    transition: all .2s ease;
+
+                }
+            }
+        }
+    }
+}

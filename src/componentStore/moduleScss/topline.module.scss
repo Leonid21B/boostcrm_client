@@ -1,0 +1,54 @@
+@import '../../scss/vars.scss';
+.firstline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;    
+    &>span {    
+        font-weight: 900;
+        font-size: 28px;
+        line-height: 36px;
+        color: $primary;
+    }
+}
+
+.firstinfo {
+    display: flex;
+    align-items: center;
+}
+
+.firstseacrch {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+
+    &>span {
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 16px;
+        margin-right: 16px;
+    }
+
+    &>input {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 18px;
+        padding: 9px 38px 9px 14px;
+        border: 1px solid #D8DCE6;
+        border-radius: 8px;
+        min-width: 340px;
+        max-height: 36px;
+        background-color: #fff;
+        &::placeholder {
+            color: $ghost;
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 18px;
+        }
+
+        &::-webkit-search-cancel-button {
+            -webkit-appearance: none;
+            display: none;
+        }
+    }
+}

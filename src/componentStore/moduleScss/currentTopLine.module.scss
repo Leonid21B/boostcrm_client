@@ -1,0 +1,79 @@
+@import '../../scss/vars.scss';
+
+.currentTop {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.currentcartTopLeft {
+    width: 992px;
+    &>div {
+        display: flex;
+
+        &>img {
+            width: 100%;
+            max-width: 24px;
+            margin-left: 8px;
+            cursor: pointer;
+        }
+    }
+}
+.currentcartTopInput{
+    position: relative;
+    &>input {
+        border: 1px solid #D8DCE6;
+        border-radius: 8px;
+        margin-left: 8px;
+        padding: 9px 36px 9px 9px;
+    }
+    &>img{
+        width: 100%;
+        max-width: 24px;
+        position: absolute;
+        right: 9px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+}
+
+.currentcartTopTitle {
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 36px;
+    color: $primary;
+    padding-left: 34px;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 900px;
+    white-space: nowrap;
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        display: block;
+        background: url('../../img/leftarrow.svg');
+        width: 18px;
+        height: 18px;
+    }
+}
+
+.currentcartTopRight {
+    display: flex;
+    align-items: center;
+
+    &>button {
+        padding: 9px 16px;
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 18px;
+        cursor: pointer;
+    }
+}

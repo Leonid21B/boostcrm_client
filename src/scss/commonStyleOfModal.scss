@@ -1,0 +1,265 @@
+.modalWrapper {
+    display: none;
+}
+
+.modalParandja {
+    background-color: rgba($color: #333342, $alpha: .4);
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modalSuccessRegitration{
+    background-color: rgba($color: #333342, $alpha: .4);
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    // bottom: 0;
+    height: 100vh;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.modal {
+    background: #FFFFFF;
+    box-shadow: 0px 0px 0px 1px rgba(0, 44, 94, 0.1), 0px 10px 20px -4px rgba(0, 44, 94, 0.15);
+    border-radius: 20px;
+    padding: 28px 32px;
+    color: #333342;
+    z-index: 8;
+}
+
+.modalTopLine {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    &__title {
+        font-weight: 700;
+        font-size: 20px;
+        line-height: 24px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        // &>span{
+        //     display: block;
+        //     white-space: nowrap;
+        //     overflow: hidden;
+        //     // text-overflow: ellipsis;
+        //     max-width: 350px;
+        // }
+        
+    }
+
+    &__close {
+        width: 100%;
+        max-width: 24px;
+        display: block;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+// .remove-comand-title{
+//     &>span{
+//         display: block;
+//         white-space: nowrap;
+//         overflow: hidden;
+//         text-overflow: ellipsis;
+//         max-width: 350px;
+
+//     }
+// }
+
+.modalText {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    margin-bottom: 24px;
+}
+
+.modal__Label {
+    display: block;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    margin-bottom: 8px;
+}
+
+.modal__Input {
+    padding: 9px 14px;
+    border: 1px solid #D8DCE6;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    width: 100%;
+    &.inputError{
+        border-color: #F20008;
+    }
+}
+
+.modal__TextArea {
+    padding: 9px 14px;
+    border: 1px solid #D8DCE6;
+    border-radius: 8px;
+    width: 100%;
+    height: 77px;
+    resize: none;
+    outline: none;
+    margin-bottom: 48px;
+    display: block;
+
+}
+
+
+.modal__checkbox {
+    display: flex;
+    align-items: center;
+
+    &>input {
+        display: none;
+    }
+
+    &input:checked+span::after {
+        opacity: 1;
+    }
+
+    &input:checked+span {
+        background-color: #73AAFC;
+    }
+}
+
+
+
+.modal__Btns {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.modal__checkboxes {
+    margin-bottom: 24px;
+
+    &>label {
+        display: block;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+
+        &:first-child {
+            margin-bottom: 9px;
+        }
+
+        &>input {
+            display: none;
+
+            &:checked+.modal__checkboxes-checkbox::after {
+                opacity: 1;
+            }
+
+            &:checked+.modal__checkboxes-checkbox {
+                background-color: #73AAFC;
+            }
+        }
+    }
+
+    &-checkbox {
+        width: 20px;
+        height: 20px;
+        display: block;
+        border-radius: 50px;
+        border: 3px solid #73AAFC;
+        margin-right: 12px;
+        position: relative;
+        transition: all .2s ease;
+        
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 50px;
+            background-color: #fff;
+            width: 6px;
+            height: 6px;
+            display: block;
+            opacity: 0;
+            transition: all .2s ease;
+        }
+
+        // }
+    }
+}
+
+
+
+
+
+// colors
+
+.primary {
+    color: #333342;
+}
+
+
+
+
+// paddins & margins 
+
+.mb_8 {
+    margin-bottom: 8px;
+}
+
+.mb_24 {
+    margin-bottom: 24px;
+}
+
+.mb_32 {
+    margin-bottom: 32px;
+}
+
+
+
+// widths
+.w_300 {
+    width: 300px;
+}
+
+.w_350 {
+    width: 350px;
+}
+
+.w_400Up {
+    width: 400px;
+}
+
+.w_434Up {
+    width: 434px;
+}
+
+.w_473Up {
+    width: 473px;
+}
+
+.w_500Up {
+    width: 500px;
+}
+
+
+
+.h_100Up {
+    height: 113px;
+}

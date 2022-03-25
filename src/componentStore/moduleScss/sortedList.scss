@@ -1,0 +1,182 @@
+@import '../../scss/vars.scss';
+
+
+.sort {
+    display: flex;
+    align-items: center;
+
+    .selectWorkers,.sortDiferentcommand {
+        .sort__input {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 193px;
+            display: block;
+        }
+        &:hover {
+            .sort__input {
+                color: #333342;
+            }
+        }
+    }
+
+}
+
+
+.sortDiffperson,
+.sortDiferentcommand,
+.sortAll {
+    color: $secondary;
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: block;
+        width: 18px;
+        height: 18px;
+        background: url('../../img/arrowdwn.svg') top center / cover no-repeat;
+    }
+}
+
+
+.sortDiferentcommand {
+    &.open {
+        .dropDown {
+            display: block;
+        }
+    }
+}
+
+.selectWorkers,
+.sortDiferentcommand {
+    position: relative;
+    padding: 9px 36px 9px 0;
+    white-space: nowrap;
+
+    &>span {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 18px;
+        color: #777A8F;
+        pointer-events: none;
+    }
+}
+
+.selectWorkers {
+    position: relative;
+    padding: 9px 36px 9px 0;
+    margin-right: 12px;
+    cursor: pointer;
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        display: block;
+        width: 18px;
+        height: 18px;
+        background: url('../../img/arrowdwn.svg') top center / cover no-repeat;
+    }
+
+    &>span {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 18px;
+        color: #777A8F;
+        pointer-events: none;
+    }
+
+    &.open {
+        .dropDown {
+            display: block;
+        }
+    }
+}
+
+.dropDwn-item {
+    &>img {
+        margin-right: 4px;
+        width: 100%;
+        max-width: 20px;
+    }
+
+    &>span {
+        pointer-events: none;
+        white-space: nowrap;
+    }
+
+    .selectWorkers-img {
+        display: flex;
+        min-width: 26px;
+        max-width: 26px;
+        height: 26px;
+        display: block;
+        overflow: hidden;
+        border-radius: 50%;
+        margin-right: 8px;
+
+        &>img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.dropDown {
+    display: none;
+    position: absolute;
+    width: 100%;
+    margin-top: 4px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 0px 1px rgba(0, 44, 94, 0.1), 0px 8px 16px -3px rgba(0, 44, 94, 0.15);
+    border-radius: 8px;
+    max-height: 140px;
+    overflow-x: hidden;
+    z-index: 4;
+    right: 0;
+    width: 223px;
+
+    &::-webkit-scrollbar {
+        -webkit-appearance: none;
+        background-color: transparent;
+        width: 8px;
+        border-left: 1px solid #C1C5D6;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        -webkit-appearance: none;
+        background-color: #C1C5D6;
+        border-radius: 8px;
+    }
+
+
+
+    &::-webkit-scrollbar-button {
+        -webkit-appearance: none;
+        width: 8px;
+        padding-bottom: 2px;
+        padding-top: 2px;
+    }
+
+    &__item-comands {
+        display: flex;
+        align-items: center;
+        padding: 9px 9px 9px 16px;
+
+        &>img {
+            margin-right: 4px;
+        }
+
+        &>span {
+            pointer-events: none;
+            white-space: nowrap;
+        }
+    }
+}

@@ -1,0 +1,12 @@
+.mail__title {
+    color: #333342;
+    font-weight: 900;
+    font-size: 56px;
+    line-height: 64px;
+    max-width: 832px;
+    margin: 0 auto;
+    text-align: center;
+    &>span {
+        color: #73AAFC;
+    }
+}

@@ -1,0 +1,139 @@
+.footer {
+    padding: 80px 0;
+
+    &__info {
+        text-align: center;
+        margin-bottom: 114px;
+
+        &-img-wrapp {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 32px;
+        }
+
+        &-title {
+            font-weight: 900;
+            font-size: 56px;
+            line-height: 64px;
+            max-width: 1034px;
+            margin: 0 auto 16px;
+            color: #333342;
+        }
+
+        &-text {
+            font-weight: 600;
+            font-size: 28px;
+            line-height: 36px;
+            color: #777A8F;
+            margin-bottom: 32px;
+        }
+
+        &-btn {
+            padding: 9px 18px;
+            background-color: #73AAFC;
+            border-radius: 10px;
+            color: #fff;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 24px;
+        }
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .header__nav-btn.footer-btn {
+        margin-right: 0;
+    }
+
+    &__bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 40px;
+        margin-bottom: 24px;
+        border-bottom: 1px solid rgba($color: #777A8F, $alpha: .25);
+
+
+        &-navleft {
+            display: flex;
+        }
+
+        &-navlogo {
+            margin-right: 60px;
+        }
+
+        &-navlinks {
+            display: flex;
+        }
+
+        &-navlink {
+            margin-right: 32px;
+
+            &>a {
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 24px;
+                color: #777A8F;
+            }
+        }
+
+        &-copyright {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            &>ul {
+                display: flex;
+
+                &>li {
+                    margin-right: 12px;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+
+                    &>a {
+                        cursor: pointer;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 24px;
+                        color: #777A8F;
+                    }
+                }
+            }
+
+            &-left {
+                display: flex;
+                align-items: center;
+
+                &>h3 {
+                    margin-right: 12px;
+                    font-weight: 700;
+                    font-size: 15px;
+                    line-height: 24px;
+                    color: #777A8F;
+                }
+
+                &>a {
+                    display: flex;
+                    align-items: center;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 24px;
+                    color: #777A8F;
+
+                    &>img {
+                        width: 100%;
+                        max-width: 18px;
+                        margin-right: 4px;
+                    }
+                }
+            }
+
+        }
+    }
+}

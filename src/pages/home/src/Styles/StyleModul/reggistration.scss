@@ -1,0 +1,215 @@
+.reg {
+    display: none;
+
+    body {
+        overflow: hidden;
+    }
+
+    &__inner {
+        position: fixed;
+        left: 0;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        background-color: rgba($color: #333342, $alpha: .4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__modal {
+        background: #FFFFFF;
+        box-shadow: 0px 0px 0px 1px rgba(0, 44, 94, 0.1), 0px 10px 20px -4px rgba(0, 44, 94, 0.15);
+        border-radius: 20px;
+        padding: 28px 32px;
+        max-width: 400px;
+
+        &>span {
+            font-weight: 400;
+            font-size: 15px;
+            line-height: 20px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        &-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+
+            &>h1 {
+                font-weight: 700;
+                font-size: 20px;
+                line-height: 24px;
+            }
+
+            &>img {
+                cursor: pointer;
+            }
+        }
+
+        &>form {
+            &>label {
+                display: block;
+                margin-bottom: 8px;
+                font-weight: 400;
+                font-size: 13px;
+                line-height: 16px;
+            }
+
+            &>ul {
+                &>li {
+                    &>label {
+                        display: block;
+                        margin-bottom: 8px;
+                        font-weight: 400;
+                        font-size: 13px;
+                        line-height: 16px;
+                    }
+
+                    &>.reg__input {
+                        margin-bottom: 24px;
+                        position: relative;
+
+                        &.errorInputName,
+                        &.errorInputEmail,
+                        &.errorInputPassword,
+                        &.errorInputTel {
+                            margin-bottom: 8px;
+                        }
+
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            left: 14px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            width: 18px;
+                            height: 20px;
+                        }
+
+                        &>input {
+                            padding: 9px 14px 9px 44px;
+                            border: 1px solid #D8DCE6;
+                            width: 100%;
+                            border-radius: 8px;
+
+                            &.nameError,
+                            &.passwordError,
+                            &.emailError,
+                            &.telError {
+                                border-color: #F20008;
+                            }
+                        }
+                    }
+
+                    &:first-child {
+                        &>.reg__input {
+                            &::before {
+                                background-image: url('../../img/personlogin.svg');
+                            }
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        &>.reg__input {
+                            &::before {
+                                background-image: url('../../img/smslogin.svg');
+                            }
+                        }
+                    }
+
+                    &:nth-child(3) {
+                        &>.reg__input {
+                            &::before {
+                                background-image: url('../../img/telreg.svg');
+                            }
+                        }
+                    }
+
+                    &>.log__input {
+                        margin-bottom: 24px;
+                        position: relative;
+
+                        &.errorInputName,
+                        &.errorInputEmail,
+                        &.errorInputPassword,
+                        &.errorInputTel {
+                            margin-bottom: 8px;
+                        }
+
+                        &::before {
+                            content: '';
+                            position: absolute;
+                            left: 14px;
+                            top: 50%;
+                            transform: translateY(-50%);
+                            width: 18px;
+                            height: 20px;
+                        }
+
+                        &>input {
+                            padding: 9px 14px 9px 44px;
+                            border: 1px solid #D8DCE6;
+                            width: 100%;
+                            border-radius: 8px;
+
+                            &.nameError,
+                            &.passwordError,
+                            &.emailError,
+                            &.telError {
+                                border-color: #F20008;
+                            }
+                        }
+                    }
+
+                    &:first-child {
+                        &>.log__input {
+                            &::before {
+                                background-image: url('../../img/personlogin.svg');
+                                background-size: auto;
+                            }
+                        }
+                    }
+
+                    &:nth-child(2) {
+                        &>.log__input {
+                            &::before {
+                                background-image: url('../../img/pass.svg');
+                                background-size: contain;
+                            }
+                        }
+                    }
+                    &>p {
+                        display: none;
+                        color: #FF4D4D;
+                        font-size: 13px;
+                        line-height: 16px;
+                        margin-bottom: 8px;
+
+                        &.activeInputError {
+                            display: block;
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    &__btn {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    &__message {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 20px;
+        color: #333342;
+        text-align: center;
+        margin-top: 16px;
+    }
+}

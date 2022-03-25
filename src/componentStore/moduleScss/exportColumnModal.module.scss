@@ -1,0 +1,55 @@
+@import '../../scss/vars.scss';
+
+.exportColumn {
+    display: none;
+    .exportColumnInner {
+        position: fixed;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 5;
+        background-color: rgba($color: $primary, $alpha: .4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .exportColumnModal {
+            min-width: 600px;
+            background: #FFFFFF;
+            box-shadow: 0px 0px 0px 1px rgba(0, 44, 94, 0.1), 0px 10px 20px -4px rgba(0, 44, 94, 0.15);
+            border-radius: 20px;
+            padding: 28px 32px;
+          
+            &>p {
+                font-weight: 400;
+                font-size: 15px;
+                line-height: 20px;
+                color: $primary;
+                max-width: 406px;
+            }
+
+            .exportColumnModalTop {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 8px;
+                &>img{
+                    cursor: pointer;
+                }
+                &>h1 {
+                    font-weight: 700;
+                    font-size: 20px;
+                    line-height: 24px;
+                    color: $primary;
+                }
+            }
+
+            .exportColumnModalBtns {
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 16px;
+            }
+        }
+    }
+}

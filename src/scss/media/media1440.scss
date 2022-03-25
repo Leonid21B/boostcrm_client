@@ -1,0 +1,130 @@
+@media screen and (max-width:1440px) {
+   
+
+    .content__blocks {
+        &-wrapper{
+            height: 84%;
+        }
+    }
+
+
+  
+    .analitics__block-top-title{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .analitics__blocks-title{
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+    }
+
+    .analiticsresult__top {
+        &>li {
+            &:last-child {
+                width: 300px;
+            }
+
+            &:nth-child(2),
+            &:nth-child(3),
+            &:nth-child(4),
+            &:nth-child(5),
+            &:nth-child(6) {
+                width: 100%;
+                max-width: 127px;
+            }
+        }
+    }
+
+    .analiticsresult__blocks-item {
+
+        &>li {
+            &:last-child {
+                width: 300px;
+            }
+
+            &:nth-child(2),
+            &:nth-child(3),
+            &:nth-child(4),
+            &:nth-child(5),
+            &:nth-child(6) {
+                width: 100%;
+                max-width: 127px;
+            }
+        }
+    }
+
+    .analitics__block-content-top {
+        &>li {
+            &:first-child {
+                width: 149px;
+            }
+        }
+    }
+
+    .analitics__block-content-stages {
+        &>li {
+            &:first-child {
+                width: 149px;
+            }
+        }
+    }
+
+    .tarif__block-title {
+        margin-bottom: 24px;
+    }
+
+
+    .clients__content-item {
+        &>span {
+            margin-right: 8px;
+            &:not(:first-child) {
+                width: 223px;
+            }
+
+            &:last-child {
+                width: 60px;
+            }
+        }
+
+        &.add,
+        &.active {
+            &>input {
+                &:not(:first-child){
+                    width: 218px;
+                }
+            }
+        }
+
+        &.client{
+            justify-content: flex-start;
+            &>a {
+                &>input{
+                    &:not(:first-child){
+                        width: 223px;
+                        margin-right: 10px;
+                    }
+                }
+            }
+            &>span{
+                width: 45px;
+                justify-content: flex-end;
+            }
+        }
+    }
+    .clients__content-item-btns{
+        width: 65px;
+        justify-content: flex-end;
+    }
+
+    .currentTopLine_currentcartTopTitle__3SeU_{
+        max-width: 900px;
+    }
+    .currentClient__topline-left{
+        &>span{
+            max-width: 335px;
+        }
+    }
+}

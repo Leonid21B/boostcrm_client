@@ -1,0 +1,67 @@
+.header {
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    padding-top: 25px;
+    font-size: 18px;
+
+    &__nav {
+        &-left {
+            display: flex;
+            align-items: center;
+        }
+
+        &-links {
+            display: flex;
+            align-items: center;
+        }
+
+        &-link {
+            margin-right: 32px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &>a {
+                color: #777A8F;
+                line-height: 24px;
+            }
+        }
+
+        &-logo {
+            max-width: 190px;
+            margin-right: 60px;
+        }
+
+        &-right {
+            display: flex;
+            align-items: center;
+        }
+
+        &-login {
+            color: #777A8F;
+            margin-left: 30px;
+
+            &>span {
+                padding-right: 32px;
+                position: relative;
+
+                &::after {
+                    content: '';
+                    position: absolute;
+                    right: 0;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 24px;
+                    height: 24px;
+                    display: block;
+                    background: url('../img/icons/logOut.svg');
+                }
+            }
+        }
+    }
+}

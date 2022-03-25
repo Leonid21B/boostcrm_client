@@ -1,0 +1,31 @@
+.showdemo {
+    background-color: #73AAFC;
+    padding: 100px 0;
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    &__demo {
+        background-color: #FFFFFF;
+        border-radius: 24px;
+        width: 940px;
+        height: 600px;
+        position: relative;
+
+        &-btn {
+            position: absolute;
+            z-index: 2;
+            background-color: #73AAFC;
+            padding: 9px 18px;
+            border-radius: 10px;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 24px;
+            color: #FFFFFF;
+        }
+    }
+
+}
