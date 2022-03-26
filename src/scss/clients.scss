@@ -280,7 +280,9 @@
         background-color: #fff;
         border-radius: 20px;
         min-width: 600px;
-
+        position: fixed;
+        top: 40vh;
+        left: calc((100vw - 600) / 2);
         &>span {
             font-weight: 400;
             font-size: 15px;

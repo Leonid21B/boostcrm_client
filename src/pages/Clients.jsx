@@ -588,10 +588,7 @@ function Clients () {
                                                                             data-id='1'
                                                                             data-value='01'
                                                                             onChange={e => { }}
-                                                                            style={{
-                                                                              pointerEvents: 'none',
-                                                                              userSelect: 'none'
-                                                                            }}
+                                                                            
                                                                           />
                                                                         )
                                                                     }

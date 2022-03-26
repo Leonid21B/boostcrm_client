@@ -217,13 +217,6 @@ function Tarif () {
               </div>
 
               <div className='tarif__block-toggle'>
-                <label
-                  className={`${isAutoPayState ? 'active' : null}`}
-                  onClick={() => setIsAutoPay(isAutoPayState)}
-                >
-                  <span className='custom__checkbox' />
-                  <span>Автопродление оплаты, пакет будет продлен автоматически за 3 дня до окончания платного периода. </span>
-                </label>
                 {
                                     range < (taskenplace / 1024)
                                       ? <p>Для того чтобы выбрать тариф, очистите {taskenplace} {taskenplace > 1024 ? 'ГБ' : 'MB'} во вкладках <span>“сделки” </span> или <span>“клиенты”</span>

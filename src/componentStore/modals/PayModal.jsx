@@ -221,11 +221,6 @@ function PayModal ({ active, setActive }) {
                                                 <span>Автопродление оплаты</span>
                                             </label>
                                             <img src={ quest } alt="" /> */}
-                                  <label>
-                                    <input className='checkbox' type='checkbox' name='' id='' />
-                                    <span className='toggleCustom' />
-                                    <span>Автопродление оплаты</span>
-                                  </label>
                                   <img src={quest} alt='' />
                                 </div>
                               </div>
