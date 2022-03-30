@@ -1,5 +1,6 @@
+import phoneMaskValid from 'functions/phoneMask'
 import { close, emptyAvatar } from 'img'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useIMask } from 'react-imask'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -8,6 +9,7 @@ import BlueBtn from 'ui/btns/BlueBtn'
 import '../../Styles/StyleModul/reggistration.scss'
 
 function Registraton ({ body, active, setActive, setActiveSuccessRegistrationModal }) {
+  const refPhone = useRef()
   const dispatch = useDispatch()
   const [fio, setFio] = useState('')
   const [email, setEmail] = useState('')
@@ -112,12 +114,20 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
     const regex = /^(([0-9A-Za-z^{}[\]<>\.;:_]{1,3}[0-9A-Za-z\.]{1,}[0-9A-Za-z]{1})@([A-Za-z0-9]{1,}\.){1,2}[A-Za-z]{2,5})$/
     setEmail(e.target.value)
     checkInputContent(regex, e, 'emailError')
+    
+  }
+
+  function setPos(num,e){
+    setTimeout(() => {refPhone.current.selectionStart = refPhone.current.selectionEnd = num},0) 
   }
 
   function telHandler (e) {
     const regex = /^\+([0-9]{1,2} \([0-9]{3}\) [0-9]{3} [0-9]{2} [0-9]{2})$/
-    setTel(e.target.value)
+    let data = phoneMaskValid(e.target.value,tel,e.target.selectionStart ,7)
+    setTel(data.strNew)
+    setPos(data.numb, e)
     checkInputContent(regex, e, 'telError')
+
   }
 
   function checkInputContent (regex, e, type) {
@@ -129,6 +139,7 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
     setInputErrorState({ ...inputErrorState, [type]: false })
     setValidation(true)
   }
+
 
   return (
     <div className='reg' style={active ? { display: 'block' } : null}>
@@ -160,6 +171,7 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
                 <div className={`reg__input ${inputErrorState.emailError ? 'errorInputEmail' : null}`}>
                   <input
                     type='email'
+                    
                     name='email'
                     value={email} onChange={e => emailHandler(e)}
                     autoComplete='off'
@@ -173,7 +185,8 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
                 <label htmlFor='tel'>Телефон</label>
                 <div className={`reg__input ${inputErrorState.telError ? 'errorInputTel' : null} `}>
                   <input
-                                        // ref={ ref }
+                    placeholder='+7 (987) 654 32 10'
+                    ref={ refPhone }
                     type='tel'
                     name='tel'
                     value={tel} onChange={e => telHandler(e)}
