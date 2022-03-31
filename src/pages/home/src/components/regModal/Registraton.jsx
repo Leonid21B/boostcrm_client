@@ -7,14 +7,17 @@ import { useSelector, useDispatch } from 'react-redux'
 import { registration } from 'redux/asyncRedux/UserAuthAsync'
 import BlueBtn from 'ui/btns/BlueBtn'
 import '../../Styles/StyleModul/reggistration.scss'
+import Countries from './Countries/Countries'
 
 function Registraton ({ body, active, setActive, setActiveSuccessRegistrationModal }) {
   const refPhone = useRef()
   const dispatch = useDispatch()
   const [fio, setFio] = useState('')
   const [email, setEmail] = useState('')
-  const [tel, setTel] = useState('')
 
+  const [country, setCountry] = useState('1')
+  const [tel, setTel] = useState(phoneMaskValid(null,null,country.length + 1,country).strNew)
+  
   // const [telMask, setTelMask] = useState({ mask: '+{7} (000) 000 00 00' })
   // const { ref, maskRef } = useIMask(telMask)
 
@@ -122,8 +125,8 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
   }
 
   function telHandler (e) {
-    const regex = /^\+([0-9]{1,2} \([0-9]{3}\) [0-9]{3} [0-9]{2} [0-9]{2})$/
-    let data = phoneMaskValid(e.target.value,tel,e.target.selectionStart ,7)
+    const regex = [/^\+([0-9]{1} \([0-9]{3}\) [0-9]{3} [0-9]{2} [0-9]{2})$/,/^\+([0-9]{2} \([0-9]{3}\) [0-9]{3} [0-9]{2} [0-9]{2})$/,/^\+([0-9]{3} \([0-9]{3}\) [0-9]{3} [0-9]{2} [0-9]{2})$/]
+    let data = phoneMaskValid(e.target.value,tel,e.target.selectionStart ,country)
     setTel(data.strNew)
     setPos(data.numb, e)
     checkInputContent(regex, e, 'telError')
@@ -131,13 +134,16 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
   }
 
   function checkInputContent (regex, e, type) {
-    if (!regex.test(String(e.target.value).toLocaleLowerCase())) {
-      setInputErrorState({ ...inputErrorState, [type]: true })
-      setValidation(false)
-      return
+    for (let item of regex){
+      if (item.test(String(e.target.value).toLocaleLowerCase())) {
+        setInputErrorState({ ...inputErrorState, [type]: false })
+        setValidation(true)
+        return
+      }
     }
-    setInputErrorState({ ...inputErrorState, [type]: false })
-    setValidation(true)
+    setInputErrorState({ ...inputErrorState, [type]: true })
+    setValidation(false)
+    
   }
 
 
@@ -183,9 +189,11 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
               </li>
               <li>
                 <label htmlFor='tel'>Телефон</label>
+                <p>Выберите код страны</p>
+                <Countries setTel = {setTel} setCountry = {setCountry}/>
                 <div className={`reg__input ${inputErrorState.telError ? 'errorInputTel' : null} `}>
                   <input
-                    placeholder='+7 (987) 654 32 10'
+                    placeholder={`+${country} (987) 654 32 10`}
                     ref={ refPhone }
                     type='tel'
                     name='tel'

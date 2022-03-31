@@ -62,12 +62,26 @@
                 &>li {
                     &>label {
                         display: block;
-                        margin-bottom: 8px;
+                        margin-bottom: 6px;
                         font-weight: 400;
                         font-size: 13px;
                         line-height: 16px;
                     }
-
+                    &>.countries_list_cont{
+                        margin-bottom: 6px;
+                        margin-top: 0;
+                        &>.countries_list{
+                            height: 30px;
+                            background-color:#FFFFFF;
+                            border-radius: 5px;
+                            border: 1px solid #C1C5D6;
+                            color:#73AAFC;
+                            cursor:pointer;
+                            &>.option_country{
+                                cursor: pointer;
+                            }
+                        }
+                    }
                     &>.reg__input {
                         margin-bottom: 24px;
                         position: relative;

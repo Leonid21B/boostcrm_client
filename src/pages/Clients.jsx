@@ -483,6 +483,16 @@ function Clients () {
                                     Отказы
                                   </span>
                                 </li>
+                                <li
+                                  className='clients__select-item selectedItem'
+                                  data-id={5}
+                                  data-type='selectedItem'
+                                >
+                                  <img className='customSelectedItemImg' src={activeItem} alt='' />
+                                  <span>
+                                    Без сделок
+                                  </span>
+                                </li>
                               </ul>
                             </div>
                           </div>
