@@ -83,7 +83,13 @@ function ForgotPassword ({ active, setActive }) {
     if (e.target.value.length < 8 || e.target.value.length > 10) {
       setInputsError({ ...inputsError, oldPassError: true })
       setIsValid(false)
-      setOldPassText("Пароль должен быть максим 10 символов")
+      setOldPassText("Пароль должен быть максимум 10 символов")
+      return
+    }
+    if (e.target.value.length == 0) {
+      setInputsError({ ...inputsError, oldPassError: true })
+      setIsValid(false)
+      setOldPassText("Заполните поле")
       return
     }
     setInputsError({ ...inputsError, oldPassError: false })
@@ -95,7 +101,7 @@ function ForgotPassword ({ active, setActive }) {
     setNewPassword(e.target.value)
     if (e.target.value.length < 8 || e.target.value.length > 10 && e.target.value != repeatNewPassword) {
       setInputsError({ ...inputsError, newPassError: true })
-      setNewAndRepeatPassText('Пароль должен быть максим 10 символов')
+      setNewAndRepeatPassText('Пароль должен быть максимум 10 символов')
       setIsValid(false)
 
       return
