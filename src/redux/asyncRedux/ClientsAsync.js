@@ -13,7 +13,7 @@ export const createClient = async (dispatch, { name, org, iin, tel, email, userI
 export const getClients = async (dispatch, userId, limit, page) => {
   const resp = await ClientService.get(userId, limit, page).then(data => data.data)
   dispatch(_getClients(resp.clients))
-  dispatch(_getClientsLength(resp.clientsLength))
+  dispatch(_getClientsLength(resp.clientsLength)) 
   dispatch(_getCompanySpace(resp.space))
   dispatch(_getCompanyTakenSpace(resp.takenSpace))
   return { success: resp.success, refusual: resp.refusual }

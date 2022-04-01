@@ -11,11 +11,11 @@ export const registration = async (dispatch, fio, email, tel, gb) => {
 
 export const login = async (dispatch, email, password, body) => {
   const data = await AuthService.login(email, password).then(data => data.data)
-
+  
   if (data.resp.status == 200) {
     if (data.user.isActivated) {
       localStorage.setItem('token', data.accsessToken)
-      body.style.overflowY = 'scroll'
+      body.style.overflowY = 'scroll' 
 
       dispatch(_login(data.user))
       dispatch({ type: 'SET_ISAYTH', payload: true })

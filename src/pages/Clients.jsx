@@ -76,6 +76,7 @@ function Clients () {
 
   const [success, setSuccess] = useState([])
   const [refusual, setRefusual] = useState([])
+  const [notDeal,setDeal] = useState([])
 
   const [telMask, setTelMask] = useState({ mask: '+{7} (000) 000 00 00' })
   const { ref, setRef } = useIMask(telMask)
@@ -289,6 +290,12 @@ function Clients () {
           clients.filter(x => refusual?.find(y => y.clientId == x._id))
         )
         setCurretSelectTitle('Отказ')
+      }
+      if (id == 5) {
+        setArrayOfClients(
+          clients.filter(x => notDeal?.find(y => y.clientId == x._id))
+        )
+        setCurretSelectTitle('Без сделок')
       }
     }
   }
@@ -574,8 +581,10 @@ function Clients () {
                               {
                                                 arrayOfClients
                                                   .filter(clt => clt.name?.toLowerCase().includes(seacrch.toLowerCase()))
-                                                  .map((client, indx) =>
-                                                    client._id != reWriteedRowID
+                                                  .map((client, indx) =>{
+                                                    debugger
+                                                    return(
+                                                      client._id != reWriteedRowID
                                                       ? <li
                                                           key={client._id}
                                                           className='clients__content-item client'
@@ -649,7 +658,7 @@ function Clients () {
                                                             <img src={urn} alt='' />
                                                           </button>
                                                         </div>
-                                                        </li>
+                                                        </li>)}
                                                   )
                                             }
                             </ul>

@@ -7,7 +7,7 @@ export default class AuthService {
     try {
       return api.post('/registration', { fio, email, tel, gb })
     } catch (error) {
-
+ 
     }
   }
 
