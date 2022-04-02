@@ -1,4 +1,5 @@
 import { CREATE_CLIENT, DELETE_CLIENT, GET_CLIENTS, GET_CLIENTS_CART, GET_CURRENT_CLIENT, UPDATE_CLIENT } from 'redux/actionsTypes'
+const UPDATE_FLAG = 'UPDATE_FLAG'
 
 const defaultState = {
   clients: [],
@@ -40,7 +41,18 @@ export const clientReduser = (state = defaultState, { type, payload }) => {
 
     case 'SET_ISCLIENTHASHCARDS':
       return { ...state, isClientHasCards: payload }
-
+    case UPDATE_FLAG:
+      let localId = null;
+      for (let item in state.clients){
+        if(state.clients[item]._id === payload){
+          let clients = [...state.clients]
+          clients[item].flag = 1
+          return {
+            ...state,clients:clients
+          }
+        }
+      }
+      return {...state}
     case 'SET_CLIENTLENGTH':
       return { ...state, clientsLength: payload }
 
@@ -59,6 +71,7 @@ export const _getClients = (payload) => ({ type: GET_CLIENTS, payload })
 export const _deleteClient = (payload) => ({ type: DELETE_CLIENT, payload })
 export const _getCurrentClient = (payload) => ({ type: GET_CURRENT_CLIENT, payload })
 export const _updateClient = (payload) => ({ type: UPDATE_CLIENT, payload })
+export const _updateFlag = (id) => ({ type: UPDATE_FLAG, id })
 export const _getClientsCarts = (payload) => ({ type: GET_CLIENTS_CART, payload })
 export const _getClientsLength = (payload) => ({ type: 'SET_CLIENTLENGTH', payload })
 export const _setColumns = (payload) => ({ type: 'SET_COLUMNS', payload })

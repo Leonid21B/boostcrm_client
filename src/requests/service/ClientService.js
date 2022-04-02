@@ -3,12 +3,18 @@ import api from 'requests'
 export default class ClientService {
   static async create (name, org, iin, tel, email, userId) {
     try {
-      return api.post('/create_client', { name, org, iin, tel, email, userId })
+      return api.post('/create_client', { name, org, iin, tel, email, userId,flag : 0 })
     } catch (e) {
 
     }
   }
+  static async updateFlag(userId){
+    try {
+      return api.put(`/flag_client/${userId}`)
+    } catch (e) {
 
+    }  
+  }
   static async get (userId, limit = 10, page = 1) {
     try {
       return api.get(`/clients/${userId}`, {

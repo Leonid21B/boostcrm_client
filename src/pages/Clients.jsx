@@ -8,7 +8,7 @@ import RemoveClients from 'componentStore/modals/RemoveClients'
 import ColumnSettings from 'componentStore/modals/ColumnSettings'
 import ExportColumn from 'componentStore/modals/ExportColumn'
 import ImportColumn from 'componentStore/modals/ImportColumn'
-import { checkClient, createClient, getClients, updateClient } from 'redux/asyncRedux/ClientsAsync'
+import { checkClient, createClient, flagClient, getClients, updateClient } from 'redux/asyncRedux/ClientsAsync'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Link, Route } from 'react-router-dom'
@@ -174,9 +174,10 @@ function Clients () {
       try {
         if (localStorage.getItem('token')) {
           setClientsLoading(true)
-          const { success, refusual } = await getClients(dispatch, user.id, limit, 1)
+          const { success, refusual, notDeal } = await getClients(dispatch, user.id, limit, 1)
           setSuccess(success)
           setRefusual(refusual)
+          setDeal(notDeal)
           setClientsLoading(false)
 
           return
@@ -293,7 +294,7 @@ function Clients () {
       }
       if (id == 5) {
         setArrayOfClients(
-          clients.filter(x => notDeal?.find(y => y.clientId == x._id))
+          clients.filter(x => notDeal?.find(y => y._id == x._id))
         )
         setCurretSelectTitle('Без сделок')
       }
@@ -382,7 +383,9 @@ function Clients () {
       return page + 1
     }
   }, [])
-
+  const clickNewClient = (id) => {
+    flagClient(dispatch,id)
+  }
   let nextPage = 2
   let unit = 0
   async function scrollHandler (e) {
@@ -582,10 +585,11 @@ function Clients () {
                                                 arrayOfClients
                                                   .filter(clt => clt.name?.toLowerCase().includes(seacrch.toLowerCase()))
                                                   .map((client, indx) =>{
-                                                    debugger
+                                                    
                                                     return(
                                                       client._id != reWriteedRowID
                                                       ? <li
+                                                          onClick={client.flag === 0 ?() => clickNewClient(client._id): null}
                                                           key={client._id}
                                                           className='clients__content-item client'
                                                           style={userAdded ? { pointerEvents: 'none' } : null}
