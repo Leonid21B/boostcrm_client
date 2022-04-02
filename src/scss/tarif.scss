@@ -144,7 +144,7 @@
                         top: 50%;
                         transform: translate(-50%, -50%);
                         cursor: pointer;
-                        z-index: 5;
+                        z-index: 3;
                         pointer-events: none;
 
                         &::before {
@@ -170,7 +170,7 @@
                         left: 217px;
                         top: 50%;
                         transform: translate(-50%, -50%);
-                        z-index: 4;
+                        z-index: 2;
 
                         & .current__tooltip {
                             font-weight: 400;
