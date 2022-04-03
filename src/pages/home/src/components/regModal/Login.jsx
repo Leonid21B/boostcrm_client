@@ -56,7 +56,9 @@ function Login ({ body, active, setActive }) {
       }
       if (email.length != 0 && password.length != 0 && validation) {
         const resp = await login(dispatch, email, password, body[0])
-
+        if(resp === undefined){
+          return
+        }
         if (resp.status == 404) {
           setInputsErrors({ ...inputsErrors, emailError: true })
           setErrorText({ ...errorText, emailText: 'Пользователь не найден' })
