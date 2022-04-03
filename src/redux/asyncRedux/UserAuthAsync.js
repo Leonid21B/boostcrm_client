@@ -23,7 +23,7 @@ export const login = async (dispatch, email, password, body) => {
       dispatch({ type: 'SET_COMAND_ID', payload: null })
       dispatch({ type: 'SET_USERID', payload: null })
 
-      dispatch(_getCompanySpace(data.space))
+      dispatch(_getCompanySpace(data.space)) 
       dispatch(_getCompanyTakenSpace(data.takenSpace))
     }
     return
