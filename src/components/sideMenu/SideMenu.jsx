@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import 'scss/sidemenu.scss'
 import { emptyAvatar } from 'img/index'
 import { Link, useHistory } from 'react-router-dom'
@@ -6,9 +6,11 @@ import { logOut } from 'redux/asyncRedux/UserAuthAsync'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { ContentStatesStore } from 'StoreStates'
+import ExitCrm from 'componentStore/modals/ExitCrm'
 
 function SideMenu () {
   const dispatch = useDispatch()
+  const [activePopup,setPopup] = useState('non_popup')
   const { user } = useSelector(state => state.user)
   const { openHelpModal, setOpenHelpModal } = useContext(ContentStatesStore)
   const { overdueCards } = useSelector(state => state.newCart)
@@ -164,17 +166,16 @@ function SideMenu () {
           </li>
         </>
       </ul>
-      <Link to='/' draggable={false}>
+      
         <div className='menu__exit'>
-          <button onClick={logout} className='menu__exit-btn'>
+          <button onClick={() => setPopup('container_exit')} className='menu__exit-btn'>
             <div className='menu__nav-talk'>
               <span className='talk'>Выход</span>
             </div>
             <div className='menu__nav-item-svg6' />
           </button>
         </div>
-      </Link>
-
+      <ExitCrm setPopup = {setPopup} logout = {logout} activePopup ={activePopup}/>
     </div>
   )
 }

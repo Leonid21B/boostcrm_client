@@ -313,6 +313,12 @@
             }
         }
     }
+    & .active_popup{
+        display: block;
+    }
+    & .non_popup{
+        display: none;
+    }
 }
 
 span.talk {
