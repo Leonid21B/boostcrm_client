@@ -5,6 +5,7 @@ import { login } from 'redux/asyncRedux/UserAuthAsync'
 import { ContentStatesStore } from 'StoreStates'
 import BlueBtn from 'ui/btns/BlueBtn'
 import '../../Styles/StyleModul/reggistration.scss'
+import RebuildPass from './RebuildPass/RebuildPass'
 
 function Login ({ body, active, setActive }) {
   const dispatch = useDispatch()
@@ -144,13 +145,17 @@ function Login ({ body, active, setActive }) {
                 </p>
               </li>
             </ul>
-            <div className='reg__btn'>
-              <BlueBtn func={loginUser}>Войти</BlueBtn>
+            <div className="footer_log_popup">
+              <p /*onClick={rebPass}*/ className="rebuild_password">Восстановить пароль</p>
+              <div className='reg__btn'>
+                <BlueBtn func={loginUser}>Войти</BlueBtn>
+              </div>
             </div>
           </form>
 
         </div>
       </div>
+      <RebuildPass/>
     </div>
   )
 }

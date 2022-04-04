@@ -212,6 +212,17 @@
         }
 
     }
+    & .footer_log_popup{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        & .rebuild_password{
+            font-size: 13px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }
 
     &__btn {
         display: flex;
