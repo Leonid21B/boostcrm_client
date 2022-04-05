@@ -11,6 +11,14 @@ export default class AuthService {
     }
   }
 
+  static async rebuildPassword (email) {
+    try {
+      return api.post('/rebuild_user_password', {email})
+    } catch (error) {
+ 
+    }
+  }
+
   static async login (email, password) {
     try {
       return api.post('/login', { email, password })

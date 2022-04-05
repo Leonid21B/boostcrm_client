@@ -13,7 +13,7 @@ const ExitCrm = (props) => {
     props.logout()
     props.setPopup('non_active')
   }
-  
+
   if('non_active' === props.activePopup){
     return(<div className={props.activePopup}></div>)
   }
@@ -36,4 +36,4 @@ const ExitCrm = (props) => {
     </div>
   )
 }
-export default ExitCrm
+export default ExitCrm 

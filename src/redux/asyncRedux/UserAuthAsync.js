@@ -31,6 +31,11 @@ export const login = async (dispatch, email, password, body) => {
   return data.resp
 }
 
+export const rebuildPassword = async (email,dispatch) => {
+  const resp = await AuthService.rebuildPassword(email)
+  return resp
+}
+
 export const logOut = async (dispatch) => {
   await AuthService.logout()
   localStorage.clear()

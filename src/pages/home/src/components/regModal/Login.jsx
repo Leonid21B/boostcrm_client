@@ -11,6 +11,7 @@ function Login ({ body, active, setActive }) {
   const dispatch = useDispatch()
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [activePop, setPop] = useState('non_active')
 
   const { isLoading, setIsLoading, setIsLoaded } = useContext(ContentStatesStore)
 
@@ -103,7 +104,7 @@ function Login ({ body, active, setActive }) {
 
   return (
     <div className='reg' style={active ? { display: 'block' } : null}>
-      <div className='reg__inner'>
+      <div className={activePop === 'non_active' ? 'reg__inner' : 'non_active'}>
         <div className='reg__modal'>
           <div className='reg__modal-top'>
             <h1>Вход</h1>
@@ -146,7 +147,7 @@ function Login ({ body, active, setActive }) {
               </li>
             </ul>
             <div className="footer_log_popup">
-              <p /*onClick={rebPass}*/ className="rebuild_password">Восстановить пароль</p>
+              <p onClick={() => setPop('active')} className="rebuild_password">Восстановить пароль</p>
               <div className='reg__btn'>
                 <BlueBtn func={loginUser}>Войти</BlueBtn>
               </div>
@@ -155,7 +156,7 @@ function Login ({ body, active, setActive }) {
 
         </div>
       </div>
-      <RebuildPass/>
+      <RebuildPass activePop = {activePop} setActive = {setActive} setPop = {setPop}/>
     </div>
   )
 }
