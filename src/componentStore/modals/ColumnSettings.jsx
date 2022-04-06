@@ -129,6 +129,7 @@ function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, val
                                     value={newValuesOfInputs[index].title}
                                     data-type={item.value}
                                     onChange={e => inputChangeHandler(e, index)}
+                                    maxLength={20}
                                   />
                                 </span>
                                 <img src={verticalDots} alt='' />

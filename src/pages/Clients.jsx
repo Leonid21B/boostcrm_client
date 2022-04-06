@@ -421,6 +421,7 @@ function Clients () {
                             name=''
                             id=''
                             placeholder='Поиск'
+                            max={20}
                           />
                         </div>
 

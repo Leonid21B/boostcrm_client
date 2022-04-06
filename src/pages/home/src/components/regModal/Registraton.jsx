@@ -114,7 +114,7 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
   }
 
   function emailHandler (e) {
-    const regex = [/^(([0-9A-Za-z^{}[\]<>\.;:_]{1,3}[0-9A-Za-z\.]{1,}[0-9A-Za-z]{1})@([A-Za-z0-9]{1,}\.){1,2}[A-Za-z]{2,5})$/]
+    const regex = [/^(([0-9A-Za-z^{}[\]<>\.;:_]{1,3}[0-9A-Za-z-\.]{1,}[0-9A-Za-z]{1})@([A-Za-z0-9]{1,}\.){1,2}[A-Za-z]{2,5})$/]
     setEmail(e.target.value)
     checkInputContent(regex, e, 'emailError')
     
