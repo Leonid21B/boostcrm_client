@@ -523,7 +523,9 @@ function Analitica () {
                                                 <div className='selectDropDown-items'>
                                                   <ul className='select__comand-list'>
                                                     {
-                                                                    comandsList.map(comand =>
+                                                                    comandsList
+                                                                    .sort((a,b) => b.createdAt - a.createdAt)
+                                                                    .map(comand =>
                                                                       <li
                                                                         key={comand._id}
                                                                         data-id={comand._id}
@@ -583,7 +585,7 @@ function Analitica () {
                                                             </li>
                                                             <li>
                                                               <span>
-                                                                {
+                                                                {           
                                                                             countMovementCard(
                                                                               carts.length,
                                                                               stage.cards
