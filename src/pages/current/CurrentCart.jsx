@@ -290,6 +290,10 @@ function CurrentCart ({ isClientCreateCard = true }) {
     }
     setisCardWithOutTasks(false)
     setCloseTask(true)
+    setTimeout(() => {
+      innerTasksScroll()
+    },0)
+    
   }
 
   function showTasksColorUnit (arr) {
