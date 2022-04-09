@@ -1,4 +1,5 @@
 import { CREATE_COMAND_OF_SALE, GET_COMAD_OF_SALE, GET_COMAND_STAGES, GET_CURRENT_COMAND } from 'redux/actionsTypes'
+const DELETE_COMAND = "DELETE_COMAND"
 
 const defaultState = {
   comands: [],
@@ -25,6 +26,9 @@ export const ComandReduser = (state = defaultState, { type, payload }) => {
       return { ...state, currentComand: payload }
     case GET_COMAND_STAGES:
       return { ...state, comandSatges: [...payload] }
+    case DELETE_COMAND:
+      console.log(state.comands)
+      return { ...state}
 
     case 'SET_COMAND_TO_LIST':
       return { ...state, comandListView: [...state.comandListView, payload] }
@@ -53,6 +57,7 @@ export const _getComandStages = (payload) => ({ type: GET_COMAND_STAGES, payload
 
 export const _setComandToList = (payload) => ({ type: 'SET_COMAND_TO_LIST', payload })
 export const _removeComandFromList = (payload) => ({ type: 'DELETE_COMAND_FROM_LIST', payload })
+export const _deleteComand = (payload) => ({type: DELETE_COMAND, payload})
 
 export const _setDropDownComandToDropDownList = (payload) => ({ type: 'SET_DROPDOWN_COMAND_TO_DROPDOWN_LIST', payload })
 export const _removeDropDownComandFromDropDownList = (payload) => ({ type: 'REMOVE_DROPDOWN_COMAND_FROM_DROPDOWN_LIST', payload })

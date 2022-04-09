@@ -8,7 +8,7 @@ import BlueBtn from 'ui/btns/BlueBtn'
 import GrayBtn from 'ui/btns/GrayBtn'
 import fpm from '../moduleScss/forgotPassword.module.scss'
 
-function ForgotPassword ({ active, setActive }) {
+function ForgotPassword({ active, setActive }) {
   const dispatch = useDispatch()
   const { user } = useSelector(state => state.user)
 
@@ -30,7 +30,7 @@ function ForgotPassword ({ active, setActive }) {
   const [oldPassText, setOldPassText] = useState('Введите пароль')
   const [newAndRepeatPassText, setNewAndRepeatPassText] = useState('Заполните поле')
 
-  function resetAllFieldsAndStates () {
+  function resetAllFieldsAndStates() {
     setOldPassword('')
     setNewPassword('')
     setRepeatNewPassword('')
@@ -43,7 +43,7 @@ function ForgotPassword ({ active, setActive }) {
     setOldPassText('Введите пароль')
   }
 
-  async function updatePassword () {
+  async function updatePassword() {
     if (oldPassword.length == 0 && newPassword.length == 0 && repeatNewPassword.length == 0) {
       setInputsError({ ...inputsError, oldPassError: true, newPassError: true, repNewPass: true })
       return
@@ -78,7 +78,7 @@ function ForgotPassword ({ active, setActive }) {
     }
   }
 
-  function oldPassHandler (e) {
+  function oldPassHandler(e) {
     setOldPassword(e.target.value)
     if (e.target.value.length < 8 || e.target.value.length > 10) {
       setInputsError({ ...inputsError, oldPassError: true })
@@ -97,7 +97,7 @@ function ForgotPassword ({ active, setActive }) {
     setIsValid(true)
   }
 
-  function newPassHandler (e) {
+  function newPassHandler(e) {
     setNewPassword(e.target.value)
     if (e.target.value.length < 8 || e.target.value.length > 10 && e.target.value != repeatNewPassword) {
       setInputsError({ ...inputsError, newPassError: true })
@@ -110,7 +110,7 @@ function ForgotPassword ({ active, setActive }) {
     setIsValid(true)
   }
 
-  function mewPassRepeatHandler (e) {
+  function mewPassRepeatHandler(e) {
     setRepeatNewPassword(e.target.value)
     if (e.target.value.length < 8 || e.target.value.length > 10 && e.target.value != newPassword) {
       setNewAndRepeatPassText('Пароль должен быть максимум 10 символов')
@@ -141,6 +141,7 @@ function ForgotPassword ({ active, setActive }) {
                 onChange={e => oldPassHandler(e)}
                 type='text'
                 placeholder='Введите старый пароль'
+                autoComplete='off'
               />
             </div>
             <p style={inputsError.oldPassError ? { display: 'block' } : null}>{oldPassText}</p>
@@ -152,6 +153,7 @@ function ForgotPassword ({ active, setActive }) {
                 onChange={e => newPassHandler(e)}
                 type={showPassForNewPass ? 'text' : 'password'}
                 placeholder='Введите новый пароль'
+                autoComplete='off'
               />
               <img onClick={() => setShowPassForNewPass(!showPassForNewPass)} src={eye} alt='' />
             </div>
@@ -164,6 +166,7 @@ function ForgotPassword ({ active, setActive }) {
                 onChange={e => mewPassRepeatHandler(e)}
                 type={showPassForRepeatNewPass ? 'text' : 'password'}
                 placeholder='Повторите новый пароль'
+                autoComplete='off'
               />
               <img onClick={() => setShowPassForRepeatNewPass(!showPassForRepeatNewPass)} src={eye} alt='' />
             </div>
