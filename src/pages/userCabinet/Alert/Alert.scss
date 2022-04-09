@@ -1,0 +1,39 @@
+.non_active{
+  display: none;
+}
+.container_alert{
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 5;
+  &> .green_status_alert{
+    position: absolute;
+    width: 40vw;
+    left: 30vw;
+    top: 10px;
+    background-color:#66D48B;
+    transition: all 1s ease-in-out ;
+    display: flex;
+    height: 5vh;
+    align-items: center;
+    color:white;
+    padding-left: 20px;
+    border-radius: 5px;
+  }
+  &> .orange_status_alert{
+    position: absolute;
+    width: 40vw;
+    left: 30vw;
+    top: 10px;
+    background-color: #febc59;
+    transition: all 1s ease-in-out ;
+    display: flex;
+    height: 5vh;
+    align-items: center;
+    color:white;
+    padding-left: 20px;
+    border-radius: 5px;
+  }
+}
