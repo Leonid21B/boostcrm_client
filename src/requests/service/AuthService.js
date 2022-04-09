@@ -15,7 +15,7 @@ export default class AuthService {
     try {
       return api.post('/rebuild_user_password', {email})
     } catch (error) {
- 
+      console.log(error)
     }
   }
 
@@ -78,7 +78,7 @@ export default class AuthService {
   static async uploadUserAvatar (file, userId) {
     try {
       const data = new FormData()
-      data.append('file', file)
+      data.append('file',  file) 
       return api.post(`/upload_user_avatar/${userId}`, data, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -105,7 +105,7 @@ export default class AuthService {
     }
   }
 
-  static async updateRole (userId, workerId, role) {
+  static async updateRole (userId, workerId, role) { 
     try {
       return api.put('/update_role', { userId, workerId, role })
     } catch (error) {
