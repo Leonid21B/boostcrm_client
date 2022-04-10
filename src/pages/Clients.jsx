@@ -24,7 +24,7 @@ import { _getCompanySpace, _getCompanyTakenSpace } from 'redux/redusers/CompanyR
 import { formatDateAndMonth } from 'functions/FormatDate'
 import Loading from 'ui/loading/Loading'
 
-function Clients () {
+function Clients() {
   // #region INITIALS STATES OF COMPONENT
   const { setIsLoading } = useContext(ContentStatesStore)
 
@@ -76,7 +76,7 @@ function Clients () {
 
   const [success, setSuccess] = useState([])
   const [refusual, setRefusual] = useState([])
-  const [notDeal,setDeal] = useState([])
+  const [notDeal, setDeal] = useState([])
 
   const [telMask, setTelMask] = useState({ mask: '+{7} (000) 000 00 00' })
   const { ref, setRef } = useIMask(telMask)
@@ -128,7 +128,7 @@ function Clients () {
 
   let keys = null
   let values = null
-  function createAnotherClient (val) {
+  function createAnotherClient(val) {
     return async () => {
       if (valuesOfInputs.org.length != 0) {
         const data = JSON.parse(localStorage.getItem('columns'))
@@ -195,25 +195,25 @@ function Clients () {
     setArrayOfClients(clients)
   }, [clients])
 
-  function sortColumns (first, second) {
+  function sortColumns(first, second) {
     if (first.order > second.order) {
       return 1
     }
     return -1
   }
 
-  function exportTableToExcel () {
+  function exportTableToExcel() {
     const filename2 = 'clients'
 
     let downloadLink
-    const dataType = 'application/vnd.ms-excel'
+    const dataType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     const tableSelect = tableRef.current
     const tableHTML = tableSelect.outerHTML.replace(/ /g, '%20')
 
-    const filename = filename2 ? filename2 + '.xlsx' : 'excel_data.xls'
+    const filename = filename2 ? filename2 + '.xls' : 'excel_data.xls'
 
     downloadLink = document.createElement('a')
-
+    console.log(tableHTML)
     if (navigator.msSaveOrOpenBlob) {
       const blob = new Blob(['\ufeff', tableHTML], {
         type: dataType
@@ -232,7 +232,7 @@ function Clients () {
   const emailRegx = /^(([0-9A-Za-z^<>()[\]|\.:;_]{1,2}[0-9A-Za-z\.]{1,}[0-9A-Za-z]{1})@([A-Za-z]{1,}\.){1,2}[A-Za-z]{2,5})$/
   const telRegx = /^(\+[1-9]{1,2} \([0-9]{3}\) [0-9]{3}( [0-9]{2}){2})$/
 
-  function inputChangeHandler (e) {
+  function inputChangeHandler(e) {
     setValuesOfInputs({
       ...valuesOfInputs,
       [e.target.dataset.type]: e.target.dataset.type == 'tel' ? onlyNumber(e.target.value) : e.target.value
@@ -247,21 +247,21 @@ function Clients () {
     }
   }
 
-  function onlyNumber (str) {
+  function onlyNumber(str) {
     str = str.trim().replace(/[^\d\.]+/gi, '')
     const s = str.indexOf('.', str.indexOf('.'))
     if (!s) { str = str.substr(0, s - 1) }
     return str
   }
 
-  function openDropDown ({ target }) {
+  function openDropDown({ target }) {
     clientsListRef.current.classList.toggle('open')
     const { type, id } = target.dataset
     if (type == 'selectedItem') {
       selectItem(target.dataset)
     }
   }
-  function selectItem ({ type, id }) {
+  function selectItem({ type, id }) {
     if (!clientsListRef.current.querySelector(`[data-id="${id}"]`).classList.contains('selected')) {
       clientsListRef.current.querySelectorAll('[data-type="selectedItem"]')
         .forEach(item => { item.classList.remove('selected') })
@@ -301,7 +301,7 @@ function Clients () {
     }
   }
 
-  function clickOnClient (id, clname, clorg, cltel, clemail) {
+  function clickOnClient(id, clname, clorg, cltel, clemail) {
     return async () => {
       try {
         setIsLoading(true)
@@ -326,7 +326,7 @@ function Clients () {
     }
   }
 
-  async function selectCurrentRow (id) {
+  async function selectCurrentRow(id) {
     // const client = await ClientService.getCurrent(id).then(data => data.data)
     const client = clients.find(cl => cl._id == id)
     const keys = Object.keys(valuesOfInputs)
@@ -340,7 +340,7 @@ function Clients () {
     setReWriteedRowID(id)
   }
 
-  async function update (id) {
+  async function update(id) {
     const data = JSON.parse(localStorage.getItem('columns'))
     const result = {
       id: id,
@@ -351,13 +351,13 @@ function Clients () {
     setReWriteedRowID(null)
   }
 
-  function setDataToLocalStorage (data) {
+  function setDataToLocalStorage(data) {
     return () => {
       localStorage.setItem('columns', JSON.stringify(data))
     }
   }
 
-  async function importFile (file) {
+  async function importFile(file) {
     const { clients, result, space, takenSpace } = await ClientService.uploadClientFromFile(file, user.id).then(data => data.data)
     if (result) {
       setActiveErrorAlert(false)
@@ -379,16 +379,16 @@ function Clients () {
   }, [])
 
   useCallback(() => {
-    function setPage (page) {
+    function setPage(page) {
       return page + 1
     }
   }, [])
   const clickNewClient = (id) => {
-    flagClient(dispatch,id)
+    flagClient(dispatch, id)
   }
   let nextPage = 2
   let unit = 0
-  async function scrollHandler (e) {
+  async function scrollHandler(e) {
     unit = e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight)
     const t = document.documentElement.getBoundingClientRect()
 
@@ -403,310 +403,311 @@ function Clients () {
   return (
     <div className='clients'>
       {
-                clientsLoading
-                  ? <Loading />
-                  : <div className='container'>
-                    <div className='clients__inner'>
-                      <TopLine title='Клиенты'>
-                        <div className={tl.firstseacrch}>
-                          <span>занято {takenSpace > 1024
-                            ? takenSpace / 1024
-                            : takenSpace} {takenSpace > 1024 ? 'GB' : 'MB'} / {space}GB до {formatDateAndMonth(paymentDate)}
-                          </span>
-                          <input
-                            value={seacrch}
-                            onChange={e => setSeacrch(e.target.value)}
-                            className='inp'
-                            type='search'
-                            name=''
-                            id=''
-                            placeholder='Поиск'
-                            max={20}
-                          />
-                        </div>
+        clientsLoading
+          ? <Loading />
+          : <div className='container'>
+            <div className='clients__inner'>
+              <TopLine title='Клиенты'>
+                <div className={tl.firstseacrch}>
+                  <span>занято {takenSpace > 1024
+                    ? takenSpace / 1024
+                    : takenSpace} {takenSpace > 1024 ? 'GB' : 'MB'} / {space}GB до {formatDateAndMonth(paymentDate)}
+                  </span>
+                  <input
+                    value={seacrch}
+                    onChange={e => setSeacrch(e.target.value)}
+                    className='inp'
+                    type='search'
+                    name=''
+                    id=''
+                    placeholder='Поиск'
+                    max={20}
+                  />
+                </div>
 
-                        <BlueBtn func={() => setUserAdded(prev => !prev)}>Добавить клиента</BlueBtn>
-                      </TopLine>
+                <BlueBtn func={() => setUserAdded(prev => !prev)}>Добавить клиента</BlueBtn>
+              </TopLine>
 
-                      <div className='clients__content'>
-                        <ErrorAlert
-                          errorText={alertErrorText}
-                          active={activeErrorAlert}
-                          setActive={setActiveErrorAlert}
-                          importFile={importFile}
-                        />
+              <div className='clients__content'>
+                <ErrorAlert
+                  errorText={alertErrorText}
+                  active={activeErrorAlert}
+                  setActive={setActiveErrorAlert}
+                  importFile={importFile}
+                />
 
-                        <div className='clients__content-top'>
-                          <div
-                            onClick={e => openDropDown(e)}
-                            ref={clientsListRef}
-                            data-type='selectedStatus'
-                            className='clients__select'
-                          >
-                            <div
-                              className='clients__select-input'
-                              data-type='selectedStatus'
-                            >
-                              <div className='clients__select-input-wrap'>
-                                <span>{curretSelectTitle}</span>
-                                <img src={arrowdwn} alt='' />
-                              </div>
-                            </div>
-                            <div className='clients__select-dropDown'>
-                              <ul>
-                                <li
-                                  className='clients__select-item selectedItem selected'
-                                  data-id={1}
-                                  data-type='selectedItem'
-                                >
-                                  <img className='customSelectedItemImg' src={activeItem} alt='' />
-                                  <span>
-                                    Вся база
-                                  </span>
-                                </li>
-                                <li
-                                  className='clients__select-item selectedItem'
-                                  data-id={2}
-                                  data-type='selectedItem'
-                                >
-                                  <img className='customSelectedItemImg' src={activeItem} alt='' />
-                                  <span>
-                                    Активная база
-                                  </span>
-                                </li>
-                                <li
-                                  className='clients__select-item selectedItem'
-                                  data-id={3}
-                                  data-type='selectedItem'
-                                >
-                                  <img className='customSelectedItemImg' src={activeItem} alt='' />
-                                  <span>
-                                    Успешные
-                                  </span>
-                                </li>
-                                <li
-                                  className='clients__select-item selectedItem'
-                                  data-id={4}
-                                  data-type='selectedItem'
-                                >
-                                  <img className='customSelectedItemImg' src={activeItem} alt='' />
-                                  <span>
-                                    Отказы
-                                  </span>
-                                </li>
-                                <li
-                                  className='clients__select-item selectedItem'
-                                  data-id={5}
-                                  data-type='selectedItem'
-                                >
-                                  <img className='customSelectedItemImg' src={activeItem} alt='' />
-                                  <span>
-                                    Без сделок
-                                  </span>
-                                </li>
-                              </ul>
-                            </div>
-                          </div>
-                          {
-                                        user.role == 'admin'
-                                          ? <div className='clients__content-topBtns'>
-                                            <button onClick={imporColumn}>Импорт</button>
-                                            <button onClick={exportcolumn}>Экспорт</button>
-                                            </div>
-                                          : null
-                                    }
-                        </div>
-
-                        <div className='clients__content-table'>
-                          <div className='clients__content-table-items'>
-                            <ul className='clients__content-items'>
-                              <li className='clients__content-item'>
-                                <span>№</span>
-                                {
-                                                    dataColumns?.sort(sortColumns).map(item =>
-                                                      <span key={item.id}>
-                                                        {item.title}
-                                                      </span>
-                                                    )
-                                                }
-                                <span>
-                                  <img
-                                    style={{ cursor: 'pointer' }}
-                                    onClick={columnSettings}
-                                    src={settings}
-                                    alt=''
-                                  />
-                                </span>
-                              </li>
-                              <li
-                                className='clients__content-item add'
-                                style={userAdded ? { display: 'flex' } : null}
-                              >
-                                <span>1</span>
-                                {
-                                                    dataColumns?.map((item, idx) =>
-                                                      <input
-                                                        ref={item.value == 'tel' ? ref : null}
-                                                        key={item.id}
-                                                        name='name'
-                                                        value={valuesOfInputs[item.value]}
-                                                        data-type={item.value}
-                                                        onChange={e => inputChangeHandler(e)}
-                                                        onBlur={setDataToLocalStorage(valuesOfInputs)}
-                                                        onMouseLeave={setDataToLocalStorage(valuesOfInputs)}
-                                                        className={`active ${item.value == 'org'
-                                                                ? inputError
-                                                                    ? 'inputError'
-                                                                    : null
-                                                                : null}`}
-                                                        type={`${item.value == 'tel'
-                                                                ? 'tel'
-                                                                : item.value == 'email'
-                                                                    ? 'email'
-                                                                    : 'text'}`}
-                                                        maxLength={`${item.value == 'tel' ? 18 : 45}`}
-                                                        data-id='1'
-                                                        autoComplete='off'
-                                                        style={userAdded ? { pointerEvents: 'auto' } : null}
-                                                      />
-                                                    )
-                                                }
-                                <div className='clients__content-item-btns'>
-                                  <button
-                                    onClick={createAnotherClient()}
-                                  >
-                                    <img src={bird} alt='' />
-                                  </button>
-                                  <button onClick={() => cancelAddingUser()}>
-                                    <img src={urn} alt='' />
-                                  </button>
-                                </div>
-                              </li>
-                              {
-                                                arrayOfClients
-                                                  .filter(clt => clt.name?.toLowerCase().includes(seacrch.toLowerCase()))
-                                                  .map((client, indx) =>{
-                                                    
-                                                    return(
-                                                      client._id != reWriteedRowID
-                                                      ? <li
-                                                          onClick={client.flag === 0 ?() => clickNewClient(client._id): null}
-                                                          key={client._id}
-                                                          className='clients__content-item client'
-                                                          style={userAdded ? { pointerEvents: 'none' } : null}
-                                                        >
-                                                        <Link
-                                                          to={`/client/${client._id}`}
-                                                          onClick={clickOnClient(client._id, client.name, client.org, client.tel, client.email)}
-                                                        >
-                                                          <span>
-                                                            {(indx + 1)}
-                                                          </span>
-                                                          {
-                                                                        dataColumns?.map(item =>
-                                                                          <input
-                                                                            key={item.id}
-                                                                            style={userAdded ? { color: '#C1C5D6' } : null}
-                                                                            type='text'
-                                                                            value={client[item.value]}
-                                                                            data-id='1'
-                                                                            data-value='01'
-                                                                            onChange={e => { }}
-                                                                            
-                                                                          />
-                                                                        )
-                                                                    }
-                                                        </Link>
-                                                        <span>
-                                                          <button
-                                                            onClick={() => selectCurrentRow(client._id)}
-                                                          >
-                                                            <img src={pencil} alt='' />
-                                                          </button>
-                                                        </span>
-                                                      </li>
-
-                                                      : <li
-                                                          key={client._id}
-                                                          className='clients__content-item active'
-                                                          style={userAdded ? { pointerEvents: 'none' } : null}
-                                                        >
-                                                        <span>
-                                                          {(indx + 1)}
-                                                        </span>
-                                                        {
-                                                                    dataColumns?.map((item) =>
-                                                                      <input
-                                                                        key={item.id}
-                                                                        style={userAdded ? { color: '#C1C5D6' } : null}
-                                                                        type='text'
-                                                                        value={valuesOfInputs[item.value]}
-                                                                        onChange={e => inputChangeHandler(e)}
-                                                                        data-type={item.value}
-                                                                        onBlur={setDataToLocalStorage(valuesOfInputs)}
-
-                                                                        onMouseLeave={setDataToLocalStorage(valuesOfInputs)}
-                                                                        maxLength={item.value == 'tel' ? 18 : 45}
-                                                                        data-id='1' data-value='01'
-                                                                      />
-                                                                    )
-                                                                }
-                                                        <div className='clients__content-item-btns'>
-                                                          <button
-                                                            onClick={() => update(client._id)}
-                                                          >
-                                                            <img src={bird} alt='' />
-                                                          </button>
-                                                          <button
-                                                            onClick={() => removeclient(client._id)}
-                                                          >
-                                                            <img src={urn} alt='' />
-                                                          </button>
-                                                        </div>
-                                                        </li>)}
-                                                  )
-                                            }
-                            </ul>
-                          </div>
-                        </div>
+                <div className='clients__content-top'>
+                  <div
+                    onClick={e => openDropDown(e)}
+                    ref={clientsListRef}
+                    data-type='selectedStatus'
+                    className='clients__select'
+                  >
+                    <div
+                      className='clients__select-input'
+                      data-type='selectedStatus'
+                    >
+                      <div className='clients__select-input-wrap'>
+                        <span>{curretSelectTitle}</span>
+                        <img src={arrowdwn} alt='' />
                       </div>
+                    </div>
+                    <div className='clients__select-dropDown'>
+                      <ul>
+                        <li
+                          className='clients__select-item selectedItem selected'
+                          data-id={1}
+                          data-type='selectedItem'
+                        >
+                          <img className='customSelectedItemImg' src={activeItem} alt='' />
+                          <span>
+                            Вся база
+                          </span>
+                        </li>
+                        <li
+                          className='clients__select-item selectedItem'
+                          data-id={2}
+                          data-type='selectedItem'
+                        >
+                          <img className='customSelectedItemImg' src={activeItem} alt='' />
+                          <span>
+                            Активная база
+                          </span>
+                        </li>
+                        <li
+                          className='clients__select-item selectedItem'
+                          data-id={3}
+                          data-type='selectedItem'
+                        >
+                          <img className='customSelectedItemImg' src={activeItem} alt='' />
+                          <span>
+                            Успешные
+                          </span>
+                        </li>
+                        <li
+                          className='clients__select-item selectedItem'
+                          data-id={4}
+                          data-type='selectedItem'
+                        >
+                          <img className='customSelectedItemImg' src={activeItem} alt='' />
+                          <span>
+                            Отказы
+                          </span>
+                        </li>
+                        <li
+                          className='clients__select-item selectedItem'
+                          data-id={5}
+                          data-type='selectedItem'
+                        >
+                          <img className='customSelectedItemImg' src={activeItem} alt='' />
+                          <span>
+                            Без сделок
+                          </span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  {
+                    user.role == 'admin'
+                      ? <div className='clients__content-topBtns'>
+                        <button onClick={imporColumn}>Импорт</button>
+                        <button onClick={exportcolumn}>Экспорт</button>
+                      </div>
+                      : null
+                  }
+                </div>
 
-                      <table ref={tableRef} style={{ display: 'none' }}>
-                        <thead>
-                          <tr>
-                            <td>№</td>
-                            <td>ФИО</td>
-                            <td>Организация</td>
-                            <td>ИИН</td>
-                            <td>Телефон</td>
-                            <td>E-mail</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {
-                                        clients.map(
-                                          (item, index) =>
-                                            <tr key={item._id}>
-                                              <td>
-                                                {(index + 1) <= 9
-                                                  ? '00' + (index + 1)
-                                                  : (index + 1) <= 100
-                                                      ? '0' + (index + 1)
-                                                      : (index + 1)}
-                                              </td>
-                                              <td>{item.name}</td>
-                                              <td>{item.org}</td>
-                                              <td>{item.iin}</td>
-                                              <td>{item.tel}</td>
-                                              <td>{item.email}</td>
-                                            </tr>
-                                        )
+                <div className='clients__content-table'>
+                  <div className='clients__content-table-items'>
+                    <ul className='clients__content-items'>
+                      <li className='clients__content-item'>
+                        <span>№</span>
+                        {
+                          dataColumns?.sort(sortColumns).map(item =>
+                            <span key={item.id}>
+                              {item.title}
+                            </span>
+                          )
+                        }
+                        <span>
+                          <img
+                            style={{ cursor: 'pointer' }}
+                            onClick={columnSettings}
+                            src={settings}
+                            alt=''
+                          />
+                        </span>
+                      </li>
+                      <li
+                        className='clients__content-item add'
+                        style={userAdded ? { display: 'flex' } : null}
+                      >
+                        <span>1</span>
+                        {
+                          dataColumns?.map((item, idx) =>
+                            <input
+                              ref={item.value == 'tel' ? ref : null}
+                              key={item.id}
+                              name='name'
+                              value={valuesOfInputs[item.value]}
+                              data-type={item.value}
+                              onChange={e => inputChangeHandler(e)}
+                              onBlur={setDataToLocalStorage(valuesOfInputs)}
+                              onMouseLeave={setDataToLocalStorage(valuesOfInputs)}
+                              className={`active ${item.value == 'org'
+                                ? inputError
+                                  ? 'inputError'
+                                  : null
+                                : null}`}
+                              type={`${item.value == 'tel'
+                                ? 'tel'
+                                : item.value == 'email'
+                                  ? 'email'
+                                  : 'text'}`}
+                              maxLength={`${item.value == 'tel' ? 18 : 45}`}
+                              data-id='1'
+                              autoComplete='off'
+                              style={userAdded ? { pointerEvents: 'auto' } : null}
+                            />
+                          )
+                        }
+                        <div className='clients__content-item-btns'>
+                          <button
+                            onClick={createAnotherClient()}
+                          >
+                            <img src={bird} alt='' />
+                          </button>
+                          <button onClick={() => cancelAddingUser()}>
+                            <img src={urn} alt='' />
+                          </button>
+                        </div>
+                      </li>
+                      {
+                        arrayOfClients
+                          .filter(clt => clt.name?.toLowerCase().includes(seacrch.toLowerCase()))
+                          .map((client, indx) => {
+
+                            return (
+                              client._id != reWriteedRowID
+                                ? <li
+                                  onClick={client.flag === 0 ? () => clickNewClient(client._id) : null}
+                                  key={client._id}
+                                  className='clients__content-item client'
+                                  style={userAdded ? { pointerEvents: 'none' } : null}
+                                >
+                                  <Link
+                                    to={`/client/${client._id}`}
+                                    onClick={clickOnClient(client._id, client.name, client.org, client.tel, client.email)}
+                                  >
+                                    <span>
+                                      {(indx + 1)}
+                                    </span>
+                                    {
+                                      dataColumns?.map(item =>
+                                        <input
+                                          key={item.id}
+                                          style={userAdded ? { color: '#C1C5D6' } : null}
+                                          type='text'
+                                          value={client[item.value]}
+                                          data-id='1'
+                                          data-value='01'
+                                          onChange={e => { }}
+
+                                        />
+                                      )
                                     }
-                        </tbody>
-                      </table>
-                    </div>
-                    </div>
-            }
+                                  </Link>
+                                  <span>
+                                    <button
+                                      onClick={() => selectCurrentRow(client._id)}
+                                    >
+                                      <img src={pencil} alt='' />
+                                    </button>
+                                  </span>
+                                </li>
+
+                                : <li
+                                  key={client._id}
+                                  className='clients__content-item active'
+                                  style={userAdded ? { pointerEvents: 'none' } : null}
+                                >
+                                  <span>
+                                    {(indx + 1)}
+                                  </span>
+                                  {
+                                    dataColumns?.map((item) =>
+                                      <input
+                                        key={item.id}
+                                        style={userAdded ? { color: '#C1C5D6' } : null}
+                                        type='text'
+                                        value={valuesOfInputs[item.value]}
+                                        onChange={e => inputChangeHandler(e)}
+                                        data-type={item.value}
+                                        onBlur={setDataToLocalStorage(valuesOfInputs)}
+
+                                        onMouseLeave={setDataToLocalStorage(valuesOfInputs)}
+                                        maxLength={item.value == 'tel' ? 18 : 45}
+                                        data-id='1' data-value='01'
+                                      />
+                                    )
+                                  }
+                                  <div className='clients__content-item-btns'>
+                                    <button
+                                      onClick={() => update(client._id)}
+                                    >
+                                      <img src={bird} alt='' />
+                                    </button>
+                                    <button
+                                      onClick={() => removeclient(client._id)}
+                                    >
+                                      <img src={urn} alt='' />
+                                    </button>
+                                  </div>
+                                </li>)
+                          }
+                          )
+                      }
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <table ref={tableRef} style={{ display: 'none' }}>
+                <thead>
+                  <tr>
+                    <td>№</td>
+                    <td>ФИО</td>
+                    <td>Организация</td>
+                    <td>ИИН</td>
+                    <td>Телефон</td>
+                    <td>E-mail</td>
+                  </tr>
+                </thead>
+                <tbody>
+                  {
+                    clients.map(
+                      (item, index) =>
+                        <tr key={item._id}>
+                          <td>
+                            {(index + 1) <= 9
+                              ? '00' + (index + 1)
+                              : (index + 1) <= 100
+                                ? '0' + (index + 1)
+                                : (index + 1)}
+                          </td>
+                          <td>{item.name}</td>
+                          <td>{item.org}</td>
+                          <td>{item.iin}</td>
+                          <td>{item.tel}</td>
+                          <td>{item.email}</td>
+                        </tr>
+                    )
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+      }
 
       <RemoveClients {...removeClientsFunc} />
       <ColumnSettings
