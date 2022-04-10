@@ -56,7 +56,7 @@ function NewTask({ addNenTask, setAddNenTask, isUpdateTask, setIsUpdateTask, tas
           time,
           id: currentCart?._id,
           userId: user.id,
-          workers: selectedWorker?.map(item => item._id)
+          workers: selectedWorker[0] != undefined && selectedWorker?.map(item => item._id)
         })
 
         innerLogScroll()

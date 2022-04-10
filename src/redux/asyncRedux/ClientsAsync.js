@@ -13,12 +13,12 @@ export const createClient = async (dispatch, { name, org, iin, tel, email, userI
 export const flagClient = async(dispatch,userId) => {
   const resp = await ClientService.updateFlag(userId)
   dispatch(_updateFlag)
-  debugger
+ 
 }
 
 export const getClients = async (dispatch, userId, limit, page) => {
   const resp = await ClientService.get(userId, limit, page).then(data => data.data)
-  debugger
+  
   dispatch(_getClients(resp.clients))
   dispatch(_getClientsLength(resp.clientsLength)) 
   dispatch(_getCompanySpace(resp.space))
