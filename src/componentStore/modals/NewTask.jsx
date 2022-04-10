@@ -11,7 +11,7 @@ import '../../scss/commonStyleOfModal.scss'
 import { parseToLocalDateFormat } from 'functions/DateUtils'
 import { EN_CA } from 'functions/Locale'
 
-function NewTask ({ addNenTask, setAddNenTask, isUpdateTask, setIsUpdateTask, tasks, setTasks, logRef, innerLogScroll, innerTasksScroll }) {
+function NewTask({ addNenTask, setAddNenTask, isUpdateTask, setIsUpdateTask, tasks, setTasks, logRef, innerLogScroll, innerTasksScroll }) {
   const dispatch = useDispatch()
 
   const { user } = useSelector(state => state.user)
@@ -38,7 +38,7 @@ function NewTask ({ addNenTask, setAddNenTask, isUpdateTask, setIsUpdateTask, ta
   let splitDate = null
   let splitTime = null
 
-  async function createOrUpdate () {
+  async function createOrUpdate() {
     splitDate = date.split('-').join('').length
     splitTime = time.split(':').join('').length
 
@@ -109,13 +109,13 @@ function NewTask ({ addNenTask, setAddNenTask, isUpdateTask, setIsUpdateTask, ta
     setSelectedWorker([workers.find(w => w._id == user.id)])
   }, [isUpdateTask])
 
-  async function remove () {
+  async function remove() {
     setTasks(tasks.filter(t => t._id != currentTask._id))
     deletTask(dispatch, currentTask._id, currentTask.cardId)
     closeModal()
   }
 
-  function closeModal () {
+  function closeModal() {
     setAddNenTask(false)
     document.getElementsByTagName('body')[0].style.overflowY = 'scroll'
     setSelectedWorker([workers.find(w => w._id == user.id)])
@@ -126,7 +126,7 @@ function NewTask ({ addNenTask, setAddNenTask, isUpdateTask, setIsUpdateTask, ta
     setIsUpdateTask(false)
   }
 
-  function inputChangeHandler (chosenValue, setChosenValue, typeOfError) {
+  function inputChangeHandler(chosenValue, setChosenValue, typeOfError) {
     setChosenValue(chosenValue.target.value)
     const hasError = chosenValue.length <= 0
     setErrorInputState({ ...errorInputState, [typeOfError]: hasError })
@@ -139,10 +139,10 @@ function NewTask ({ addNenTask, setAddNenTask, isUpdateTask, setIsUpdateTask, ta
           <div className='modalTopLine mb_24'>
             <h3 className='modalTopLine__title'>
               {
-                                isUpdateTask
-                                  ? 'Редактировать задачу'
-                                  : 'Новая задача'
-                            }
+                isUpdateTask
+                  ? 'Редактировать задачу'
+                  : 'Новая задача'
+              }
             </h3>
             <button onClick={closeModal} className='newtask__modal-close'>
               <img className='modalTopLine__close' src={closeGraySvg} alt='' />
@@ -198,17 +198,17 @@ function NewTask ({ addNenTask, setAddNenTask, isUpdateTask, setIsUpdateTask, ta
 
               <div className={`newtask__modal-btns ${isUpdateTask ? null : 'modal__Btns'} `}>
                 {
-                                    isUpdateTask
-                                      ? <GrayBtn func={remove}>Удалить</GrayBtn>
-                                      : null
-                                }
+                  isUpdateTask
+                    ? <GrayBtn func={remove}>Удалить</GrayBtn>
+                    : null
+                }
                 <div className='newtask__modal-buttons'>
                   <GrayBtn func={closeModal}>Отменить</GrayBtn>
                   {
-                                        isUpdateTask
-                                          ? <BlueBtn func={createOrUpdate}>Обновить</BlueBtn>
-                                          : <BlueBtn func={createOrUpdate}>Создать</BlueBtn>
-                                    }
+                    isUpdateTask
+                      ? <BlueBtn func={createOrUpdate}>Обновить</BlueBtn>
+                      : <BlueBtn func={createOrUpdate}>Создать</BlueBtn>
+                  }
                 </div>
               </div>
             </form>
