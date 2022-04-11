@@ -27,7 +27,7 @@ export const UserReduser = (state = defaultState, action) => {
       let newUser = {...state.user}
       newUser.currency = action.val
 
-      return { ...state, user: newUser }
+      return { ...state, user: newUser } 
 
     case GET_USER_INFO:
       return { ...state, user: action.payload }
