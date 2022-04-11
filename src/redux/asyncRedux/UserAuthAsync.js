@@ -1,7 +1,7 @@
 import localforage from 'localforage'
 import { _removeComandFromList, _setComandToList } from 'redux/redusers/ComandOfSalesReduser'
 import { _getCompanySpace, _getCompanyTakenSpace } from 'redux/redusers/CompanyReduser'
-import { _getUserInfo, _login, _logout, _registration } from 'redux/redusers/UserReduser'
+import { _changeCur, _getUserInfo, _login, _logout, _registration } from 'redux/redusers/UserReduser'
 import { _loginInvitedWorker } from 'redux/redusers/WorkerReduser'
 import AuthService from 'requests/service/AuthService'
 
@@ -34,8 +34,15 @@ export const login = async (dispatch, email, password, body) => {
 export const rebuildPassword = async (email,dispatch) => {
   const resp = await AuthService.rebuildPassword(email)
   return resp
+  
 }
+export const changeCur = async (id,val,dispatch) => {
+  const resp = await AuthService.changeCurrency(id,val)
+  if(resp.data == true){
+    dispatch(_changeCur(val))
+  }
 
+}
 export const logOut = async (dispatch) => {
   await AuthService.logout()
   localStorage.clear()

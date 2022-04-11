@@ -29,7 +29,7 @@ import BottomTasksView from './card/BottomTasksView'
 import InputStatement from './card/InputStatement'
 import { onlyNumber } from 'components/card/functions/createNewCardHandlers'
 
-function CurrentCart ({ isClientCreateCard = true }) {
+function CurrentCart({ isClientCreateCard = true }) {
   const [modalNewValue, setModalNewValue] = useState('')
   const [modalNameValue, setModalNameValue] = useState('')
 
@@ -49,8 +49,7 @@ function CurrentCart ({ isClientCreateCard = true }) {
   const {
     carts,
     currentCart
-  } =
-        useSelector(item => item.newCart)
+  } = useSelector(item => item.newCart)
 
   const [title, setTitle] = useState('')
 
@@ -105,7 +104,7 @@ function CurrentCart ({ isClientCreateCard = true }) {
   //     }
   // ])
 
-  async function succsessTaskHandler () {
+  async function succsessTaskHandler() {
     setSuccsessTask(true)
     setNotSuccsessTask(false)
     setCloseTask(false)
@@ -113,17 +112,17 @@ function CurrentCart ({ isClientCreateCard = true }) {
     historeBack.push('/')
   }
 
-  function notSuccsessTaskHandler () {
+  function notSuccsessTaskHandler() {
     setNotSuccsessTask(true)
     setSuccsessTask(false)
   }
 
-  async function sendNotSuccessCart () {
+  async function sendNotSuccessCart() {
     await updateCardStatus('refusual', currentCart._id, notSuccesCartCaption, user.id, 'close-card')
     historeBack.push('/')
   }
 
-  async function removeCurrentCart () {
+  async function removeCurrentCart() {
     cartDispatch(_deleteCart(carts.filter(card => card._id != currentCart._id)))
     await deleteCurrentCart(cartDispatch, currentCart._id, user.id)
     historeBack.push('/')
@@ -187,11 +186,11 @@ function CurrentCart ({ isClientCreateCard = true }) {
     })
   }, [currentCart])
 
-  function innerLogScroll () {
+  function innerLogScroll() {
     logRef.current.scrollTop = logRef.current.scrollHeight
   }
 
-  function innerTasksScroll () {
+  function innerTasksScroll() {
     tasksRef.current.scrollTop = tasksRef.current.scrollHeight
   }
 
@@ -227,17 +226,17 @@ function CurrentCart ({ isClientCreateCard = true }) {
     }
   }
 
-  function onKeyUpInputHanlder (e, field, type) {
+  function onKeyUpInputHanlder(e, field, type) {
     if (e.keyCode == 13 && currentCart[type.toLowerCase()] != field) {
       updateCart(field, type)
     }
   }
 
-  function updaCardStage (stageId) {
+  function updaCardStage(stageId) {
     CartService.updateCartStage(stageId, currentCart._id, user.id)
   }
 
-  async function updateField (e, id, item) {
+  async function updateField(e, id, item) {
     e.target.classList.remove('checked')
     if (fieldValue != item.value) {
       updateCardField(dispatch, currentCart._id, id, fieldValue, user.id)
@@ -246,14 +245,14 @@ function CurrentCart ({ isClientCreateCard = true }) {
     }
   }
 
-  function fieldHandler (id, value) {
+  function fieldHandler(id, value) {
     return () => {
       setFieldId(id)
       setFieldValue(value)
     }
   }
 
-  function updateCardWorker (worker, type) {
+  function updateCardWorker(worker, type) {
     if (type == 'ADD_WORKER') {
       updateCardWorkes(dispatch, currentCart._id, worker._id, user.id, 'ADD_WORKER')
       return
@@ -261,7 +260,7 @@ function CurrentCart ({ isClientCreateCard = true }) {
     updateCardWorkes(dispatch, currentCart._id, worker._id, user.id, 'REMOVE_WORKER')
   }
 
-  function inputChangeHandler (e, type) {
+  function inputChangeHandler(e, type) {
     const condition = type == 'tel' || type == 'price'
     setCardsInputsStates({
       ...cardsInputsStates,
@@ -269,18 +268,18 @@ function CurrentCart ({ isClientCreateCard = true }) {
     })
   }
 
-  function addNewField () {
+  function addNewField() {
     setActive(true)
     document.getElementsByTagName('body')[0].style.overflowY = 'hidden'
   }
 
-  function openCreateTaskModal () {
+  function openCreateTaskModal() {
     setAddNenTask(true)
     setIsUpdateTask(false)
     document.getElementsByTagName('body')[0].style.overflowY = 'hidden'
   }
 
-  function closeTaskHandler () {
+  function closeTaskHandler() {
     if (currentCart.tasks.length != 0) {
       setTimeout(() => {
         setisCardWithOutTasks(false)
@@ -292,11 +291,11 @@ function CurrentCart ({ isClientCreateCard = true }) {
     setCloseTask(true)
     setTimeout(() => {
       innerTasksScroll()
-    },0)
-    
+    }, 0)
+
   }
 
-  function showTasksColorUnit (arr) {
+  function showTasksColorUnit(arr) {
     const filteredTasks = arr?.filter(t => new Date(t.date) < new Date().setSeconds(0, 0))
     return filteredTasks.length > 0
       ? 'red-day'
@@ -305,7 +304,7 @@ function CurrentCart ({ isClientCreateCard = true }) {
         : 'orange-day'
   }
 
-  function showTasksUnit (arr) {
+  function showTasksUnit(arr) {
     const filteredTasks = arr?.filter(t => new Date(t.date) < new Date().setSeconds(0, 0))
     return filteredTasks.length > 0
       ? `${filteredTasks.length} задачи`
@@ -314,7 +313,7 @@ function CurrentCart ({ isClientCreateCard = true }) {
         : 'без-задач'
   }
 
-  function checkCardsResponsible (card) {
+  function checkCardsResponsible(card) {
     const u = currentCart?.workers?.find(w => w._id == user.id)
     return u
   }
@@ -322,284 +321,284 @@ function CurrentCart ({ isClientCreateCard = true }) {
   return (
     <>
       {
-                isLoading
-                  ? <Loading />
-                  : <div className='currentcart'>
+        isLoading
+          ? <Loading />
+          : <div className='currentcart'>
 
-                    <div className={`alert__error ${isCardWithOutTasks ? 'active' : false}`}>
-                      <span>Перед тем как закрыть сделку, закройте все задачи</span>
+            <div className={`alert__error ${isCardWithOutTasks ? 'active' : false}`}>
+              <span>Перед тем как закрыть сделку, закройте все задачи</span>
+            </div>
+
+            <div className='container'>
+              <div className='currentcart__inner'>
+                <CurrentTopLine
+                  path={
+                    isClientCreateCard
+                      ? '/clients'
+                      : currentCart?.status == 'refusual'
+                        ? '/analitics'
+                        : '/'
+                  }
+                  title={title}
+                  cardId={currentCart?._id}
+                  card={currentCart}
+                >
+                  <div className={ctl.currentcartTopRight}>
+                    {
+                      checkCardsResponsible(currentCart) && currentCart.status == 'active'
+                        ? <>
+                          <button onClick={removeCurrentCart} className='currentcart__top-remove'>
+                            <span>
+                              Удалить
+                            </span>
+                          </button>
+                          <BlueBtn func={closeTaskHandler}>Закрыть сделку</BlueBtn>
+                        </>
+                        : null
+                    }
+                  </div>
+                </CurrentTopLine>
+
+                <div
+                  className='currentcart__content'
+                  style={
+                    currentCart?.status != 'active'
+                      ? { pointerEvents: 'none' }
+                      : { pointerEvents: 'auto' }
+                  }
+                >
+
+                  <div className='currentcart__content-left'>
+
+                    <CardHistoryBlock logRef={logRef} />
+
+                    <div className='currentcart__content-bottom'>
+                      {
+                        checkCardsResponsible(currentCart)
+                          ? <button
+                            onClick={openCreateTaskModal}
+                            className='currentcart__content-add'
+                          >
+                            Добавить задачу
+                          </button>
+                          : null
+                      }
+
+                      <BottomTasksView
+                        tasksRef={tasksRef}
+                        setAddNenTask={setAddNenTask}
+                        setIsUpdateTask={setIsUpdateTask}
+                        tasks={tasks}
+                      />
+
+                      <InputStatement innerLogScroll={innerLogScroll} />
+
                     </div>
-
-                    <div className='container'>
-                      <div className='currentcart__inner'>
-                        <CurrentTopLine
-                          path={
-                                            isClientCreateCard
-                                              ? '/clients'
-                                              : currentCart?.status == 'refusual'
-                                                ? '/analitics'
-                                                : '/'
-                                        }
-                          title={title}
-                          cardId={currentCart?._id}
-                          card={currentCart}
-                        >
-                          <div className={ctl.currentcartTopRight}>
-                            {
-                                                checkCardsResponsible(currentCart) && currentCart.status == 'active'
-                                                  ? <>
-                                                    <button onClick={removeCurrentCart} className='currentcart__top-remove'>
-                                                      <span>
-                                                        Удалить
-                                                      </span>
-                                                    </button>
-                                                    <BlueBtn func={closeTaskHandler}>Закрыть сделку</BlueBtn>
-                                                    </>
-                                                  : null
-                                            }
-                          </div>
-                        </CurrentTopLine>
-
-                        <div
-                          className='currentcart__content'
-                          style={
-                                        currentCart?.status != 'active'
-                                          ? { pointerEvents: 'none' }
-                                          : { pointerEvents: 'auto' }
-}
-                        >
-
-                          <div className='currentcart__content-left'>
-
-                            <CardHistoryBlock logRef={logRef} />
-
-                            <div className='currentcart__content-bottom'>
-                              {
-                                                checkCardsResponsible(currentCart)
-                                                  ? <button
-                                                      onClick={openCreateTaskModal}
-                                                      className='currentcart__content-add'
-                                                    >
-                                                    Добавить задачу
-                                                  </button>
-                                                  : null
-                                            }
-
-                              <BottomTasksView
-                                tasksRef={tasksRef}
-                                setAddNenTask={setAddNenTask}
-                                setIsUpdateTask={setIsUpdateTask}
-                                tasks={tasks}
-                              />
-
-                              <InputStatement innerLogScroll={innerLogScroll} />
-
-                            </div>
-                          </div>
-
-                          <div className='currentcart__content-right'>
-                            <div className='currentcart__content-Rtop'>
-                              <h3 className='currentcart__content-Rtitle'>Детали</h3>
-                              <span
-                                className={`currentcart__content-day 
-                                                    ${showTasksColorUnit(tasks)}`}
-                              >
-                                {showTasksUnit(tasks)}
-                              </span>
-                            </div>
-                            <div className='currentcart__content-iw'>
-                              <div className='currentcart__content-wrap'>
-
-                                <label htmlFor='step'>Этап</label>
-                                <CustomSingleSelect
-                                  itemsForDropDown={stages}
-                                  itemForView={
-                                                        stages.find(item => item._id == currentCart?.stageId)
-                                                    }
-                                  sortId={currentCart?.stageId}
-                                  whatToDo={updaCardStage}
-
-                                  singleSelectRef={singleSelect}
-                                  multiSelectRef={multiSelect}
-                                  whereIsSelect='FROM_CARD'
-                                  idType='1'
-                                />
-
-                                <label htmlFor='step'>Ответственный</label>
-                                <SelectWorkers
-                                  workers={workers}
-                                  selectedWorker={selectedWorker}
-                                  setSelectedWorker={setSelectedWorker}
-                                  whatToDo={updateCardWorker}
-
-                                  singleSelectRef={singleSelect}
-                                  multiSelectRef={multiSelect}
-
-                                  whereIsSelect='FROM_CARD'
-                                  isForUpdate
-                                />
-
-                                <label htmlFor='price'>Сумма</label>
-                                <input
-                                  type='text'
-                                  name='price'
-                                  value={cardsInputsStates.price}
-                                  onBlur={e => onBlurInputHandler(e, cardsInputsStates.price, 'PRICE')}
-                                  onClick={e => setActiveInputHandler(e)}
-                                  data-id={1}
-                                  onKeyUp={e =>
-                                    onKeyUpInputHanlder(e, cardsInputsStates.price, 'PRICE')}
-                                  onChange={e => inputChangeHandler(e, 'price')}
-                                  className={`${activeInputHelper}`}
-                                  placeholder='Сумма, ₽'
-                                  autoComplete='off'
-                                  maxLength={9}
-                                />
-                              </div>
-
-                              <div className='currentcart__content-wrap'>
-                                <h3 className='currentcart__content-Rtitle'>Клиент</h3>
-                                <div className='currentcart__content-inputs'>
-
-                                  <label htmlFor='fio'>Ф.И.О</label>
-                                  <input
-                                    type='text'
-                                    name='fio'
-                                    value={cardsInputsStates.person}
-                                    onChange={e => inputChangeHandler(e, 'person')}
-                                    placeholder='Имя контакта'
-                                    onBlur={e => onBlurInputHandler(e, cardsInputsStates.person, 'NAME')}
-                                    onClick={e => setActiveInputHandler(e)}
-                                    autoComplete='off'
-                                    maxLength={40}
-                                    onKeyUp={e => onKeyUpInputHanlder(e, cardsInputsStates.person, 'NAME')}
-                                  />
-
-                                  <label htmlFor='tel'>Телефон</label>
-                                  <input
-                                    ref={ref}
-                                    className=''
-                                    type='tel'
-                                    name='tel'
-                                    value={cardsInputsStates.tel}
-                                    onChange={e => inputChangeHandler(e, 'tel')}
-                                    placeholder='Телефон'
-                                    onBlur={e => onBlurInputHandler(e, cardsInputsStates.tel, 'TEL')}
-                                    onClick={e => setActiveInputHandler(e)}
-                                    autoComplete='off'
-                                    onKeyUp={e => onKeyUpInputHanlder(e, cardsInputsStates.tel, 'TEL')}
-                                    maxLength={18}
-                                  />
-
-                                  <label htmlFor='email'>E-mail</label>
-                                  <input
-                                    className=''
-                                    type='email'
-                                    name='email'
-                                    value={cardsInputsStates.email}
-                                    onChange={e => inputChangeHandler(e, 'email')}
-                                    placeholder='E-mail'
-                                    onBlur={e => onBlurInputHandler(e, cardsInputsStates.email, 'EMAIL')}
-                                    onClick={e => setActiveInputHandler(e)}
-                                    autoComplete='off'
-                                    maxLength={40}
-                                    onKeyUp={e => onKeyUpInputHanlder(e, cardsInputsStates.email, 'EMAIL')}
-                                  />
-
-                                  <label htmlFor='company'>Компания</label>
-                                  <input
-                                    className=''
-                                    type='text'
-                                    name='company'
-                                    value={cardsInputsStates.company}
-                                    onChange={e => inputChangeHandler(e, 'company')}
-                                    placeholder='Название компании'
-                                    onBlur={e => onBlurInputHandler(e, cardsInputsStates.company, 'COMPANY')}
-                                    onClick={e => setActiveInputHandler(e)}
-                                    autoComplete='off'
-                                    maxLength={40}
-                                    onKeyUp={e => onKeyUpInputHanlder(e, cardsInputsStates.company, 'COMPANY')}
-                                  />
-
-                                  <label htmlFor='address'>Адрес</label>
-                                  <input
-                                    className=''
-                                    type='text'
-                                    name='address'
-                                    value={cardsInputsStates.address}
-                                    onChange={e => inputChangeHandler(e, 'address')}
-                                    placeholder='Адрес'
-                                    onBlur={e => onBlurInputHandler(e, cardsInputsStates.address, 'ADDRESS')}
-                                    onClick={e => setActiveInputHandler(e)}
-                                    autoComplete='off'
-                                    maxLength={40}
-                                    onKeyUp={e => onKeyUpInputHanlder(e, cardsInputsStates.address, 'ADDRESS')}
-                                  />
-
-                                  {
-
-                                                        fields?.map(item =>
-                                                          fieldId != item._id
-                                                            ? <Fragment key={item._id}>
-                                                              <label htmlFor='inpt'>{item.title}</label>
-                                                              <input
-                                                                className={`${activeInput == item._id ? 'checked' : null}`}
-                                                                type='text'
-                                                                name='inpt'
-                                                                value={item.value}
-                                                                placeholder={item.value}
-                                                                onClick={fieldHandler(item._id, item.value)}
-                                                                onBlur={() => setFieldId(null)}
-                                                                onChange={e => []}
-                                                              />
-                                                              </Fragment>
-                                                            : <Fragment key={item._id}>
-                                                              <label htmlFor='inpt'>{item.title}</label>
-                                                              <input
-                                                                className={`${'checked'}`}
-                                                                type='text'
-                                                                name='inpt'
-                                                                value={fieldValue}
-                                                                placeholder={item.value}
-                                                                onBlur={e => updateField(e, item._id, item)}
-                                                                onChange={e => setFieldValue(e.target.value)}
-                                                                maxLength={40}
-                                                              />
-                                                            </Fragment>
-                                                        )
-
-                                                    }
-                                </div>
-                                <div onClick={addNewField} className='content__blocks-add'>Добавить контакт</div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <NewContact
-                      setActive={setActive}
-                      active={active}
-                      id={currentCart._id}
-                      logRef={logRef}
-                    />
-
-                    <NewTask
-                      addNenTask={addNenTask}
-                      setAddNenTask={setAddNenTask}
-                      isUpdateTask={isUpdateTask}
-                      setIsUpdateTask={setIsUpdateTask}
-                      tasks={tasks}
-                      setTasks={setTasks}
-                      logRef={logRef}
-                      innerLogScroll={innerLogScroll}
-                      innerTasksScroll={innerTasksScroll}
-                    />
-                    <CloseTask {...closeTaskFunc} />
                   </div>
 
-            }
+                  <div className='currentcart__content-right'>
+                    <div className='currentcart__content-Rtop'>
+                      <h3 className='currentcart__content-Rtitle'>Детали</h3>
+                      <span
+                        className={`currentcart__content-day 
+                                                    ${showTasksColorUnit(tasks)}`}
+                      >
+                        {showTasksUnit(tasks)}
+                      </span>
+                    </div>
+                    <div className='currentcart__content-iw'>
+                      <div className='currentcart__content-wrap'>
+
+                        <label htmlFor='step'>Этап</label>
+                        <CustomSingleSelect
+                          itemsForDropDown={stages}
+                          itemForView={
+                            stages.find(item => item._id == currentCart?.stageId)
+                          }
+                          sortId={currentCart?.stageId}
+                          whatToDo={updaCardStage}
+
+                          singleSelectRef={singleSelect}
+                          multiSelectRef={multiSelect}
+                          whereIsSelect='FROM_CARD'
+                          idType='1'
+                        />
+
+                        <label htmlFor='step'>Ответственный</label>
+                        <SelectWorkers
+                          workers={workers}
+                          selectedWorker={selectedWorker}
+                          setSelectedWorker={setSelectedWorker}
+                          whatToDo={updateCardWorker}
+
+                          singleSelectRef={singleSelect}
+                          multiSelectRef={multiSelect}
+
+                          whereIsSelect='FROM_CARD'
+                          isForUpdate
+                        />
+
+                        <label htmlFor='price'>Сумма</label>
+                        <input
+                          type='text'
+                          name='price'
+                          value={cardsInputsStates.price}
+                          onBlur={e => onBlurInputHandler(e, cardsInputsStates.price, 'PRICE')}
+                          onClick={e => setActiveInputHandler(e)}
+                          data-id={1}
+                          onKeyUp={e =>
+                            onKeyUpInputHanlder(e, cardsInputsStates.price, 'PRICE')}
+                          onChange={e => inputChangeHandler(e, 'price')}
+                          className={`${activeInputHelper}`}
+                          placeholder='Сумма, ₽'
+                          autoComplete='off'
+                          maxLength={9}
+                        />
+                      </div>
+
+                      <div className='currentcart__content-wrap'>
+                        <h3 className='currentcart__content-Rtitle'>Клиент</h3>
+                        <div className='currentcart__content-inputs'>
+
+                          <label htmlFor='fio'>Ф.И.О</label>
+                          <input
+                            type='text'
+                            name='fio'
+                            value={cardsInputsStates.person}
+                            onChange={e => inputChangeHandler(e, 'person')}
+                            placeholder='Имя контакта'
+                            onBlur={e => onBlurInputHandler(e, cardsInputsStates.person, 'NAME')}
+                            onClick={e => setActiveInputHandler(e)}
+                            autoComplete='off'
+                            maxLength={40}
+                            onKeyUp={e => onKeyUpInputHanlder(e, cardsInputsStates.person, 'NAME')}
+                          />
+
+                          <label htmlFor='tel'>Телефон</label>
+                          <input
+                            ref={ref}
+                            className=''
+                            type='tel'
+                            name='tel'
+                            value={cardsInputsStates.tel}
+                            onChange={e => inputChangeHandler(e, 'tel')}
+                            placeholder='Телефон'
+                            onBlur={e => onBlurInputHandler(e, cardsInputsStates.tel, 'TEL')}
+                            onClick={e => setActiveInputHandler(e)}
+                            autoComplete='off'
+                            onKeyUp={e => onKeyUpInputHanlder(e, cardsInputsStates.tel, 'TEL')}
+                            maxLength={18}
+                          />
+
+                          <label htmlFor='email'>E-mail</label>
+                          <input
+                            className=''
+                            type='email'
+                            name='email'
+                            value={cardsInputsStates.email}
+                            onChange={e => inputChangeHandler(e, 'email')}
+                            placeholder='E-mail'
+                            onBlur={e => onBlurInputHandler(e, cardsInputsStates.email, 'EMAIL')}
+                            onClick={e => setActiveInputHandler(e)}
+                            autoComplete='off'
+                            maxLength={40}
+                            onKeyUp={e => onKeyUpInputHanlder(e, cardsInputsStates.email, 'EMAIL')}
+                          />
+
+                          <label htmlFor='company'>Компания</label>
+                          <input
+                            className=''
+                            type='text'
+                            name='company'
+                            value={cardsInputsStates.company}
+                            onChange={e => inputChangeHandler(e, 'company')}
+                            placeholder='Название компании'
+                            onBlur={e => onBlurInputHandler(e, cardsInputsStates.company, 'COMPANY')}
+                            onClick={e => setActiveInputHandler(e)}
+                            autoComplete='off'
+                            maxLength={40}
+                            onKeyUp={e => onKeyUpInputHanlder(e, cardsInputsStates.company, 'COMPANY')}
+                          />
+
+                          <label htmlFor='address'>Адрес</label>
+                          <input
+                            className=''
+                            type='text'
+                            name='address'
+                            value={cardsInputsStates.address}
+                            onChange={e => inputChangeHandler(e, 'address')}
+                            placeholder='Адрес'
+                            onBlur={e => onBlurInputHandler(e, cardsInputsStates.address, 'ADDRESS')}
+                            onClick={e => setActiveInputHandler(e)}
+                            autoComplete='off'
+                            maxLength={40}
+                            onKeyUp={e => onKeyUpInputHanlder(e, cardsInputsStates.address, 'ADDRESS')}
+                          />
+
+                          {
+
+                            fields?.map(item =>
+                              fieldId != item._id
+                                ? <Fragment key={item._id}>
+                                  <label htmlFor='inpt'>{item.title}</label>
+                                  <input
+                                    className={`${activeInput == item._id ? 'checked' : null}`}
+                                    type='text'
+                                    name='inpt'
+                                    value={item.value}
+                                    placeholder={item.value}
+                                    onClick={fieldHandler(item._id, item.value)}
+                                    onBlur={() => setFieldId(null)}
+                                    onChange={e => []}
+                                  />
+                                </Fragment>
+                                : <Fragment key={item._id}>
+                                  <label htmlFor='inpt'>{item.title}</label>
+                                  <input
+                                    className={`${'checked'}`}
+                                    type='text'
+                                    name='inpt'
+                                    value={fieldValue}
+                                    placeholder={item.value}
+                                    onBlur={e => updateField(e, item._id, item)}
+                                    onChange={e => setFieldValue(e.target.value)}
+                                    maxLength={40}
+                                  />
+                                </Fragment>
+                            )
+
+                          }
+                        </div>
+                        <div onClick={addNewField} className='content__blocks-add'>Добавить контакт</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <NewContact
+              setActive={setActive}
+              active={active}
+              id={currentCart._id}
+              logRef={logRef}
+            />
+
+            <NewTask
+              addNenTask={addNenTask}
+              setAddNenTask={setAddNenTask}
+              isUpdateTask={isUpdateTask}
+              setIsUpdateTask={setIsUpdateTask}
+              tasks={tasks}
+              setTasks={setTasks}
+              logRef={logRef}
+              innerLogScroll={innerLogScroll}
+              innerTasksScroll={innerTasksScroll}
+            />
+            <CloseTask {...closeTaskFunc} />
+          </div>
+
+      }
     </>
   )
 }

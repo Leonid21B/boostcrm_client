@@ -21,6 +21,7 @@ import Loading from 'ui/loading/Loading'
 import ComandRow from 'ui/userCabinet/ComandRow'
 import ComandTable from 'ui/userCabinet/ComandTable'
 import Alert from './Alert/Alert'
+import ChooseCurrency from './ChooseCurrency/ChooseCurrency'
 
 function UserCabinet() {
   const [activeModal, setActiveModal] = useState(false)
@@ -609,6 +610,7 @@ function UserCabinet() {
                         value={user?.role == 'admin' ? 'Администратор' : 'Менеджер'}
                         onChange={e => []}
                       />
+                      <ChooseCurrency />
                     </div>
                   </div>
               }

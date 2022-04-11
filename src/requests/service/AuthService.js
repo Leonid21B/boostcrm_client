@@ -10,7 +10,13 @@ export default class AuthService {
  
     }
   }
-
+  static async changeCurrency (id,currency) {
+    try {
+      return api.put('/change_currency', {id,currency})
+    } catch (error) {
+      console.log(error)
+    }
+  }
   static async rebuildPassword (email) {
     try {
       return api.post('/rebuild_user_password', {email})

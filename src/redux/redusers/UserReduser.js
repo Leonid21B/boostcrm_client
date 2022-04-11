@@ -1,5 +1,7 @@
 import { ADD_USER_CART, GET_USER_CARTS, GET_USER_INFO, LOGIN_USER, LOGOUT_USER, REFRESH_TOKEN_USER, REGISTRATION_USER } from 'redux/actionsTypes'
 
+const CHANGE_CURRENCY = 'CHANGE_CURRENCY'
+
 const defaultState = {
   authUser: {},
   user: {},
@@ -19,7 +21,13 @@ export const UserReduser = (state = defaultState, action) => {
     case LOGOUT_USER:
       return { ...state, user: {} }
     case REFRESH_TOKEN_USER:
-      return { ...state, user: action.payload }
+      return { ...state, user: action.payload } 
+      
+    case CHANGE_CURRENCY:
+      let newUser = {...state.user}
+      newUser.currency = action.val
+
+      return { ...state, user: newUser }
 
     case GET_USER_INFO:
       return { ...state, user: action.payload }
@@ -47,6 +55,6 @@ export const _login = (payload) => ({ type: LOGIN_USER, payload })
 export const _logout = () => ({ type: LOGOUT_USER })
 export const _refresh = (payload) => ({ type: REFRESH_TOKEN_USER, payload })
 export const _getUserInfo = (payload) => ({ type: GET_USER_INFO, payload })
-
+export const _changeCur = (val) => ({type:CHANGE_CURRENCY, val})
 export const _addUserCart = (payload) => ({ type: ADD_USER_CART, payload })
 export const _getUserCart = (payload) => ({ type: GET_USER_CARTS, payload })
