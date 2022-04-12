@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { closeCardTask } from 'redux/asyncRedux/CartTasks'
 import { _getCurrentCartTask } from 'redux/redusers/NewTaskReduser'
 
-function BottomTasksView ({ tasksRef, setAddNenTask, setIsUpdateTask, tasks }) {
+function BottomTasksView ({ tasksRef, setAddNenTask, setIsUpdateTask, tasks,scrollTasks}) {
   const { currentCart } = useSelector(state => state.newCart)
   const { user } = useSelector(state => state.user)
   const dispatch = useDispatch()
@@ -42,6 +42,7 @@ function BottomTasksView ({ tasksRef, setAddNenTask, setIsUpdateTask, tasks }) {
   }
 
   function updateTaskHandler (id) {
+    
     return () => {
       dispatch(_getCurrentCartTask(currentCart.tasks.find(item => item._id == id)))
       setAddNenTask(true)

@@ -266,7 +266,14 @@ function CurrentCart({ isClientCreateCard = true }) {
       setFieldValue(value)
     }
   }
+  const scrollTasks = () => {
+    console.log(logRef)
+    if (logRef.current) logRef.current.scrollTo(0, logRef.current.scrollTopMax)
+  }
 
+  useEffect(()=> {
+    scrollTasks()
+  },[tasks])
   function updateCardWorker(worker, type) {
     if (type == 'ADD_WORKER') {
       updateCardWorkes(dispatch, currentCart._id, worker._id, user.id, 'ADD_WORKER')
@@ -401,6 +408,7 @@ function CurrentCart({ isClientCreateCard = true }) {
 
                       <BottomTasksView
                         tasksRef={tasksRef}
+                        scrollTasks = {scrollTasks}
                         setAddNenTask={setAddNenTask}
                         setIsUpdateTask={setIsUpdateTask}
                         tasks={tasks}
