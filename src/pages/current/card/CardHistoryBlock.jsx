@@ -4,10 +4,10 @@ import React, { useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { switchHeler } from '../functions/swittchHelpers'
 
-function CardHistoryBlock ({ logRef }) {
+function CardHistoryBlock ({ logRef ,currentCart}) {
   // const logRef = useRef()
 
-  const { currentCart } = useSelector(state => state.newCart)
+  //const { currentCart } = useSelector(state => state.newCart)
 
   function setDownLoadLink (nameLink) {
     const filePath = `${process.env.REACT_APP_STATIC_SERVER_PATH_FILE}/${nameLink}`

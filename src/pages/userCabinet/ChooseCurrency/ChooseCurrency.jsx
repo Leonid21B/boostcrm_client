@@ -26,7 +26,7 @@ const ChooseCurrency = (props) => {
     <div className="btns_currency">
       {items.map((item, index) => {
         return (
-          <button onClick={index === currentItem ? null : () => clickBtn(index)} className={index === currentItem ? 'active_btn_currency' : 'btn_currency'}>{item[0]}</button>
+          <button key = {item[0]} onClick={index === currentItem ? null : () => clickBtn(index)} className={index === currentItem ? 'active_btn_currency' : 'btn_currency'}>{item[0]}</button>
         )
       })}
     </div>

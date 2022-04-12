@@ -20,7 +20,7 @@ import { updateCardField } from 'redux/asyncRedux/NewFieldAsync'
 import ip from 'ui/scssModule/input.module.scss'
 import { useIMask } from 'react-imask'
 import { _getCurrentCartTask } from 'redux/redusers/NewTaskReduser'
-import { withRouter, useHistory } from 'react-router-dom'
+import { withRouter, useHistory, useParams } from 'react-router-dom'
 import Loading from 'ui/loading/Loading'
 import { _getInvitedWorker } from 'redux/redusers/WorkerReduser'
 import { switchHeler } from './functions/swittchHelpers'
@@ -39,18 +39,33 @@ function CurrentCart({ isClientCreateCard = true }) {
   const [succsessTask, setSuccsessTask] = useState(null)
   const [notSuccsessTask, setNotSuccsessTask] = useState(null)
   const [closeTask, setCloseTask] = useState(false)
-
+  
   const [notSuccesCartCaption, setNotSuccesCartCaption] = useState('')
 
   const cartDispatch = useDispatch()
   const taskdispatch = useDispatch()
   const dispatch = useDispatch()
 
+  //const params = window.location.href
+  //let curId = params.split('/card/')[1]
+  
   const {
-    carts,
-    currentCart
+    currentCart,
+    carts
   } = useSelector(item => item.newCart)
-
+  //let currentCart = carts[0]
+  {/*useEffect(() => {
+    currentCart = carts.find((item) => {
+      if (item._id === curId) {
+        return true
+      }
+      return false
+    })
+  },[carts])*/}
+  
+  
+ 
+  
   const [title, setTitle] = useState('')
 
   const [cardsInputsStates, setCardsInputsStates] = useState({
@@ -166,7 +181,7 @@ function CurrentCart({ isClientCreateCard = true }) {
   }, [])
 
   useEffect(() => {
-    setFields(currentCart.fields)
+    setFields(currentCart?.fields)
   }, [currentCart])
 
   useEffect(() => {
@@ -370,7 +385,7 @@ function CurrentCart({ isClientCreateCard = true }) {
 
                   <div className='currentcart__content-left'>
 
-                    <CardHistoryBlock logRef={logRef} />
+                    <CardHistoryBlock logRef={logRef}  currentCart = {currentCart}/>
 
                     <div className='currentcart__content-bottom'>
                       {
