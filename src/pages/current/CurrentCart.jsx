@@ -405,7 +405,7 @@ function CurrentCart({ isClientCreateCard = true }) {
 
                       <BottomTasksView
                         tasksRef={tasksRef}
-                        scrollTasks = {scrollTasks}
+                        scrollTasks = {innerLogScroll}
                         setAddNenTask={setAddNenTask}
                         setIsUpdateTask={setIsUpdateTask}
                         tasks={tasks}
