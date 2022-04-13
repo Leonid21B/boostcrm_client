@@ -17,6 +17,14 @@ export default class NewtaskService {
     }
   }
 
+  static async deleteFile (fileName,cardId) {
+    try {
+      return api.delete(`/cart/delete_file/${cardId}/${fileName}`)
+    } catch (error) {
+
+    }
+  }
+
   static async getCurrentCartTasks (id) {
     try {
       return api.get(`/current_cart_tasks/${id}`)

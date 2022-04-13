@@ -165,8 +165,19 @@
                 &.task{
                     color: #73AAFC;
                 }
-                &>a{
-                    color: #66D48B;
+                &>div{
+                    display: flex;
+                    &>a{
+                        color: #66D48B;
+                    }   
+                    &>p{
+                        background: url('../img/urn.svg');
+                        width: 20px;
+                        background-size: 90%;
+                        height: 20px;
+                        cursor: pointer;
+                        border: none;
+                    }
                 }
             }
 

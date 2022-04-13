@@ -1,10 +1,15 @@
 import NewtaskService from 'requests/service/NewTaskService'
 import { _getALLTask, _postTask, _getCurrentCartTask } from 'redux/redusers/NewTaskReduser'
-import { _getCurrentCart } from 'redux/redusers/CartReduser'
+import { _deleteFile, _getCurrentCart } from 'redux/redusers/CartReduser'
 
 export const getTasks = async (dispatch, userId) => {
   const resp = await NewtaskService.getTasks(userId)
   dispatch(_getALLTask(resp.data))
+}
+
+export const deleteFileAsync = async (dispatch,fileName,cardId) => {
+  const resp = await NewtaskService.deleteFile(fileName,cardId)
+  dispatch(_deleteFile(fileName))
 }
 
 export const createTask = async (dispatch, { title, description, date, time, id, userId, workers }) => {

@@ -1,14 +1,27 @@
 import { formatFyllDate } from 'functions/FormatDate'
-import React, { useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteFileAsync } from 'redux/asyncRedux/CartTasks'
 import { switchHeler } from '../functions/swittchHelpers'
 
 function CardHistoryBlock ({ logRef ,currentCart}) {
   // const logRef = useRef()
-
+  const [historyState, setHistory] = useState([])
+  
+  console.log(historyState)
+  useEffect(() => {
+    setHistory(Array.from(currentCart.history))
+    
+  },[currentCart.history])
+  const dispatch = useDispatch()
   //const { currentCart } = useSelector(state => state.newCart)
-
+  const deleteFile = async (file) => {
+    deleteFileAsync(dispatch, file,currentCart._id)
+    console.log(file)
+    console.log(currentCart._id)
+    
+  }
   function setDownLoadLink (nameLink) {
     const filePath = `${process.env.REACT_APP_STATIC_SERVER_PATH_FILE}/${nameLink}`
     return filePath
@@ -26,10 +39,9 @@ function CardHistoryBlock ({ logRef ,currentCart}) {
         </span>
 
         <div className='currentcart__content-wrapper row'>
-          {
-                        currentCart
-                          ?.history?.map(history =>
-                            <p key={history.id} className='currentcart__content-row'>
+          {         
+            historyState?.map(history =>
+                            <div key={history.id} className='currentcart__content-row'>
                               <span className='currentcart__content-time'>{history.date}</span>
 
                               <strong>{history.name}</strong>
@@ -44,11 +56,11 @@ function CardHistoryBlock ({ logRef ,currentCart}) {
                               >
                                 {
                                             history.helper == 'download'
-                                              ? <a download href={setDownLoadLink(history.title)}>{history.title}</a>
+                                    ? <div className=""> <a download href={setDownLoadLink(history.title)}>{history.title}</a> <p onClick={() => deleteFile(history.title)} alt="" className="delete_file_img" /> </div>
                                               : history.title
                                         }
                               </strong>
-                            </p>
+                            </div>
                           )
 
                     }
