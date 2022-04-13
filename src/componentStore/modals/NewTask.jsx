@@ -44,7 +44,7 @@ function NewTask({ addNenTask, setAddNenTask, isUpdateTask, setIsUpdateTask, tas
 
     if (title.length > 0 && splitDate == 8 && splitTime == 4) {
       const d = new Date(`${date},${time}`).getTime()
-
+     
       if (!isUpdateTask) {
         setErrorInputState({ ...errorInputState, titleError: false, dateError: false, timeError: false })
         closeModal()

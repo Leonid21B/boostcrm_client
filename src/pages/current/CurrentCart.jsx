@@ -266,13 +266,10 @@ function CurrentCart({ isClientCreateCard = true }) {
       setFieldValue(value)
     }
   }
-  const scrollTasks = () => {
-    console.log(logRef)
-    if (logRef.current) logRef.current.scrollTo(0, logRef.current.scrollTopMax)
-  }
+  
 
   useEffect(()=> {
-    scrollTasks()
+    innerLogScroll()
   },[tasks])
   function updateCardWorker(worker, type) {
     if (type == 'ADD_WORKER') {
