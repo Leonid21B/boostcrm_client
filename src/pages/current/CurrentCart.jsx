@@ -269,7 +269,9 @@ function CurrentCart({ isClientCreateCard = true }) {
   
 
   useEffect(()=> {
+    if(logRef.current){
     innerLogScroll()
+  }
   },[tasks])
   function updateCardWorker(worker, type) {
     if (type == 'ADD_WORKER') {
