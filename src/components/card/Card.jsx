@@ -90,7 +90,7 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
               <span>
                 {card.name.length ? card.name : 'Имя контакта'}
               </span>
-              <span>, {card.company.length ? card.company : 'Назване компании'}</span>
+              <span>, {card.company.length ? card.company : 'Название компании'}</span>
             </span>
             <span className='content__blocks-item-price'>
               {card?.price ? card?.price + ' ₽' : null}

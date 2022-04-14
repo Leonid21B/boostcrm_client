@@ -73,7 +73,7 @@ function Clients() {
   const tableRef = useRef()
   const [curretSelectTitle, setCurretSelectTitle] = useState('Вся база')
   const clientsListRef = useRef()
-
+  const [blobWeigth, setBlob] = useState(0)
   const [success, setSuccess] = useState([])
   const [refusual, setRefusual] = useState([])
   const [notDeal, setDeal] = useState([])
@@ -116,6 +116,15 @@ function Clients() {
   const exportcolumn = () => {
     setactiveExportColumn(true)
     document.getElementsByTagName('body')[0].style.overflowY = 'hidden'
+    const dataType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    const tableSelect = tableRef.current
+    const tableHTML = tableSelect.outerHTML.replace(/ /g, '%20')
+
+    const filename = '11111111111111' + '.xls'
+    const blob = new Blob(['\ufeff', tableHTML], {
+      type: dataType
+    })
+    setBlob(blob.size/1024)
   }
   const closeExportcolumn = () => {
     setactiveExportColumn(false)
@@ -213,13 +222,17 @@ function Clients() {
     const filename = filename2 ? filename2 + '.xls' : 'excel_data.xls'
 
     downloadLink = document.createElement('a')
-    console.log(tableHTML)
     if (navigator.msSaveOrOpenBlob) {
       const blob = new Blob(['\ufeff', tableHTML], {
         type: dataType
       })
+      setBlob(blob.size / 1024)
       navigator.msSaveOrOpenBlob(blob, filename)
     } else {
+      const blob = new Blob(['\ufeff', tableHTML], {
+        type: dataType
+      })
+      setBlob(blob.size/1024)
       downloadLink.href = 'data:' + dataType + ', ' + tableHTML
 
       downloadLink.download = filename
@@ -729,6 +742,8 @@ function Clients() {
         importFile={importFile}
       />
       <ImportColumn
+        size ={blobWeigth}
+        rows={tableRef.current ? tableRef.current.rows.length : "Нет данных"}
         active={activeExportColumn}
         func={closeExportcolumn}
         exportFunc={exportTableToExcel}

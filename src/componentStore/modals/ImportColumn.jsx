@@ -4,7 +4,7 @@ import { close, closeGraySvg } from 'img'
 import GrayBtn from 'ui/btns/GrayBtn'
 import BlueBtn from 'ui/btns/BlueBtn'
 
-function ImportColumn ({ active, func, exportFunc, clients }) {
+function ImportColumn ({ active, func, exportFunc, clients,size, rows }) {
   return (
     <div className={icm.importColumn} style={active ? { display: 'block' } : null}>
       <div className={icm.importColumnInner}>
@@ -15,8 +15,9 @@ function ImportColumn ({ active, func, exportFunc, clients }) {
           </div>
           <div className={icm.span}>
             <span>{clients.length} клиентов.</span>
-            <span>Описание типов файлов,</span>
-            <span> размра и тд</span>
+            <span>{rows} строк.</span>
+            <span>Формат xls.</span>
+            <span>Размер {size}МБ.</span>
           </div>
           <div className={icm.importColumnModalBtns}>
             <GrayBtn func={func}>Отменить</GrayBtn>

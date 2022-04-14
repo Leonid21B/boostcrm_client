@@ -110,7 +110,7 @@ function Content() {
         : MainService.getCurrentComandCards({ comandId: comandId })
     }
 
-    return MainService.getAllDealInfo({ userId: user.id })
+    return MainService.getAllDealInfo({ userId: user?.id })
   }
 
   const { loading, error } = useRequest(
