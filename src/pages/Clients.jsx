@@ -10,7 +10,6 @@ import ExportColumn from 'componentStore/modals/ExportColumn'
 import ImportColumn from 'componentStore/modals/ImportColumn'
 import { checkClient, createClient, flagClient, getClients, updateClient } from 'redux/asyncRedux/ClientsAsync'
 import { useDispatch, useSelector } from 'react-redux'
-
 import { Link, Route } from 'react-router-dom'
 import ClientService from 'requests/service/ClientService'
 import { _getCartId, _getCurrentCart } from 'redux/redusers/CartReduser'
@@ -210,16 +209,16 @@ function Clients() {
     }
     return -1
   }
-
+  
   function exportTableToExcel() {
-    const filename2 = 'clients'
+    /*const filename2 = 'clients'
 
     let downloadLink
-    const dataType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    const dataType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8'
     const tableSelect = tableRef.current
     const tableHTML = tableSelect.outerHTML.replace(/ /g, '%20')
 
-    const filename = filename2 ? filename2 + '.xls' : 'excel_data.xls'
+    const filename = filename2 ? filename2 + '.xlsx' : 'excel_data.xls'
 
     downloadLink = document.createElement('a')
     if (navigator.msSaveOrOpenBlob) {
@@ -233,12 +232,12 @@ function Clients() {
         type: dataType
       })
       setBlob(blob.size/1024)
-      downloadLink.href = 'data:' + dataType + ', ' + tableHTML
+      //downloadLink.href = 'data:' + dataType + ', ' + tableHTML
 
       downloadLink.download = filename
 
       downloadLink.click()
-    }
+    }*/
     closeExportcolumn()
   }
 
@@ -685,7 +684,7 @@ function Clients() {
                 </div>
               </div>
 
-              <table ref={tableRef} style={{ display: 'none' }}>
+              <table  ref={tableRef} id = 'export_table_exel'className = 'table_export'>
                 <thead>
                   <tr>
                     <td>№</td>

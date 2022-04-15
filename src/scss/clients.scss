@@ -355,3 +355,18 @@
 
     }
 }
+.table_export{
+    display: none;
+    border: 1px solid black;
+    border-collapse: collapse;
+    &>th { 
+    text-align: left; 
+    background: #ccc; 
+    padding: 5px; 
+    border: 1px solid black; 
+    }
+    &>td { 
+    padding: 5px; 
+    border: 1px solid black; 
+   }
+}
