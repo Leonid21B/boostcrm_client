@@ -82,6 +82,9 @@ function Clients() {
 
   const [arrayOfClients, setArrayOfClients] = useState([])
 
+
+  const [numberOfClients, setNumber] = useState(1) 
+
   const [rowId, SetrowId] = useState('')
   const tableRef = useRef()
   const [curretSelectTitle, setCurretSelectTitle] = useState('Вся база')
@@ -196,7 +199,8 @@ function Clients() {
       try {
         if (localStorage.getItem('token')) {
           setClientsLoading(true)
-          const { success, refusual, notDeal } = await getClients(dispatch, user.id, limit, 1)
+          const { success, refusual, notDeal } = await getClients(dispatch, user.id, limit, numberOfClients)
+          setNumber(it => it + 1)
           setSuccess(success)
           setRefusual(refusual)
           setDeal(notDeal)
@@ -213,6 +217,15 @@ function Clients() {
     fetchData()
   }, [])
 
+  const getNewClients = async() => {
+    setClientsLoading(true)
+    const { success, refusual, notDeal } = await getClients(dispatch, user.id, limit, numberOfClients)
+    setNumber(it => it + 1)
+    setSuccess(it => [it,success])
+    setRefusual(it => [it, refusual])
+    setDeal(it => [it, notDeal])
+    setClientsLoading(false)
+  }
   useEffect(() => {
     setArrayOfClients(clients)
   }, [clients])

@@ -25,7 +25,7 @@ export const clientReduser = (state = defaultState, { type, payload }) => {
       return { ...state, clients: [payload, ...state.clients] }
 
     case GET_CLIENTS:
-      return { ...state, clients: [...payload] }
+      return { ...state, clients: [...state.clients, ...payload] }
 
     case DELETE_CLIENT:
       return { ...state, clients: [...payload] }
