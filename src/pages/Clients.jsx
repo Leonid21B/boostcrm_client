@@ -10,7 +10,7 @@ import ExportColumn from 'componentStore/modals/ExportColumn'
 import ImportColumn from 'componentStore/modals/ImportColumn'
 import { checkClient, createClient, flagClient, getClients, updateClient } from 'redux/asyncRedux/ClientsAsync'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, Route } from 'react-router-dom'
+import { Link, Redirect, Route } from 'react-router-dom'
 import ClientService from 'requests/service/ClientService'
 import { _getCartId, _getCurrentCart } from 'redux/redusers/CartReduser'
 import { _getClients, _getClientsCarts, _getCurrentClient, _setClientsPage, _setColumns } from 'redux/redusers/ClientReduser'
@@ -22,12 +22,23 @@ import ErrorAlert from 'ui/alerts/ErrorAlert'
 import { _getCompanySpace, _getCompanyTakenSpace } from 'redux/redusers/CompanyReduser'
 import { formatDateAndMonth } from 'functions/FormatDate'
 import Loading from 'ui/loading/Loading'
+import { Navigate, useNavigate } from 'react-router'
 
 function Clients() {
   // #region INITIALS STATES OF COMPONENT
   const { setIsLoading } = useContext(ContentStatesStore)
   
+  const refClients = useRef(null)
+  
+  const backKey = (e) => {
+    e.preventDefault()
+    const loc = window.location.href
+    document.location.replace(`${loc}clients`)
+    console.log(document.location.href)
+  } 
   useEffect(() => {
+    window.addEventListener('popstate', backKey)
+    return () => window.removeEventListener('popstate',backKey)
   },[])
   
   const [activeModal, setActiveModal] = useState(false)
@@ -79,7 +90,7 @@ function Clients() {
   const [success, setSuccess] = useState([])
   const [refusual, setRefusual] = useState([])
   const [notDeal, setDeal] = useState([])
-
+  
   const [telMask, setTelMask] = useState({ mask: '+{7} (000) 000 00 00' })
   const { ref, setRef } = useIMask(telMask)
 
@@ -416,7 +427,7 @@ function Clients() {
   }
 
   return (
-    <div className='clients'>
+    <div ref = {refClients} className='clients'>
       {
         clientsLoading
           ? <Loading />
