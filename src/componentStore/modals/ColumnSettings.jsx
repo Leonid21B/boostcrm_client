@@ -22,22 +22,24 @@ function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, val
 
   function dragStartHandler (e, item) {
     setCurrentRow(item)
+    e.target.classList.remove('drag_over_item')
   }
 
   function dragLeaveHandler (e) {
-
+    e.target.classList.remove('drag_over_item')
+    console.log(e.target)
   }
 
   function dragEndHandler (e) {
-
+    e.target.classList.remove('drag_over_item')
   }
 
   function dragOverHandler (e) {
     e.preventDefault()
+    e.target.classList.add('drag_over_item')
   }
   function dropHandler (e, item) {
-    e.preventDefault()
-
+    e.target.classList.remove('drag_over_item')
     dispatch(_setColumns(dataColumns.map(c => {
       if (c.id == item.id) {
         return { ...c, order: currentRow.order }
@@ -89,7 +91,6 @@ function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, val
     const newArr = [...newValuesOfInputs]
     console.log('newArr', newArr)
     newArr[indx].title = e.target.value
-
     setNewValuesOfInputs(newArr)
   }
 

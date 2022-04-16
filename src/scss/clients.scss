@@ -370,3 +370,13 @@
     border: 1px solid black; 
    }
 }
+.drag_over_item{
+    opacity: 1;
+    background-color: #73AAFC;
+    color :white;
+}
+.clients__content-table{
+    height: 70vh;
+    overflow-y: scroll;
+   
+}

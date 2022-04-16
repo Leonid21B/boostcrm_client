@@ -26,7 +26,10 @@ import Loading from 'ui/loading/Loading'
 function Clients() {
   // #region INITIALS STATES OF COMPONENT
   const { setIsLoading } = useContext(ContentStatesStore)
-
+  
+  useEffect(() => {
+  },[])
+  
   const [activeModal, setActiveModal] = useState(false)
   const [activeColumnSettings, setActiveColumnSettings] = useState(false)
   const [activeImportColumn, setactiveImportColumn] = useState(false)
