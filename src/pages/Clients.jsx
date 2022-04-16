@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, Redirect, Route } from 'react-router-dom'
 import ClientService from 'requests/service/ClientService'
 import { _getCartId, _getCurrentCart } from 'redux/redusers/CartReduser'
-import { _getClients, _getClientsCarts, _getCurrentClient, _setClientsPage, _setColumns } from 'redux/redusers/ClientReduser'
+import { _clearClients, _getClients, _getClientsCarts, _getCurrentClient, _setClientsPage, _setColumns } from 'redux/redusers/ClientReduser'
 
 import { ContentStatesStore } from 'StoreStates'
 import { useIMask } from 'react-imask'
@@ -195,6 +195,7 @@ function Clients() {
 
   useEffect(() => {
     const fetchData = async () => {
+      dispatch(_clearClients())
       dispatch(_setClientsPage(2))
       try {
         if (localStorage.getItem('token')) {
@@ -218,13 +219,11 @@ function Clients() {
   }, [])
 
   const getNewClients = async() => {
-    setClientsLoading(true)
     const { success, refusual, notDeal } = await getClients(dispatch, user.id, limit, numberOfClients)
     setNumber(it => it + 1)
     setSuccess(it => [it,success])
     setRefusual(it => [it, refusual])
     setDeal(it => [it, notDeal])
-    setClientsLoading(false)
   }
   useEffect(() => {
     setArrayOfClients(clients)
@@ -409,13 +408,14 @@ function Clients() {
     setActiveErrorAlert(true)
     setAlertErrorText('Не удалось загрузить файл')
   }
-
-  useEffect(() => {
-    document.addEventListener('scroll', scrollHandler)
-    return () => {
-      document.removeEventListener('scroll', scrollHandler)
+  async function scrollHandler(e) {
+    console.log(e)
+    if (e.target.scrollTop - e.target.scrollTopMax < 500){
+      getNewClients()
     }
-  }, [])
+  }
+
+ 
 
   useCallback(() => {
     function setPage(page) {
@@ -427,17 +427,7 @@ function Clients() {
   }
   let nextPage = 2
   let unit = 0
-  async function scrollHandler(e) {
-    unit = e.target.documentElement.scrollHeight - (e.target.documentElement.scrollTop + window.innerHeight)
-    const t = document.documentElement.getBoundingClientRect()
-
-    if (t.bottom <= document.documentElement.clientHeight) {
-      console.log('first')
-      const cl = await ClientService.get(user.id, limit, nextPage).then(data => data.data)
-      nextPage++
-      setArrayOfClients(prev => [...prev, ...cl.clients])
-    }
-  }
+  
 
   return (
     <div ref = {refClients} className='clients'>
@@ -556,7 +546,7 @@ function Clients() {
                   }
                 </div>
 
-                <div className='clients__content-table'>
+                <div onScroll={scrollHandler} className='clients__content-table'>
                   <div className='clients__content-table-items'>
                     <ul className='clients__content-items'>
                       <li className='clients__content-item'>
