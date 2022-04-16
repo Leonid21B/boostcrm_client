@@ -219,6 +219,7 @@ function Clients() {
   }, [])
 
   const getNewClients = async() => {
+    console.log(11111)
     const { success, refusual, notDeal } = await getClients(dispatch, user.id, limit, numberOfClients)
     setNumber(it => it + 1)
     setSuccess(it => [it,success])
@@ -408,10 +409,17 @@ function Clients() {
     setActiveErrorAlert(true)
     setAlertErrorText('Не удалось загрузить файл')
   }
+  const [load, setLoad] = useState(true)
   async function scrollHandler(e) {
-    console.log(e)
-    if (e.target.scrollTop - e.target.scrollTopMax < 500){
-      getNewClients()
+    console.log(e.target.scrollTop)
+    if (e.target.scrollTopMax -e.target.scrollTop  < 500){
+      if(load){
+        setLoad(false)
+        getNewClients()
+        setTimeout(() => {
+          setLoad(true)
+        },2000)
+      }
     }
   }
 

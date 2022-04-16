@@ -7,7 +7,6 @@ import ReactHTMLTableToExcel from 'react-html-table-to-excel'
 import bb from '../../ui/scssModule/blueBtn.module.scss'
 
 function ImportColumn ({ active, func, exportFunc, clients,size, rows }) {
-  debugger
     return (
       <div className={icm.importColumn} style={active ? { display: 'block' } : {display:'none'}}>
         <div className={icm.importColumnInner}>
