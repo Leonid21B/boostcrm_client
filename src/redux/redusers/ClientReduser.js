@@ -1,9 +1,11 @@
 import { CREATE_CLIENT, DELETE_CLIENT, GET_CLIENTS, GET_CLIENTS_CART, GET_CURRENT_CLIENT, UPDATE_CLIENT } from 'redux/actionsTypes'
 const UPDATE_FLAG = 'UPDATE_FLAG'
 const CLEAR_CLIENTS = 'CLEAR_CLIENTS'
+const GET_ALL_CLIENTS = 'GET_ALL_CLIENTS'
 
 const defaultState = {
   clients: [],
+  allClients : [],
   currentClient: {},
   clientsCarts: [],
   isClientHasCards: false,
@@ -42,6 +44,9 @@ export const clientReduser = (state = defaultState, { type, payload }) => {
     case GET_CLIENTS_CART:
       return { ...state, clientsCarts: [...payload] }
 
+    case GET_ALL_CLIENTS:
+      return { ...state, allClients: [...payload] }
+
     case 'SET_ISCLIENTHASHCARDS':
       return { ...state, isClientHasCards: payload }
     case UPDATE_FLAG:
@@ -73,6 +78,9 @@ export const _createClient = (payload) => ({ type: CREATE_CLIENT, payload })
 export const _getClients = (payload) => ({ type: GET_CLIENTS, payload })
 export const _clearClients = () => ({ type: CLEAR_CLIENTS })
 export const _deleteClient = (payload) => ({ type: DELETE_CLIENT, payload })
+
+export const _getAll = (payload) => ({ type: GET_ALL_CLIENTS, payload })
+
 export const _getCurrentClient = (payload) => ({ type: GET_CURRENT_CLIENT, payload })
 export const _updateClient = (payload) => ({ type: UPDATE_CLIENT, payload })
 export const _updateFlag = (id) => ({ type: UPDATE_FLAG, id })

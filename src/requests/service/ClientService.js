@@ -15,6 +15,13 @@ export default class ClientService {
 
     }  
   }
+   static async getAll(userId){
+    try {
+      return api.get(`/clients_get_all/${userId}`)
+    } catch (e) {
+
+    }  
+  }
   static async get (userId, limit = 10, page = 1) {
     try {
       return api.get(`/clients/${userId}`, {

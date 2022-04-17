@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState, useContext, useCallback } from 'react'
 import BlueBtn from 'ui/btns/BlueBtn'
 import 'scss/clients.scss'
-import { activeItem, arrowdwn, arrowLeft, arrowRight, bird, pencil, settings, urn } from 'img'
+import { activeItem, arrowdwn, arrowLeft, arrowRight, bird, dis, pencil, settings, urn } from 'img'
 import TopLine from 'componentStore/TopLine'
 import tl from 'componentStore/moduleScss/topline.module.scss'
 import RemoveClients from 'componentStore/modals/RemoveClients'
 import ColumnSettings from 'componentStore/modals/ColumnSettings'
 import ExportColumn from 'componentStore/modals/ExportColumn'
 import ImportColumn from 'componentStore/modals/ImportColumn'
-import { checkClient, createClient, flagClient, getClients, updateClient } from 'redux/asyncRedux/ClientsAsync'
+import { checkClient, createClient, flagClient, getAllClients, getClients, updateClient } from 'redux/asyncRedux/ClientsAsync'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Redirect, Route } from 'react-router-dom'
 import ClientService from 'requests/service/ClientService'
@@ -40,7 +40,7 @@ function Clients() {
     window.addEventListener('popstate', backKey)
     return () => window.removeEventListener('popstate',backKey)
   },[])
-  
+  const clientsAll = useSelector(state => state.client.allClients)
   const [activeModal, setActiveModal] = useState(false)
   const [activeColumnSettings, setActiveColumnSettings] = useState(false)
   const [activeImportColumn, setactiveImportColumn] = useState(false)
@@ -129,13 +129,14 @@ function Clients() {
     body.style.overflow = 'auto'
   }
 
-  const exportcolumn = () => {
+  const exportcolumn = async () => {
+    await getImportClients()
     setactiveExportColumn(true)
     document.getElementsByTagName('body')[0].style.overflowY = 'hidden'
     const dataType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     const tableSelect = tableRef.current
     const tableHTML = tableSelect.outerHTML.replace(/ /g, '%20')
-
+ 
     const filename = '11111111111111' + '.xls'
     const blob = new Blob(['\ufeff', tableHTML], {
       type: dataType
@@ -218,6 +219,9 @@ function Clients() {
     fetchData()
   }, [])
 
+  const getImportClients = async () => {
+    await getAllClients(dispatch, user.id)
+  }
   const getNewClients = async() => {
     console.log(11111)
     const { success, refusual, notDeal } = await getClients(dispatch, user.id, limit, numberOfClients)
@@ -433,8 +437,6 @@ function Clients() {
   const clickNewClient = (id) => {
     flagClient(dispatch, id)
   }
-  let nextPage = 2
-  let unit = 0
   
 
   return (
@@ -722,7 +724,7 @@ function Clients() {
                 </thead>
                 <tbody>
                   {
-                    clients.map(
+                    clientsAll && clientsAll.map(
                       (item, index) =>
                         <tr key={item._id}>
                           <td>
@@ -771,7 +773,7 @@ function Clients() {
         active={activeExportColumn}
         func={closeExportcolumn}
         exportFunc={exportTableToExcel}
-        clients={clients}
+        clients={clientsAll}
       />
     </div>
   )

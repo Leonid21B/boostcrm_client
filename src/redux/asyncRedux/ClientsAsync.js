@@ -1,5 +1,5 @@
 import { _getALLCarts } from 'redux/redusers/CartReduser'
-import { _createClient, _deleteClient, _getClients, _getClientsCarts, _getClientsLength, _getCurrentClient, _updateClient, _updateFlag } from 'redux/redusers/ClientReduser'
+import { _createClient, _deleteClient, _getAll, _getClients, _getClientsCarts, _getClientsLength, _getCurrentClient, _updateClient, _updateFlag } from 'redux/redusers/ClientReduser'
 import { _getCompanySpace, _getCompanyTakenSpace } from 'redux/redusers/CompanyReduser'
 import ClientService from 'requests/service/ClientService'
 
@@ -28,6 +28,12 @@ export const getClients = async (dispatch, userId, limit, page) => {
 
 export const deleteClient = async (dispatch, id, userId) => {
   await ClientService.delete(id, userId)
+}
+
+export const getAllClients = async (dispatch,userId) => {
+  const resp = await ClientService.getAll(userId)
+  dispatch(_getAll(resp.data.clients))
+  
 }
 
 export const getCurrent = async (dispatch, id) => {
