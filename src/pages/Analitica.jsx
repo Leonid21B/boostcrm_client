@@ -293,7 +293,8 @@ function Analitica () {
 
         return
       }
-
+   
+      
       const { clients, cards, success, refusual } =
                 await MainService.getAnaliticsUserInfoByDate({ type: type, userId: user.id, unitMonth: monthIndex })
                   .then(data => data.data)
