@@ -415,8 +415,7 @@ function Clients() {
   }
   const [load, setLoad] = useState(true)
   async function scrollHandler(e) {
-    console.log(e.target.scrollTop)
-    if (e.target.scrollTopMax -e.target.scrollTop  < 500){
+    if ( e.target.scrollHeight - e.target.scrollTop < 500){
       if(load){
         setLoad(false)
         getNewClients()
