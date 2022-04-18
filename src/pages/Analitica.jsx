@@ -294,9 +294,9 @@ function Analitica () {
         return
       }
    
-      
+
       const { clients, cards, success, refusual } =
-                await MainService.getAnaliticsUserInfoByDate({ type: type, userId: user.id, unitMonth: monthIndex })
+        await MainService.getAnaliticsUserInfoByDate({ type: type, userId: user.id, unitMonth: new Date().getMonth() })
                   .then(data => data.data)
 
       setAnaliticsTopBlocksState({
