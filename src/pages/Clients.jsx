@@ -773,7 +773,7 @@ function Clients() {
         active={activeExportColumn}
         func={closeExportcolumn}
         exportFunc={exportTableToExcel}
-        clients={clientsAll}
+        clients={clientsAll ? clientsAll : []}
       />
     </div>
   )

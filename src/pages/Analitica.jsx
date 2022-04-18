@@ -269,14 +269,14 @@ function Analitica () {
       e: e.target,
       currentMonthIndex
     })
-    if (!e.classList.contains('active')) {
+    if (!e.classList.contains('active') && type != 'MONTH' && type != 'CHANGE_MONTH') {
       dateRef.current.querySelectorAll('[data-type="date"]').forEach(d => { d.classList.remove('active') })
       e.classList.add('active')
 
       if (user.role == 'admin') {
         const { clients, cards, success, refusual, workers } =
                     await MainService.getAnaliticsInfoByDate(
-                      { type: type, userId: user.id, comandId: comandId, unitMonth: currentMonthIndex }
+                      { type: type, userId: user.id, comandId: comandId, unitMonth: new Date().getMonth() }
                     )
                       .then(data => data.data)
 
@@ -309,26 +309,82 @@ function Analitica () {
       dispatch(_getSuccessCart(success))
       return
     }
+    if(type == 'MONTH'){
+      dateRef.current.querySelectorAll('[data-type="date"]').forEach(d => { d.classList.remove('active') })
+      e.classList.add('active')
+      console.log(monthIndex)
+      if (user.role == 'admin') {
+        const { clients, cards, success, refusual, workers } =
+          await MainService.getAnaliticsInfoByDate(
+            { type: type, userId: user.id, comandId: comandId, unitMonth: monthIndex }
+          )
+            .then(data => data.data)
+
+        setAnaliticsTopBlocksState({
+          ...analiticsTopBlocksState,
+          clientsLength: clients,
+          cardsLength: cards,
+          successLength: success.length,
+          refusalLength: refusual.length
+        })
+        dispatch(_getInvitedWorker(workers))
+        dispatch(_getNotSuccessCart(refusual))
+        dispatch(_getSuccessCart(success))
+
+        return
+      }
+      
+    }
+    if(type == 'CHANGE_MONTH'){
+      dateRef.current.querySelectorAll('[data-type="date"]').forEach(d => { d.classList.remove('active') })
+      changeMonthRef.current.classList.add('active')
+      console.log(monthIndex)
+      if (user.role == 'admin') {
+        const { clients, cards, success, refusual, workers } =
+          await MainService.getAnaliticsInfoByDate(
+            { type:'MONTH', userId: user.id, comandId: comandId, unitMonth: currentMonthIndex }
+          )
+            .then(data => data.data)
+
+        setAnaliticsTopBlocksState({
+          ...analiticsTopBlocksState,
+          clientsLength: clients,
+          cardsLength: cards,
+          successLength: success.length,
+          refusalLength: refusual.length
+        })
+        dispatch(_getInvitedWorker(workers))
+        dispatch(_getNotSuccessCart(refusual))
+        dispatch(_getSuccessCart(success))
+
+        return
+      }
+
+    }
     e.classList.remove('active')
   }
 
-  const monthM = new Date().getMonth()
-  function changeMonth (e, side, date) {
+  let monthM = new Date().getMonth()
+  useEffect(() => {
+    setMonthIndex(monthM)
+  },[])
+  function changeMonth (e, side) {
 
-    // return () => {
-    // console.log('target', side, e)
-    // if (side == 1) {
-    //     if (date == 0) return
-    //     monthM--
-    //     getAnaliticsInfoByDate('MONTH', changeMonthRef.current, date)
-    //     console.log('targetValue', date)
-    //     return
-    // }
-    // if(date == 11) return
-    // monthM++
-    // getAnaliticsInfoByDate('MONTH', changeMonthRef.current, date)
-    // console.log('targetValue', date)
-    // }
+     console.log('target', side, e)
+     if (side == 1) {
+         if (monthIndex == 0) return
+         getAnaliticsInfoByDate('CHANGE_MONTH', changeMonthRef.current, monthIndex - 1)
+        console.log('targetValue', monthIndex)
+         setMonthIndex(it => it - 1)
+         return
+      }else{
+        if (monthIndex == 11) return
+
+        setMonthIndex(it => it + 1)
+        console.log(monthIndex + 2)
+        getAnaliticsInfoByDate('CHANGE_MONTH', changeMonthRef.current, monthIndex + 1)
+        console.log('targetValue', monthIndex)
+     }
   }
 
   return (
@@ -428,11 +484,11 @@ function Analitica () {
                           Неделя
                         </span>
                         <span>
-                          <img onClick={e => changeMonth(e, 1, monthM)} src={leftArrow} alt='' />
-                          <span ref={changeMonthRef}>
-                            {month[monthIndex]?.m}
-                          </span>
-                          <img onClick={e => changeMonth(2)} src={rightArrow} alt='' />
+                          <img onClick={e => changeMonth(e, 1)} src={leftArrow} alt='' />
+                            <span ref={changeMonthRef} onClick={(e) => getAnaliticsInfoByDate('MONTH', e.target, 'month')}>
+                              {month[monthIndex]?.m}
+                            </span>
+                          <img onClick={e => changeMonth(e, 2)} src={rightArrow} alt='' />
                         </span>
                       </div>
                     </div>
