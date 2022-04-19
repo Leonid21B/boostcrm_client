@@ -20,6 +20,8 @@ function switchHeler (helper) {
       return 'создал(а) поле'
     case 'update-field':
       return 'обновил(а) поле'
+    case 'deletedFile':
+      return 'удалил(а) файл'
     default:
       return 'создал(а) сделку'
   }

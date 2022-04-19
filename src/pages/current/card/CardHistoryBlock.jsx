@@ -12,6 +12,7 @@ function CardHistoryBlock ({ logRef ,currentCart}) {
   console.log(historyState)
   useEffect(() => {
     setHistory(Array.from(currentCart.history))
+    console.log(Array.from(currentCart.history))
     
   },[currentCart.history])
   const dispatch = useDispatch()
@@ -47,7 +48,7 @@ function CardHistoryBlock ({ logRef ,currentCart}) {
                               <strong>{history.name}</strong>
                               <span className='currentcart__content-text'>
                                 {
-                                            switchHeler(history.helper)
+                                           history.helper == 'download' && history.deleted == true ? switchHeler('deletedFile') : switchHeler(history.helper)
                                         }
                               </span>
 
@@ -55,8 +56,8 @@ function CardHistoryBlock ({ logRef ,currentCart}) {
                                 className={`${history.helper == 'task' ? 'task' : null}`}
                               >
                                 {
-                                            history.helper == 'download'
-                                    ? <div className=""> <a download href={setDownLoadLink(history.title)}>{history.title}</a> <p onClick={() => deleteFile(history.title)} alt="" className="delete_file_img" /> </div>
+                                            (history.helper == 'download' && history.deleted == false)
+                      ? <div className=""> <a download href={setDownLoadLink(history.title)}>{history.title}</a> <div onClick={() => deleteFile(history.title)} alt="" className="delete_file_img" /> </div> : (history.helper == 'download' && history.deleted == true) ? <div className=""> <p className='delete_file_history'>{history.title}</p></div>
                                               : history.title
                                         }
                               </strong>

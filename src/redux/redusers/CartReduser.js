@@ -29,7 +29,7 @@ export const cartReduser = (state = defaultState, { type, payload }) => {
     case GET_LENGTH_CART:
       return { ...state, cartLength: [...payload] }
     case DEL_FILE:
-      let newHistory = Array.from(state.currentCart.history).filter(item => item.title != payload)
+      let newHistory = Array.from(payload.data.history)
       let newCurrentCart = {...state.currentCart, history: newHistory}
       console.log(newCurrentCart)
       return { ...state,currentCart:newCurrentCart}

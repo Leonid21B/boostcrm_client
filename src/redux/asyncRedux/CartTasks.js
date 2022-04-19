@@ -9,7 +9,7 @@ export const getTasks = async (dispatch, userId) => {
 
 export const deleteFileAsync = async (dispatch,fileName,cardId) => {
   const resp = await NewtaskService.deleteFile(fileName,cardId)
-  dispatch(_deleteFile(fileName))
+  dispatch(_deleteFile(resp))
 }
 
 export const createTask = async (dispatch, { title, description, date, time, id, userId, workers }) => {
