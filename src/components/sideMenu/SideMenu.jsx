@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import 'scss/sidemenu.scss'
 import { emptyAvatar } from 'img/index'
 import { Link, useHistory } from 'react-router-dom'
@@ -7,15 +7,26 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { ContentStatesStore } from 'StoreStates'
 import ExitCrm from 'componentStore/modals/ExitCrm'
+import { useNavigate, useParams } from 'react-router'
 
 function SideMenu () {
+  const params = useHistory()
+  useEffect(() => {
+    console.log(params)
+    if (params.location.pathname != '/tarif' && takenSpace + 100 >= space * 1024 && takenSpace && space){
+      console.log(params.location.pathname)
+      const loc = `${document.location.href.slice(0, document.location.href.indexOf(params.location.pathname))}/tarif`
+      document.location.replace(loc)
+    }
+  },[document.location.href])
   const dispatch = useDispatch()
   const [activePopup,setPopup] = useState('non_popup')
   const { user } = useSelector(state => state.user)
   const { openHelpModal, setOpenHelpModal } = useContext(ContentStatesStore)
   const { overdueCards } = useSelector(state => state.newCart)
   const { workers } = useSelector(state => state.worker)
-
+  const { space, takenSpace, paymentDate } = useSelector(state => state.companySpace)
+  console.log( space * 1024, takenSpace ,paymentDate )
   const menu = useRef()
   const history = useHistory()
 
@@ -33,7 +44,7 @@ function SideMenu () {
       e.target.classList.add('active')
     }
   }
-
+  
   // function showUsersDelayTasks(tasks) {
   //     // const tasksResponsible = tasks.filter(t => workers.find(w => t.workers[0]._id === w._id))
   //     // console.log('tasksResponsible', tasksResponsible)
@@ -127,6 +138,7 @@ function SideMenu () {
               to='/analitics'
               draggable={false}
             >
+              
               <div className=''>
                 <div className='menu__nav-talk'>
                   <span className='talk'>Аналитика</span>
@@ -143,6 +155,7 @@ function SideMenu () {
                   to='/tarif'
                   draggable={false}
                 >
+                  <p className={takenSpace + 100 >= space * 1024 ? 'active_error_end' : 'non_active'}>!</p>
                   <div className=''>
                     <div className='menu__nav-talk'>
                       <span className='talk'>Тарифы</span>

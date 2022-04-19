@@ -447,9 +447,9 @@ function Clients() {
             <div className='clients__inner'>
               <TopLine title='Клиенты'>
                 <div className={tl.firstseacrch}>
-                  <span>занято {takenSpace > 1024
-                    ? takenSpace / 1024
-                    : takenSpace} {takenSpace > 1024 ? 'GB' : 'MB'} / {space}GB до {formatDateAndMonth(paymentDate)}
+                  <span>занято {takenSpace > 1024 * 8
+                    ? takenSpace / 1024 
+                    : takenSpace } {takenSpace > 1024 ? 'GB' : 'MB'} / {space}GB до {formatDateAndMonth(paymentDate)}
                   </span>
                   <input
                     value={seacrch}
