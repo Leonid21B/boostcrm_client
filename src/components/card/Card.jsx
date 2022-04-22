@@ -15,6 +15,9 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
     }
   }
 
+  const values = [[90, '€'], [80, '$'], [1, '₽']]
+  const currency = useSelector(state => state.user.user.currency)
+
   function dragOverHandler (e) {
     e.preventDefault()
   }
@@ -93,7 +96,7 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
               <span>, {card.company.length ? card.company : 'Название компании'}</span>
             </span>
             <span className='content__blocks-item-price'>
-              {card?.price ? card?.price + ' ₽' : null}
+              {card?.price ? card?.price / currency + `Сумма, ${values.filter(item => item[0] == currency)[0][1]}` : null}
             </span>
             <div className='content__blocks-item-bottom'>
               <div className='content__blocks-item-avatar'>

@@ -32,10 +32,11 @@ import { onlyNumber } from 'components/card/functions/createNewCardHandlers'
 function CurrentCart({ isClientCreateCard = true }) {
   const [modalNewValue, setModalNewValue] = useState('')
   const [modalNameValue, setModalNameValue] = useState('')
-
+  
   const [active, setActive] = useState(false)
   const [addNenTask, setAddNenTask] = useState(false)
-
+  const values = [[90, '€'], [80, '$'], [1, '₽']]
+  const currency = useSelector(state => state.user.user.currency)
   const [succsessTask, setSuccsessTask] = useState(null)
   const [notSuccsessTask, setNotSuccsessTask] = useState(null)
   const [closeTask, setCloseTask] = useState(false)
@@ -472,7 +473,7 @@ function CurrentCart({ isClientCreateCard = true }) {
                             onKeyUpInputHanlder(e, cardsInputsStates.price, 'PRICE')}
                           onChange={e => inputChangeHandler(e, 'price')}
                           className={`${activeInputHelper}`}
-                          placeholder='Сумма, ₽'
+                          placeholder={`Сумма, ${values.filter(item => item[0] == currency)[0][1]}`}
                           autoComplete='off'
                           maxLength={9}
                         />

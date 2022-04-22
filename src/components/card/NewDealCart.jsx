@@ -21,7 +21,9 @@ function NewDealCart ({ stageID, currentStage, setStageId }) {
   const [tel, setTel] = useState('')
   const [email, setEmail] = useState('')
   const [address, setAddress] = useState('')
-
+  const [addNenTask, setAddNenTask] = useState(false)
+  const values = [[90, '€'], [80, '$'], [1, '₽']]
+  const currency = useSelector(state => state.user.user.currency)
   const [inputTitleError, setInputTitleError] = useState(false)
   const [inputEmailError, setInputEmailError] = useState(false)
   const [inputCompanyError, setInputCompanyError] = useState(false)
@@ -41,7 +43,7 @@ function NewDealCart ({ stageID, currentStage, setStageId }) {
     title,
     company,
     name: person,
-    price,
+    price: price * user.currency,
     tel,
     email,
     address,
@@ -184,7 +186,7 @@ function NewDealCart ({ stageID, currentStage, setStageId }) {
               name='price'
               value={price}
               onChange={e => allowOnlyNumbersInInput(e.target.value, setPrice)}
-              placeholder='Сумма, ₽'
+              placeholder={`Сумма, ${values.filter(item => item[0] == currency)[0][1]}`}
               autoComplete='off'
               maxLength={9}
             />
