@@ -118,12 +118,12 @@ function Tarif () {
         break
     }
   }
-
+  const cur = useSelector(state => state.user.user.currency)
   function openPayModal (sum, space) {
     return async () => {
       if (!isMaxOfSliderRange) {
         const userId = user.id
-        const data = await axios.get(`${BASE_SERVER_URL}/generatePay/${userId}/${sum}/${isAutoPayState}/${space}`)
+        const data = await axios.get(`${BASE_SERVER_URL}/generatePay/${userId}/${sum * cur}/${isAutoPayState}/${space}`)
           .then(link => link.data)
 
         window.location.href = data
