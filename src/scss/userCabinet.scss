@@ -436,7 +436,6 @@
                         white-space: nowrap;
                     }
                 }
-
                 &>img {
                     cursor: pointer;
                 }
@@ -609,6 +608,7 @@
                     border-radius: 8px;
                     padding: 8px 14px;
                 }
+                
             }
 
         }
@@ -618,7 +618,7 @@
     display: flex;
     margin-left: 5%;
     &> .btn_currency{
-        color: #333342;
+        color: #aaaaaa;
         background: #FFFFFF;
         box-shadow: 0px 0px 0px 1px rgba(0, 44, 94, 0.1), 0px 8px 16px -3px rgba(0, 44, 94, 0.15);
         width: 30px;
@@ -635,4 +635,8 @@
         border-radius: 5px;
         cursor: pointer;
     }
+}
+.rebuild_class{
+    height: 20px;
+    width: 20px;
 }

@@ -1,8 +1,15 @@
 import { emptyAvatar, urn } from 'img'
 import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeAdmin } from 'redux/asyncRedux/UserAuthAsync'
+import top from './img/top.svg' 
 
 function ComandRow (
-  { worker, openRoleSelect, currentWorkerId, selectRole, deleteWorkerFromComand, roleTitleRef, onMouseLeaveSelectRole }) {
+  { setWorker,setAlert, worker, openRoleSelect, currentWorkerId, selectRole, deleteWorkerFromComand, roleTitleRef, onMouseLeaveSelectRole }) {
+  const changeAd = (id) => {
+    setWorker(id)
+    setAlert(true)
+  }
   return (
     <ul key={worker._id} className='comand__table-content-items'>
       <li className='comand__table-content-item'>
@@ -72,6 +79,7 @@ function ComandRow (
                     }
         </span>
       </li>
+      <img src={top} className={worker.role === 'user' ? 'rebuild_class' : 'non_active'} onClick = {() => changeAd(worker._id)}/>
       <img
         onClick={e => deleteWorkerFromComand(
           worker._id, worker.fio

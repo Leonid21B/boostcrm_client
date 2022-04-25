@@ -13,6 +13,8 @@ export const deleteInvitedWorker = async (distpatch, id, selectedWorkerId) => {
   distpatch(_getInvitedWorker(userProfileData.workers))
 }
 
+
+
 export const getWorkerInfo = async (distpatch, userId, comandId) => {
   const workers = await WorkerService.getWorkerInfo(userId, comandId).then(data => data.data)
   distpatch(_getInvitedWorker(workers))

@@ -1,11 +1,23 @@
 import { pencil } from 'img'
 import { s1 } from 'img/emojiesPack'
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeAdmin } from 'redux/asyncRedux/UserAuthAsync'
+import Alert from './Alert'
 import ComandRow from './ComandRow'
 
 function ComandTable (
   { comandList, openModalEditComand, workerList, openRoleSelect, currentWorkerId, selectRole, deleteWorkerFromComand, onMouseLeaveSelectRole, deleteWorker, roleTitleRef }
 ) {
+  const dispatch = useDispatch()
+  const id = useSelector(state => state.user.user.id)
+  const [workerId,setWorker] = useState(null)
+  const changeAd = async () => {
+    console.log(workerId, id)
+    await changeAdmin(dispatch, workerId, id)
+    window.location.reload()
+  }
+  const [activeAlert,setAlert] = useState(false)
   return (
     <div className='comand__table'>
       <div className='comand__table-line'>
@@ -39,6 +51,8 @@ function ComandTable (
                                   worker.comandId == cmd._id
                                     ? worker.isActivated
                                         ? <ComandRow
+                                            setAlert = {setAlert}
+                                            setWorker = {setWorker}
                                             key={worker._id}
                                             worker={worker}
                                             openRoleSelect={openRoleSelect}
@@ -68,6 +82,7 @@ function ComandTable (
                     )
                 }
       </div>
+      <Alert changeAd={changeAd} setAlert = {setAlert} active = {activeAlert}/>
     </div>
   )
 }

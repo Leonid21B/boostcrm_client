@@ -17,6 +17,13 @@ export default class AuthService {
       console.log(error)
     }
   }
+  static async changeRole (userId,adminId) {
+    try {
+      return api.put('/change_role', {userId,adminId})
+    } catch (error) {
+      console.log(error)
+    }
+  }
   static async rebuildPassword (email) {
     try {
       return api.post('/rebuild_user_password', {email})

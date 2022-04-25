@@ -1,7 +1,7 @@
 import localforage from 'localforage'
 import { _removeComandFromList, _setComandToList } from 'redux/redusers/ComandOfSalesReduser'
 import { _getCompanySpace, _getCompanyTakenSpace } from 'redux/redusers/CompanyReduser'
-import { _changeCur, _getUserInfo, _login, _logout, _registration } from 'redux/redusers/UserReduser'
+import { _changeAdmin, _changeCur, _getUserInfo, _login, _logout, _registration } from 'redux/redusers/UserReduser'
 import { _loginInvitedWorker } from 'redux/redusers/WorkerReduser'
 import AuthService from 'requests/service/AuthService'
 
@@ -58,6 +58,12 @@ export const logOut = async (dispatch) => {
 
 export const checkAuth = async (dispatch) => {
   const respRefresh = await AuthService.refresh().then(data => data.data)
+}
+
+export const changeAdmin = async (distpatch, userId, adminId) => {
+  const userProfileData = await AuthService.changeRole(userId, adminId).then(uP => uP.data)
+  console.log(userProfileData)
+  distpatch(_changeAdmin(userProfileData))
 }
 
 export const getUserInfo = async (dispatch, userId) => {
