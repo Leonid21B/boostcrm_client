@@ -1,12 +1,12 @@
 import phoneMaskValid from "functions/phoneMask";
-import React from "react";
+import React, { useEffect } from "react";
 import '../../../Styles/StyleModul/reggistration.scss'
 const Countries = (props) => {
-  const listC = ['+1 США','+33 Франция','+380 Украина' ,'+374 Армения', '+375 Беларусь' ,'+49 Германия','+7 Россия, Казахстан','+998 Узбекистан' ]
+  const listC = ['+7 Россия, Казахстан','+1 США','+33 Франция','+380 Украина' ,'+374 Армения', '+375 Беларусь' ,'+49 Германия','+998 Узбекистан' ]
   const handleSel = (e) => {
     console.log(e)
     let arr = []
-    let cur = 1
+    let cur = 7
     for(let i = 0; i < 8; i++){
       if(e.target[i].selected == true){
         cur = e.target[i].value

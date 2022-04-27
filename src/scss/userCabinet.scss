@@ -446,9 +446,11 @@
                 align-items: center;
                 justify-content: space-between;
                 border-bottom: 1px solid #F1F2F5;
-
-                &>img {
-                    cursor: pointer;
+                &>div{
+                    &>img {
+                        cursor: pointer;
+                        margin-left: auto;
+                    }
                 }
 
                 &:last-child {
@@ -468,21 +470,24 @@
                     overflow: hidden;
                     border-radius: 50%;
                     margin-right: 8px;
-
                     &>img {
                         width: 100%;
                         height: 100%;
                         display: block;
                         object-fit: cover;
                     }
+                    
+                    
                 }
-
+                &> .img_cont_row{
+                    display: flex;
+                    }
                 &:nth-child(1),
                 &:nth-child(3),
                 &:nth-child(4) {
                     width: 327px;
                 }
-
+                
                 &:nth-child(2) {
                     width: 200px;
                     position: relative;
@@ -637,6 +642,9 @@
     }
 }
 .rebuild_class{
+    margin-top: auto;
+    margin-bottom: auto;
+    cursor: pointer;
     height: 20px;
     width: 20px;
 }

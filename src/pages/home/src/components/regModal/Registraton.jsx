@@ -15,7 +15,7 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
   const [fio, setFio] = useState('')
   const [email, setEmail] = useState('')
 
-  const [country, setCountry] = useState('1')
+  const [country, setCountry] = useState('7')
   const [tel, setTel] = useState(phoneMaskValid(null,null,country.length + 1,country).strNew)
   
   // const [telMask, setTelMask] = useState({ mask: '+{7} (000) 000 00 00' })

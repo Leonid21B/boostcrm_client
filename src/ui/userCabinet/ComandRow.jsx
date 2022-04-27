@@ -79,14 +79,16 @@ function ComandRow (
                     }
         </span>
       </li>
-      <img src={top} className={worker.role === 'user' ? 'rebuild_class' : 'non_active'} onClick = {() => changeAd(worker._id)}/>
-      <img
-        onClick={e => deleteWorkerFromComand(
-          worker._id, worker.fio
-        )}
-        src={urn}
-        alt=''
-      />
+      <div className="img_cont_row" style={{display:'flex', width: '50px', paddingLeft:'auto'}}>
+        <img src={top} className={worker.role === 'user' ? 'rebuild_class' : 'non_active'} onClick = {() => changeAd(worker._id)}/>
+        <img
+          onClick={e => deleteWorkerFromComand(
+            worker._id, worker.fio
+          )}
+          src={urn}
+          alt=''
+        />
+      </div>
     </ul>
   )
 }
