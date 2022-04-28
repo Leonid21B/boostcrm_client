@@ -13,8 +13,9 @@ import { _getComand, _removeComandFromList, _setComandToList } from 'redux/redus
 import { _getStages } from 'redux/redusers/StageReduser'
 import { _getInvitedWorker } from 'redux/redusers/WorkerReduser'
 import { _getClients } from 'redux/redusers/ClientReduser'
+import Alert from './Alert/Alert'
 
-function HomePage () {
+function HomePage (props) {
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -29,6 +30,7 @@ function HomePage () {
       <CRMfree id='sum' />
       {/* <ShowDemo/> */}
       <Footer />
+      <Alert activePopup = {props.activePopup} setActive = {props.setPopup}/>
     </>
 
   )

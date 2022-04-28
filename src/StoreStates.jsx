@@ -8,7 +8,7 @@ import CurrentClient from 'pages/current/CurrentClient'
 import Analitica from 'pages/Analitica'
 import Tarif from 'pages/Tarif'
 import { useSelector, useDispatch } from 'react-redux'
-
+import PopupLink from './PopupLink/PopupLink'
 import { _getALLCarts, _getCartId } from 'redux/redusers/CartReduser'
 import HomePage from 'pages/home/src/components/home/HomePage'
 import UserCabinet from 'pages/userCabinet/UserCabinet'
@@ -28,7 +28,7 @@ export const ContentStatesStore = createContext({})
 function StoreStates () {
   const [activeItem, setActiveItem] = useState(0)
   const [currenrTitleStage, setCurrenrTitleStage] = useState(null)
-
+  const [activePopup,setPopup] = useState(false)
   const { isAuth, user } = useSelector(state => state.user)
   const [newStageActive, setNewStageActive] = useState(false)
 
@@ -87,7 +87,7 @@ function StoreStates () {
         <ContentStatesStore.Provider value={states}>
           {
                     !isLoaded
-                      ? <Route path='/' exact> <HomePage /></Route>
+                      ? <Route path='/' exact> <HomePage setPopup = {setPopup} activePopup = {activePopup}/></Route>
                       : <div
                           style={
                                 { display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100vh' }
@@ -102,6 +102,7 @@ function StoreStates () {
                       </div>
                 }
           <Route path='/license' exact><License /></Route>
+          <Route path='/popup' exact><PopupLink setPopup = {setPopup}/> </Route>
           <Route path='/policy' exact><Policy /></Route>
           <Route path='/userAgreement' exact><UserAgreement /></Route>
           <Redirect to='/' exact />
