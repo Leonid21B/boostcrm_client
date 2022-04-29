@@ -14,7 +14,7 @@ function PayModal ({ active, setActive }) {
   const { user } = useSelector(state => state.user)
 
   const [sha256, setSha256] = useState('')
-
+  debugger
   function closeModal () {
     setActive(false)
   }
@@ -159,7 +159,7 @@ function PayModal ({ active, setActive }) {
                               </div>
                               <div className='modal__Btns'>
                                 <GrayBtn func={closeModal}>Отменить</GrayBtn>
-                                <BlueBtn>
+                                <BlueBtn onClick = {() => console.log(1111)}>
                                   {/* <a href={ `https://unitpay.ru/pay/436787-a35c5?sum=1&account=${user.email}&
                                             desc=test&signature=${sing}`
                                             }
@@ -176,7 +176,7 @@ function PayModal ({ active, setActive }) {
                                                 params[signature]=${sing}
                                                 params[preauth]=1
                                                 params[customerEmail]=${user.email}`}>Оплатить</a> */}
-                                  <a href='https://unitpay.ru/api?method=initPaymentparams[paymentType]=yandexparams[account]=order413params[sum]=1.00params[projectId]=1params[resultUrl]=http://вашсайт.ruparams[ip]=77.129.27.24params[secretKey]=90fbf17a9e98990c37fe18fcfa0bc0c9params[signature]=cf80143faa44f2ee87ba0809170ba7406f9760641f82e6fc27e0889f2b1d320d'>Оплатить
+                                  <a  href='https://unitpay.ru/api?method=initPaymentparams[paymentType]=yandexparams[account]=order413params[sum]=1.00params[projectId]=1params[resultUrl]=http://вашсайт.ruparams[ip]=77.129.27.24params[secretKey]=90fbf17a9e98990c37fe18fcfa0bc0c9params[signature]=cf80143faa44f2ee87ba0809170ba7406f9760641f82e6fc27e0889f2b1d320d'>Оплатить
                                   </a>
                                 </BlueBtn>
 

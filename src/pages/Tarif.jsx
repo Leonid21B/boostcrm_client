@@ -123,9 +123,8 @@ function Tarif () {
     return async () => {
       if (!isMaxOfSliderRange) {
         const userId = user.id
-        const data = await axios.get(`${BASE_SERVER_URL}/generatePay/${userId}/${sum * cur}/${isAutoPayState}/${space}`)
+        const data = await axios.get(`${BASE_SERVER_URL}/generatePay/${userId}/${1/*sum * cur*/}/${isAutoPayState}/${space}`)
           .then(link => link.data)
-
         window.location.href = data
       }
     }
@@ -134,8 +133,8 @@ function Tarif () {
   function setIsAutoPay (bool) {
     setIsAutoPayState(!bool)
   }
-
-  function check (pDate) {
+   
+  function check (pDate) {   
     const date = new Date()
     const payDate = new Date(pDate)
     const timeDiff = Math.abs(date.getTime() - payDate.getTime())
