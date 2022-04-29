@@ -6,11 +6,12 @@ import { getcurrentCart } from 'redux/asyncRedux/CreateCart'
 import { _getCurrentCart } from 'redux/redusers/CartReduser'
 import CartService from 'requests/service/CartService'
 import ip from 'ui/scssModule/input.module.scss'
+import AlertSize from './AlertSize/AlertSize'
 
 function InputStatement ({ innerLogScroll }) {
   const [comment, setComment] = useState('')
   const dispatch = useDispatch()
-  
+  const [alertSize,setAlertSize] = useState(false)
   const [statusUp, setStatus] = useState('non_active_status')
 
   const { currentCart } = useSelector(state => state.newCart)
@@ -28,8 +29,12 @@ function InputStatement ({ innerLogScroll }) {
   }
 
   async function uploadFile (e) {
-    setStatus('orange_status')
     const file = e.target.files[0]
+    if(15 <= file.size / 1024 / 1024){
+      setAlertSize(true)
+      return
+    }
+    setStatus('orange_status')
     const formdata = new FormData()
     formdata.append('file', file)
     const result = await CartService.uploadFile(formdata, currentCart._id, user.id).then(data => data.data)
@@ -70,6 +75,7 @@ function InputStatement ({ innerLogScroll }) {
           />
         </div>
       </div>
+      <AlertSize active = {alertSize} setActive = {setAlertSize}/>
     </div>
   )
 }

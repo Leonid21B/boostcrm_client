@@ -1,0 +1,50 @@
+.alert_size_cont{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background-color: rgba(193, 193, 193, 0.273);
+  &> .alert_size_wrap{
+    width: 30vw;
+    height: 10vw;
+    border-radius: 10px;
+    background-color: white;
+    padding: 1vw;
+    position: absolute;
+    top: 35vh;
+    left: 35vw;
+    &> h1{
+      font-size: 20px;
+      width: 100%;
+      text-align: center;
+    }
+    &> .alert_size_footer{
+      height: 3vw;
+      display: flex;
+      width: 100%;
+      margin-top: 2vw;
+      justify-content: center;
+      &> .alert_size_btn{
+          padding: 9px 10vw;
+          text-align: center;
+          font-weight: 400;
+          font-size: 15px;
+          border-radius: 8px;
+          background-color: #73AAFC;
+          margin-right: 0;
+          color: #ffff; 
+          border: 2px solid transparent ;
+          cursor: pointer;
+          @media (max-width: 1300px) {
+            font-size: 11px;
+            line-height: 11px;
+          }
+        
+      }
+    }
+  }
+}
+.non_active{
+  display: none;
+}
