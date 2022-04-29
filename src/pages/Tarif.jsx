@@ -123,7 +123,7 @@ function Tarif () {
     return async () => {
       if (!isMaxOfSliderRange) {
         const userId = user.id
-        const data = await axios.get(`${BASE_SERVER_URL}/generatePay/${userId}/${1/*sum * cur*/}/${isAutoPayState}/${space}`)
+        const data = await axios.get(`${BASE_SERVER_URL}/generatePay/${userId}/${sum * cur}/${isAutoPayState}/${space}`)
           .then(link => link.data)
         window.location.href = data
       }
