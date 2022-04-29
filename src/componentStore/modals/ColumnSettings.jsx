@@ -20,7 +20,7 @@ function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, val
 
   const [oldCollumns, setOldColumns] = useState(dataColumns)
 
-  function dragStartHandler (e, item) {
+  /*function dragStartHandler (e, item) {
     setCurrentRow(item)
     e.target.classList.remove('drag_over_item')
   }
@@ -60,7 +60,7 @@ function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, val
       return c
     }))
   }
-
+  */
   function sortRows (first, second) {
     if (first.order > second.order) {
       return 1
@@ -68,7 +68,7 @@ function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, val
     return -1
   }
 
-  function addColumn () {
+  /*function addColumn () {
     const column = {
       id: newValuesOfInputs.length + 1, title: `${newValuesOfInputs.length + 1}`, value: `title_${newValuesOfInputs.length + 1}`, order: newValuesOfInputs.length + 1
     }
@@ -76,7 +76,7 @@ function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, val
       ...valuesOfInputs, [column.value]: ''
     })
     setNewValuesOfInputs([...newValuesOfInputs, column])
-  }
+  }*/
 
   function saveSettings () {
     return async () => {
@@ -110,17 +110,17 @@ function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, val
             <h1>Настройка колонок</h1>
             <img onClick={resetChanges()} src={closeGraySvg} alt='' />
           </div>
-          <p>Настройте поля под себя: измените порядок полей, добавьте новые или удалите ненужные.</p>
+          <p>Поменяйте названия колонок на своё усмотрение</p>
           <ul className={csm.columnSettingsModalTopItems}>
             {
                             newValuesOfInputs.sort(sortRows).map((item, index) =>
                               <li
-                                onDragStart={e => dragStartHandler(e, item)}
+                                /*onDragStart={e => dragStartHandler(e, item)}
                                 onDragLeave={e => dragLeaveHandler(e)}
                                 onDragEnd={e => dragEndHandler(e)}
                                 onDragOver={e => dragOverHandler(e)}
                                 onDrop={e => dropHandler(e, item)}
-                                draggable
+                                draggable*/
                                 key={item.id}
                                 className={csm.columnSettingsModalTopItem}
                               >
@@ -133,13 +133,13 @@ function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, val
                                     maxLength={20}
                                   />
                                 </span>
-                                <img src={verticalDots} alt='' />
+                                {/*<img src={verticalDots} alt='' />*/}
                               </li>
                             )
                         }
           </ul>
           <div className={csm.columnSettingsModalTopItemsAdd}>
-            <button onClick={addColumn}>Добавить колонку</button>
+          {/*  <button onClick={addColumn}>Добавить колонку</button>*/}
           </div>
           <div className={csm.columnSettingsModalTopItemsBtns}>
             <GrayBtn func={resetChanges()}>Отменить</GrayBtn>
