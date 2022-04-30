@@ -69,7 +69,7 @@ export default class ClientService {
 
   static async updateClientFields (fields, userId) {
     try {
-      return api.put('/update-client-fileds', { fields, userId })
+      return api.put('/field_update', { fields, userId })
     } catch (e) {
 
     }

@@ -79,7 +79,8 @@ function Clients() {
   const { clients, clientsLength, columns, pageList } = useSelector(state => state.client)
   const { carts } = useSelector(state => state.newCart)
   const { space, takenSpace, paymentDate } = useSelector(state => state.companySpace)
-
+  const fields = useSelector(state => state.companySpace.fields)
+  
   const [arrayOfClients, setArrayOfClients] = useState([])
 
 
@@ -100,8 +101,11 @@ function Clients() {
   const [inputError, setInputError] = useState(false)
   const [activeErrorAlert, setActiveErrorAlert] = useState(false)
   const [alertErrorText, setAlertErrorText] = useState('')
-
+  const [fieldsState,setFields] = useState([])
   const body = document.getElementsByTagName('body')[0]
+  useEffect(() => {
+    setFields(fields.split('|'))
+  },[fields])
 
   const removeclient = (id) => {
     setActiveModal(true)
@@ -561,9 +565,9 @@ function Clients() {
                       <li className='clients__content-item'>
                         <span>№</span>
                         {
-                          dataColumns?.sort(sortColumns).map(item =>
-                            <span key={item.id}>
-                              {item.title}
+                          fieldsState?.map((item,ind) =>
+                            <span key={`${ind}_item_field`}>
+                              {item}
                             </span>
                           )
                         }
@@ -748,16 +752,16 @@ function Clients() {
       }
 
       <RemoveClients {...removeClientsFunc} />
-      <ColumnSettings
+      { fieldsState.length != 0 && <ColumnSettings
         active={activeColumnSettings}
         setActive={setActiveColumnSettings}
         func={closeColumnSettings}
-        dataColumns={dataColumns}
-        setColumns={setDataColumns}
+        dataColumns={fieldsState}
+        setColumns={setFields}
         valuesOfInputs={valuesOfInputs}
         setValuesOfInputs={setValuesOfInputs}
         userId={user.id}
-      />
+      />}
 
       <ExportColumn
         active={activeImportColumn}

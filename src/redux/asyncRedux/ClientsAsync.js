@@ -1,6 +1,6 @@
 import { _getALLCarts } from 'redux/redusers/CartReduser'
 import { _createClient, _deleteClient, _getAll, _getClients, _getClientsCarts, _getClientsLength, _getCurrentClient, _updateClient, _updateFlag } from 'redux/redusers/ClientReduser'
-import { _getCompanySpace, _getCompanyTakenSpace } from 'redux/redusers/CompanyReduser'
+import { _getCompanySpace, _getCompanyTakenSpace, _getFieldsStr } from 'redux/redusers/CompanyReduser'
 import ClientService from 'requests/service/ClientService'
 
 export const createClient = async (dispatch, { name, org, iin, tel, email, userId }) => {
@@ -18,10 +18,10 @@ export const flagClient = async(dispatch,userId) => {
 
 export const getClients = async (dispatch, userId, limit, page) => {
   const resp = await ClientService.get(userId, limit, page).then(data => data.data)
-  
   dispatch(_getClients(resp.clients))
   dispatch(_getClientsLength(resp.clientsLength)) 
   dispatch(_getCompanySpace(resp.space))
+  dispatch(_getFieldsStr(resp.fields))
   dispatch(_getCompanyTakenSpace(resp.takenSpace))
   return { success: resp.success, refusual: resp.refusual,notDeal:resp.notDeal }
 }

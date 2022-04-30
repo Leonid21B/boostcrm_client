@@ -6,6 +6,7 @@ import BlueBtn from 'ui/btns/BlueBtn'
 import ClientService from 'requests/service/ClientService'
 import { useDispatch } from 'react-redux'
 import { _setColumns } from 'redux/redusers/ClientReduser'
+import { _getFieldsStr } from 'redux/redusers/CompanyReduser'
 
 function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, valuesOfInputs, setValuesOfInputs, userId }) {
   const [newValuesOfInputs, setNewValuesOfInputs] = useState(dataColumns)
@@ -14,7 +15,9 @@ function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, val
 
   useEffect(() => {
     dispatch(_setColumns(dataColumns))
-  }, [])
+    setOldColumns(dataColumns)
+    console.log(dataColumns)
+  }, [dataColumns])
 
   const [currentRow, setCurrentRow] = useState(null)
 
@@ -80,17 +83,24 @@ function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, val
 
   function saveSettings () {
     return async () => {
-      dispatch(_setColumns(newValuesOfInputs))
+      let newStr = newValuesOfInputs[0]
+      for (let it of newValuesOfInputs.slice(1,5)){
+        newStr += '|' + it
+        
+      }
+      console.log(newStr)
+      dispatch(_getFieldsStr(newStr))
       setColumns(newValuesOfInputs)
       setActive(false)
-      await ClientService.updateClientFields(Object.keys(valuesOfInputs), userId)
+      await ClientService.updateClientFields(newStr, userId)
     }
   }
 
   function inputChangeHandler (e, indx) {
+    console.log(e,indx,newValuesOfInputs)
     const newArr = [...newValuesOfInputs]
     console.log('newArr', newArr)
-    newArr[indx].title = e.target.value
+    newArr[indx] = e.target.value
     setNewValuesOfInputs(newArr)
   }
 
@@ -113,7 +123,7 @@ function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, val
           <p>Поменяйте названия колонок на своё усмотрение</p>
           <ul className={csm.columnSettingsModalTopItems}>
             {
-                            newValuesOfInputs.sort(sortRows).map((item, index) =>
+                            newValuesOfInputs.map((item, index) =>
                               <li
                                 /*onDragStart={e => dragStartHandler(e, item)}
                                 onDragLeave={e => dragLeaveHandler(e)}
@@ -121,14 +131,14 @@ function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, val
                                 onDragOver={e => dragOverHandler(e)}
                                 onDrop={e => dropHandler(e, item)}
                                 draggable*/
-                                key={item.id}
+                                key={item}
                                 className={csm.columnSettingsModalTopItem}
                               >
                                 <span>
                                   <input
                                     type='text'
-                                    value={newValuesOfInputs[index].title}
-                                    data-type={item.value}
+                                    value={newValuesOfInputs[index]}
+                                    data-type={item}
                                     onChange={e => inputChangeHandler(e, index)}
                                     maxLength={20}
                                   />
