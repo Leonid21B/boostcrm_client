@@ -718,11 +718,11 @@ function Clients() {
                 <thead>
                   <tr>
                     <td>№</td>
-                    <td>ФИО</td>
-                    <td>Организация</td>
-                    <td>ИИН</td>
-                    <td>Телефон</td>
-                    <td>E-mail</td>
+                    <td>{fieldsState[0]}</td>
+                    <td>{fieldsState[1]}</td>
+                    <td>{fieldsState[2]}</td>
+                    <td>{fieldsState[3]}</td>
+                    <td>{fieldsState[4]}</td>
                   </tr>
                 </thead>
                 <tbody>
@@ -772,6 +772,7 @@ function Clients() {
       />
       <ImportColumn
         size ={blobWeigth}
+        dataColumns = {fieldsState}
         rows={tableRef.current ? tableRef.current.rows.length : "Нет данных"}
         active={activeExportColumn}
         func={closeExportcolumn}

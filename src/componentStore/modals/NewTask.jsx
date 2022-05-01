@@ -127,7 +127,12 @@ function NewTask({ addNenTask, setAddNenTask, isUpdateTask, setIsUpdateTask, tas
   }
 
   function inputChangeHandler(chosenValue, setChosenValue, typeOfError) {
-    setChosenValue(chosenValue.target.value)
+    console.log(chosenValue.target.value)
+    if (chosenValue.target.value.split('-')[0].length > 4 ){
+      setChosenValue(chosenValue.target.value.slice(1, chosenValue.target.value.length()))
+    }else{
+      setChosenValue(chosenValue.target.value)
+    }
     const hasError = chosenValue.length <= 0
     setErrorInputState({ ...errorInputState, [typeOfError]: hasError })
   }
@@ -172,6 +177,7 @@ function NewTask({ addNenTask, setAddNenTask, isUpdateTask, setIsUpdateTask, tas
                   type='date'
                   name='datetask'
                   value={date}
+                  max="9999-12-31"
                   autoComplete='off'
                   onChange={e => inputChangeHandler(e, setDate, 'dateError')}
                 />
