@@ -45,6 +45,7 @@ function UserCabinet() {
   const { workers } = useSelector(state => state.worker)
 
   const [fio, setFio] = useState('')
+  const [fioPlace, setFioPlace] = useState('')
   const [email, setEmail] = useState('')
   const [tel, setTel] = useState('')
   const [company, setCompany] = useState('')
@@ -91,7 +92,13 @@ function UserCabinet() {
   function activeHanlder() {
     setActiveModal(true)
   }
-
+  useEffect(() => {
+    if(user.fio){
+      if(user.fio != fioPlace){
+        setFioPlace(user.fio)
+      }
+    }
+  },[user])
   function selectOtherMenu(e) {
     const { id } = e.target.dataset
     if (id != 1) {
@@ -109,9 +116,9 @@ function UserCabinet() {
   }
 
   function setUserData(modelData) {
-    setFio(modelData.fio)
+    setFioPlace(modelData.fio)
     setEmail(modelData.email)
-    setTel(modelData.tel)
+    //setTel(modelData.tel)
     setCompany(modelData.company)
   }
 
@@ -517,7 +524,7 @@ function UserCabinet() {
                             <div className='usercabinet__left-name-input'>
                               <input
                                 type='text'
-                                placeholder='Василий'
+                                placeholder={fioPlace == '' ? 'Василий' : fioPlace}
                                 value={fio}
                                 onBlur={e => updateUserInfoHandlerOnBlur(e, fio, 'fio')}
                                 onKeyUp={e => updateUserInfoHandlerKeyUp(e, fio, 'fio')}

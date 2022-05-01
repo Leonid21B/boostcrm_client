@@ -36,6 +36,9 @@ function Clients() {
     document.location.replace(`${loc}clients`)
     console.log(document.location.href)
   } 
+  const focus = (elem) => {
+    elem.focus()
+  }
   useEffect(() => {
     window.addEventListener('popstate', backKey)
     return () => window.removeEventListener('popstate',backKey)
@@ -755,6 +758,7 @@ function Clients() {
       { fieldsState.length != 0 && <ColumnSettings
         active={activeColumnSettings}
         setActive={setActiveColumnSettings}
+        focus = {focus}
         func={closeColumnSettings}
         dataColumns={fieldsState}
         setColumns={setFields}

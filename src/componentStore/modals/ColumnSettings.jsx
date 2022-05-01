@@ -8,7 +8,7 @@ import { useDispatch } from 'react-redux'
 import { _setColumns } from 'redux/redusers/ClientReduser'
 import { _getFieldsStr } from 'redux/redusers/CompanyReduser'
 
-function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, valuesOfInputs, setValuesOfInputs, userId }) {
+function ColumnSettings ({ focus, active, setActive, func, dataColumns, setColumns, valuesOfInputs, setValuesOfInputs, userId }) {
   const [newValuesOfInputs, setNewValuesOfInputs] = useState(dataColumns)
 
   const dispatch = useDispatch()
@@ -102,6 +102,12 @@ function ColumnSettings ({ active, setActive, func, dataColumns, setColumns, val
     console.log('newArr', newArr)
     newArr[indx] = e.target.value
     setNewValuesOfInputs(newArr)
+    let val = e.target.value
+    setTimeout(() => {
+      let elem = document.querySelector(`[data-type="${val}"]`)
+      focus(elem)
+    },0)
+    
   }
 
   function resetChanges () {
