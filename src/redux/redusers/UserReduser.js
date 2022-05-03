@@ -5,7 +5,9 @@ const CHANGE_CURRENCY = 'CHANGE_CURRENCY'
 
 const defaultState = {
   authUser: {},
-  user: {},
+  user: {
+    currency: 1,
+  },
   userCart: [],
   isAuth: '',
   userId: null,

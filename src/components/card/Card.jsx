@@ -96,7 +96,7 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
               <span>, {card.company.length ? card.company : 'Название компании'}</span>
             </span>
             <span className='content__blocks-item-price'>
-              {card?.price ? Math.round(card?.price * 100 / currency ) / 100 + `${values?.filter(item => item[0] == currency)[0][1]}` : null}
+              {card?.price ? Math.round(card?.price * 100 / currency) / 100 + (values?.filter(item => item[0] == currency)[0] && currency) ? `${values?.filter(item => item[0] == currency)[0][1]}` : '₽'`${values?.filter(item => item[0] == currency)[0][1]}` : null}
             </span>
             <div className='content__blocks-item-bottom'>
               <div className='content__blocks-item-avatar'>
