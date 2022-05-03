@@ -186,7 +186,7 @@ function NewDealCart ({ stageID, currentStage, setStageId }) {
               name='price'
               value={price}
               onChange={e => allowOnlyNumbersInInput(e.target.value, setPrice)}
-              placeholder={`${values.filter(item => item[0] == currency)[0][1]}`}
+              placeholder={`${values?.filter(item => item[0] == currency)[0][1]}`}
               autoComplete='off'
               maxLength={9}
             />
