@@ -128,8 +128,8 @@ function NewTask({ addNenTask, setAddNenTask, isUpdateTask, setIsUpdateTask, tas
 
   function inputChangeHandler(chosenValue, setChosenValue, typeOfError) {
     console.log(chosenValue.target.value)
-    if (chosenValue.target.value.split('-')[0].length > 4 ){
-      setChosenValue(chosenValue.target.value.slice(1, chosenValue.target.value.length()))
+    if (chosenValue.target.value.split('-')[0].length > 4  && typeOfError == 'dateError'){
+      setChosenValue(chosenValue.target.value.slice(1, chosenValue.target.value.length))
     }else{
       setChosenValue(chosenValue.target.value)
     }
