@@ -16,6 +16,7 @@ function NewTask({ addNenTask, setAddNenTask, isUpdateTask, setIsUpdateTask, tas
 
   const { user } = useSelector(state => state.user)
   const { workers } = useSelector(state => state.worker)
+  console.log(workers)
 
   const { currentCart } = useSelector(state => state.newCart)
   const { currentTask } = useSelector(state => state.newTask)

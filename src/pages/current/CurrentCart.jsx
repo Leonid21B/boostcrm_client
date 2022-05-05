@@ -28,6 +28,7 @@ import CardHistoryBlock from './card/CardHistoryBlock'
 import BottomTasksView from './card/BottomTasksView'
 import InputStatement from './card/InputStatement'
 import { onlyNumber } from 'components/card/functions/createNewCardHandlers'
+import { getCurrent } from 'redux/asyncRedux/ClientsAsync'
 
 function CurrentCart({ isClientCreateCard = true }) {
   const [modalNewValue, setModalNewValue] = useState('')
@@ -147,6 +148,12 @@ function CurrentCart({ isClientCreateCard = true }) {
   }
 
   useEffect(() => {
+    console.log(currentCart.clientId)
+    getCurrent(dispatch, currentCart.clientId)
+  },[currentCart])
+
+  useEffect(() => {
+    
     const fetchData = async () => {
       setIsLoading(true)
 

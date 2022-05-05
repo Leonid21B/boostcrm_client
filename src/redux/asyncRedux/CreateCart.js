@@ -47,6 +47,7 @@ export const getAllCarts = async (dispatch, id, comandId) => {
 
 export const getcurrentCart = async (dispatch, id) => {
   const resp = await CartService.getCart(id).then(data => data.data)
+  console.log(resp)
   dispatch(_getCurrentCart(resp.card))
   return resp
 }

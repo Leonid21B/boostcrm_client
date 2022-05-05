@@ -39,6 +39,7 @@ export const getAllClients = async (dispatch,userId) => {
 
 export const getCurrent = async (dispatch, id) => {
   await ClientService.getCurrent(id).then(data => {
+    console.log(data.data)
     dispatch(_getCurrentClient(data.data.client))
     dispatch(_getInvitedWorker(data.data.workers))
   })
