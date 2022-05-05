@@ -137,8 +137,14 @@ function Tarif () {
   function check (pDate) {   
     const date = new Date()
     const payDate = new Date(pDate)
-    const timeDiff = Math.abs(date.getTime() - payDate.getTime())
-    const result = Math.ceil(timeDiff / (1000 * 3600 * 24))
+    let timeDifferent = 0
+    if (date.getTime() - payDate.getTime() >= 0 ){
+      timeDifferent = 0
+    }else{
+      timeDifferent = Math.abs(date.getTime() - payDate.getTime())
+    }
+    
+    const result = Math.ceil(timeDifferent / (1000 * 3600 * 24))
     return result
   }
 
@@ -150,13 +156,13 @@ function Tarif () {
     <div className='tarif'>
 
       <div
-        className={`tarif__alert ${dateDifferent == 3
+        className={`tarif__alert ${dateDifferent <= 3
                     ? 'active'
                     : (space * 1024) - takenSpace <= 100
                         ? 'active'
                         : null}`}
       >
-        <span>До конца оплаченного периода 3 дня</span>
+        <span>До конца оплаченного периода {dateDifferent + `${dateDifferent == 1 ? 'сутки' : 'суток'}`}</span>
         {/* <span>Пополнить счет</span> */}
         <button onClick={openPayModal(priceGB, GB)}>Пополнить счет</button>
       </div>
@@ -164,7 +170,7 @@ function Tarif () {
         <div
           className='tarif__inner'
           style={
-                        dateDifferent == 3
+                        dateDifferent <= 3
                           ? { paddingTop: '24px' }
                           : null
                     }
