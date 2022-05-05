@@ -24,7 +24,6 @@ function CurrentClient () {
   const selectResponsibleRef = useRef()
   const selectNewRef = useRef()
   const selectStatusRef = useRef()
-
   useEffect(() => {
     async function fetchdata () {
       if (clientsCarts.length > 0) {
@@ -144,7 +143,7 @@ function CurrentClient () {
                           className='currentClient__topline-selectworker'
                           ref={selectResponsibleRef}
                           data-type='selectResponsible'
-                          onClick={e => openModal(e)}
+                          onClick={workers != [] ? e => openModal(e):null}
                         >
                           <div className='currentClient__topline-input'>
                             <span>Любой ответственный</span>

@@ -44,10 +44,10 @@ function UserCabinet() {
   const { comands, currentComand } = useSelector(state => state.comand)
   const { workers } = useSelector(state => state.worker)
 
-  const [fio, setFio] = useState('')
+  const [fio, setFio] = useState(user?.fio)
   const [fioPlace, setFioPlace] = useState('')
   const [email, setEmail] = useState('')
-  const [tel, setTel] = useState('')
+  const [tel, setTel] = useState(user?.tel)
   const [company, setCompany] = useState('')
 
   const [workerList, setWorkerList] = useState(workers)
@@ -524,7 +524,7 @@ function UserCabinet() {
                             <div className='usercabinet__left-name-input'>
                               <input
                                 type='text'
-                                placeholder={fioPlace == '' ? 'Василий' : fioPlace}
+                                placeholder={'Иванов Василий Васильевич'}
                                 value={fio}
                                 onBlur={e => updateUserInfoHandlerOnBlur(e, fio, 'fio')}
                                 onKeyUp={e => updateUserInfoHandlerKeyUp(e, fio, 'fio')}
