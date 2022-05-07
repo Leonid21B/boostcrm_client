@@ -51,7 +51,7 @@ function MainScreen () {
               <p className='main__screen-item text'>Оплата только за хранение данных. Единый тариф для всех и каждого</p>
             </li>
           </ul>
-          <BlueBtn func={openModal}>Попробовать бесплатно</BlueBtn>
+          <button className = {'btn_free_experience'} onClick={openModal}>Попробовать бесплатно</button>
         </div>
       </div>
       <Registraton body={body} active={active} setActive={setActive} />

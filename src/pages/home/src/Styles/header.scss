@@ -27,8 +27,13 @@
             }
 
             &>a {
+                font-weight: 400;
+                font-size: 20px;
                 color: #777A8F;
                 line-height: 24px;
+            }
+            &>a:hover{
+                color:#73AAFC;
             }
         }
 

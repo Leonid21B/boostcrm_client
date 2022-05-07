@@ -1,5 +1,7 @@
 import React from "react";
 import {closeGraySvg } from 'img'
+import bb from "../../../Styles/StyleModul/BlueBtn.module.scss"
+import gb from "../../../Styles/StyleModul/GreyBtn.module.scss"
 import { Link } from "react-router-dom";
 import "../../../Styles/rebuildPassword.scss"
 import { useState } from "react";
@@ -76,8 +78,8 @@ const RebuildPass = (props) => {
               </li>
         <div className="reb_footer">
           <div className="btns_cont">
-            <button onClick = {closeExit}  className="grey_btn_reb">Отмена</button>
-              <button onClick={rebuild} className="blue_btn_reb">Получить</button>
+            <button onClick = {closeExit}  className={gb.btn}>Отмена</button>
+              <button onClick={rebuild} className={bb.btn}>Получить</button>
           </div>
         </div>
       </div>

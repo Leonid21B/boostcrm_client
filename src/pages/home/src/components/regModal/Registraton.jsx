@@ -6,11 +6,16 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { registration } from 'redux/asyncRedux/UserAuthAsync'
 import BlueBtn from 'ui/btns/BlueBtn'
+import CustomSingleSelect from 'ui/select/CustomSingleSelect'
+import CustomSingleSelectCountries from 'ui/select/CustomSingleSelectCountries'
+import SelectWorkers from 'ui/select/SelectWorkers'
 import '../../Styles/StyleModul/reggistration.scss'
 import Countries from './Countries/Countries'
 
 function Registraton ({ body, active, setActive, setActiveSuccessRegistrationModal }) {
   const refPhone = useRef()
+
+  const countries = ['+7 Россия, Казахстан', '+1 США', '+33 Франция', '+380 Украина', '+374 Армения', '+375 Беларусь', '+49 Германия', '+998 Узбекистан']
   const dispatch = useDispatch()
   const [fio, setFio] = useState('')
   const [email, setEmail] = useState('')
@@ -18,6 +23,9 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
   const [country, setCountry] = useState('7')
   const [tel, setTel] = useState(phoneMaskValid(null,null,country.length + 1,country).strNew)
   
+  const multi = useRef()
+  const single = useRef()
+
   // const [telMask, setTelMask] = useState({ mask: '+{7} (000) 000 00 00' })
   // const { ref, maskRef } = useIMask(telMask)
 
@@ -38,7 +46,10 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
     body[0].style.overflowY = 'scroll'
     resetInputs()
   }
-
+  const chooseCountry = (cur) => {
+    setCountry(cur)
+    setTel(phoneMaskValid(null, null, cur.length + 1, cur).strNew)
+  }
   function resetInputs () {
     setFio('')
     setEmail('')
@@ -190,7 +201,7 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
               <li>
                 <label htmlFor='tel'>Телефон</label>
                 <p>Выберите код страны</p>
-                <Countries setTel = {setTel} setCountry = {setCountry}/>
+                <CustomSingleSelectCountries whatToDo = {chooseCountry} multiSelectRef={multi} singleSelectRef={single} itemsForDropDown={countries} itemForView={countries.find(item => { return item.slice(1, item.indexOf(' ')) == country})}/>
                 <div className={`reg__input ${inputErrorState.telError ? 'errorInputTel' : null} `}>
                   <input
                     placeholder={`+${country} (987) 654 32 10`}
@@ -206,7 +217,7 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
               </li>
             </ul>
             <div className='reg__btn'>
-              <BlueBtn func={reg}>Зарегестрироваться</BlueBtn>
+              <BlueBtn func={reg}>Зарегистрироваться</BlueBtn>
             </div>
           </form>
         </div>

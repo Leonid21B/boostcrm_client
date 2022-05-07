@@ -121,6 +121,7 @@
                     &:first-child {
                         &>.reg__input {
                             &::before {
+                                background-size:105%;
                                 background-image: url('../../img/personlogin.svg');
                             }
                         }
@@ -129,6 +130,7 @@
                     &:nth-child(2) {
                         &>.reg__input {
                             &::before {
+                                background-size:105%;
                                 background-image: url('../../img/smslogin.svg');
                             }
                         }
@@ -137,6 +139,7 @@
                     &:nth-child(3) {
                         &>.reg__input {
                             &::before {
+                                background-size:105%;
                                 background-image: url('../../img/telreg.svg');
                             }
                         }
@@ -181,8 +184,8 @@
                     &:first-child {
                         &>.log__input {
                             &::before {
+                                background-size:105%;
                                 background-image: url('../../img/personlogin.svg');
-                                background-size: auto;
                             }
                         }
                     }
@@ -191,7 +194,7 @@
                         &>.log__input {
                             &::before {
                                 background-image: url('../../img/pass.svg');
-                                background-size: contain;
+                                background-size: 105%;
                             }
                         }
                     }
