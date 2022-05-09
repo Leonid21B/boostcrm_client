@@ -1,4 +1,5 @@
 import React from "react";
+import bb from '../../../Styles/StyleModul/BlueBtn.module.scss'
 import '../../../Styles/AlertHome.scss'
 
 const Alert = (props) => {
@@ -7,7 +8,7 @@ const Alert = (props) => {
       <div className="alert_home_wrap">
         <h1 className="alert_home_zag">Почта успешно подтверждена!</h1>
         <div className="footer_home_btn">
-          <button onClick={() => props.setActive(false)} className="home_btn_alert">Ок</button>
+          <button onClick={() => props.setActive(false)} className={bb.btn}>Ок</button>
         </div>
       </div>
     </div>

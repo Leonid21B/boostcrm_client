@@ -5,63 +5,71 @@
   left: 0;
   top: 0;
   background: #75757578;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   z-index: 5;
   &> .wrapper_alert_admin{
-    position: fixed;
-    left: 35vw;
-    top: 40vh;
     background:white;
-    width: 30vw;
-    height: 13vw;
+    width: 443px;
+    height: 180px;
     border-radius: 10px;
-    padding:1vw;
+    padding: 28px 32px;
     &> .zag_alert_admin{
-      font-size: 25px;
-      line-height: 30px;
-      height: 8vw;
+      font-family: 'Nunito Sans';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 24px;
       @media (max-width: 1300px) {
             font-size: 18px;
             line-height: 20px;
           }
     }
     &> .btns_alert_admin{
-      height: 2.5vw;
+
       display: flex;
-      margin-top: auto;
+      margin-top: 30px;
       &> .close_alert_admin{
           margin-left: auto;
-          padding: 9px 16px;
-          text-align: center;
+          font-family: 'Nunito Sans';
+          font-style: normal;
           font-weight: 400;
-          font-size: 15px;
+          border-radius:10px;
+          font-size: 18px;
           line-height: 18px;
-          border-radius: 8px;
-          background-color: #e0e0e1;
-          margin-right: 0;
-          color:  #73AAFC;
+          padding: 9px 18px;
+          font-feature-settings: 'tnum' on, 'lnum' on;
+          color: #777A8F;
           border: 2px solid transparent ;
+          margin-right: 5px;
+          cursor: pointer;
+          
+          @media (max-width: 1300px) {
+            font-size: 11px;
+            line-height: 11px;
+          }
+      }
+      &> .close_alert_admin:hover{
+        color:#73AAFC;
+        border: 1px solid #73AAFC;
+      }
+      &> .done_alert_admin{
+          color: #FFFFFF;
+          background-color: #73AAFC;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 24px;
+          padding: 9px 18px;
+          border-radius: 10px;
           cursor: pointer;
           @media (max-width: 1300px) {
             font-size: 11px;
             line-height: 11px;
           }
       }
-      &> .done_alert_admin{
-        padding: 9px 16px;
-        text-align: center;
-          font-weight: 400;
-          font-size: 15px;
-          line-height: 18px;
-          border-radius: 8px;
-          background-color: #73AAFC;
-          margin-right: 0;
-          color: #e0e0e1; 
-          border: 2px solid transparent ;
-          cursor: pointer;
-          @media (max-width: 1300px) {
-            font-size: 11px;
-            line-height: 11px;
-          }
+      &> .done_alert_admin:hover{
+        background:#5193F5;
       }
     }
   }

@@ -2,46 +2,32 @@
   width: 100vw;
   height: 100vh;
   position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   left: 0;
   top: 0;
   background-color: rgba(193, 193, 193, 0.273);
   &> .alert_home_wrap{
-    width: 30vw;
-    height: 10vw;
+    width: 443px;
+    height: 140px;
     border-radius: 10px;
     background-color: white;
-    padding: 1vw;
-    position: absolute;
-    top: 35vh;
-    left: 35vw;
+    padding: 28px 32px ;
     &> h1{
-      font-size: 25px;
-      width: 100%;
-      text-align: center;
+      font-family: 'Nunito Sans';
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 24px;
+      text-align: start;
     }
     &> .footer_home_btn{
-      height: 3vw;
       display: flex;
       width: 100%;
       margin-top: 2vw;
-      justify-content: center;
-      &> .home_btn_alert{
-          padding: 9px 10vw;
-          text-align: center;
-          font-weight: 400;
-          font-size: 15px;
-          border-radius: 8px;
-          background-color: #73AAFC;
-          margin-right: 0;
-          color: #ffff; 
-          border: 2px solid transparent ;
-          cursor: pointer;
-          @media (max-width: 1300px) {
-            font-size: 11px;
-            line-height: 11px;
-          }
-        
-      }
+      justify-content: end;
+      
     }
   }
 }
