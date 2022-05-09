@@ -1,6 +1,6 @@
 
 import { activeItem, arrowdwn, smile } from 'img'
-import React, { useRef, useState, useContext } from 'react'
+import React, { useRef, useState, useContext, useEffect } from 'react'
 
 import { ContentStatesStore } from 'StoreStates'
 
@@ -9,6 +9,7 @@ function CustomSingleSelect (
   // const ref = useRef()
 
   const { checkClickOnSomeOfSelect } = useContext(ContentStatesStore)
+  const [active,setActive] = useState(false)
   const [title, setTitle] = useState(itemForView?.title || itemForView)
   const [itemsDropDown, setItemsDropDown] = useState(
     idType == '1'
@@ -16,7 +17,17 @@ function CustomSingleSelect (
       : itemsForDropDown.filter(item => item._id != sortId)
 
   )
+  const clickHandler = (e) => {
+    if (e.target.classList[0] != 'selectedItem' && e.target.classList[0] != 'select__workers' && (e.target.firstChild?.classList ? e.target.firstChild?.classList[0] : '') != 'select__input-single'){
+      multiSelectRef?.current.classList.remove('open')
+      singleSelectRef.current?.classList.remove('open')
+    }
+  }
 
+  useEffect(() => {
+    document.addEventListener('click', clickHandler)
+    return () => document.removeEventListener('click', clickHandler)
+  },[])
   function openDropDown (e) {
     if (itemsDropDown.length != 0) {
       if (whereIsSelect == 'FROM_CARD') {
@@ -61,7 +72,9 @@ function CustomSingleSelect (
   return (
 
     <div
-      onClick={e => openDropDown(e)}
+      onClick={e => {
+        openDropDown(e)
+        }}
       className='custom__select-single customSelect mb-16'
       ref={singleSelectRef}
     >

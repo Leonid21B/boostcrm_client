@@ -64,7 +64,7 @@ function HelpModal () {
           </div>
           <div className='modal__Btns'>
             <GrayBtn func={closeModal}>Отменить</GrayBtn>
-            <BlueBtn func={sendStatement}>Отправить заявку</BlueBtn>
+            <BlueBtn func={sendStatement}>Отправить</BlueBtn>
           </div>
         </div>
       </div>

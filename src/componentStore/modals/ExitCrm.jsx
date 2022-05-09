@@ -22,7 +22,6 @@ const ExitCrm = (props) => {
       <div className="exit_wrapper">
         <div className="exit_head">
           <h2 className="exit_zag">Выйти из системы?</h2>
-          <img src={closeGraySvg} onClick = {closeExit} className="close_exit" />
         </div>
         <div className="exit_footer">
           <div className="btns_cont">

@@ -175,7 +175,7 @@ function AddComanOfSale ({ active, setActive, children, isRedact = false, setIsR
                                 <div>
                                   <button
                                     onClick={delComandOfSale}
-                                  >Удалить
+                                  > <div/>Удалить
                                   </button>
                                 </div>
                                 <div>

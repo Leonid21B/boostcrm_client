@@ -46,7 +46,7 @@ function InviteWorker ({ active, setActive }) {
             <h1 className='modalTopLine__title'>Пригласить сотрудника</h1>
             <img className='modalTopLine__close' onClick={closeModal} src={closeGraySvg} alt='' />
           </div>
-          <p className='modalText'>Укажите электронную почту сотрудника. Мы отправим ему (ей) письмо с инструкцией по созданию бесплатной учетной записи.</p>
+          <p className='modalText'>Укажите электронную почту сотрудника.<br /> Мы отправим ему (ей) письмо с инструкцией <br/> по созданию бесплатной учетной записи.</p>
 
           <label className='modal__Label' htmlFor=''>E-mail</label>
           <input

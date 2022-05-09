@@ -81,7 +81,7 @@
                         border: 2px solid transparent;
                         border-radius: 8px;
 
-                        &::before {
+                        &>div{
                             content: '';
                             display: inline-block;
                             position: absolute;
@@ -92,6 +92,12 @@
                             height: 20px;
                             background: url('../img/urn.svg') center center no-repeat;
                         }
+                        &:hover {
+                           &>div{
+                            background: url('../img/urnHover.svg') center center no-repeat; 
+                           }
+                        }
+
 
                         &:focus {
                             transition: all .3s ease;

@@ -599,7 +599,7 @@ function CurrentCart({ isClientCreateCard = true }) {
 
                           }
                         </div>
-                        <div onClick={addNewField} className='content__blocks-add'>Добавить контакт</div>
+                        <div onClick={addNewField} className='content__blocks-add'><img/> Добавить контакт</div>
                       </div>
                     </div>
                   </div>
