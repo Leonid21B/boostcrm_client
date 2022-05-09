@@ -617,6 +617,7 @@ function UserCabinet() {
                         value={user?.role == 'admin' ? 'Администратор' : 'Менеджер'}
                         onChange={e => []}
                       />
+                      <label htmlFor=''>Валюта</label>
                       <ChooseCurrency />
                     </div>
                   </div>

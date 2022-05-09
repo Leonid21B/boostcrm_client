@@ -565,7 +565,7 @@ function Clients() {
                 <div onScroll={scrollHandler} className='clients__content-table'>
                   <div className='clients__content-table-items'>
                     <ul className='clients__content-items'>
-                      <li className='clients__content-item'>
+                      <li className='clients__content-item header_clients_item'>
                         <span>№</span>
                         {
                           fieldsState?.map((item,ind) =>

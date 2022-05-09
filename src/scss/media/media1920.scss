@@ -13,7 +13,7 @@
     }
 
     .clients__content-item {
-        &>span {
+        /*&>span {
             &:not(:first-child) {
                 width: 300px;
             }
@@ -21,11 +21,11 @@
             &:last-child {
                 width: 145px;
             }
-        }
+        }*/
 
         &.add,
         &.client,
-        &.active {
+        /*&.active {
             &>input {
                 &:not(:first-child) {
                     width: 300px;
@@ -49,14 +49,13 @@
                     }
                 }
             }
-        }
+        }*/
         &.client{
             justify-content: space-between;
         }
     }
 
     .clients__content-item-btns {
-        width: 135px;
         justify-content: flex-end;
     }
 
