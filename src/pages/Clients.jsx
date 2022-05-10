@@ -566,14 +566,16 @@ function Clients() {
                   <div className='clients__content-table-items'>
                     <ul className='clients__content-items'>
                       <li className='clients__content-item header_clients_item'>
-                        <span>№</span>
-                        {
-                          fieldsState?.map((item,ind) =>
-                            <span key={`${ind}_item_field`}>
-                              {item}
-                            </span>
-                          )
-                        }
+                        <div className='fields__content-item'>
+                          <span>№</span>
+                          {
+                            fieldsState?.map((item,ind) =>
+                              <span key={`${ind}_item_field`}>
+                                {item}
+                              </span>
+                            )
+                          }
+                        </div>
                         <span>
                           <img
                             style={{ cursor: 'pointer' }}
@@ -676,6 +678,7 @@ function Clients() {
                                   className='clients__content-item active'
                                   style={userAdded ? { pointerEvents: 'none' } : null}
                                 >
+                                  <div className='active__client_div'>
                                   <span>
                                     {(indx + 1)}
                                   </span>
@@ -696,6 +699,7 @@ function Clients() {
                                       />
                                     )
                                   }
+                                  </div>
                                   <div className='clients__content-item-btns'>
                                     <button
                                       onClick={() => update(client._id)}

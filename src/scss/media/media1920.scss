@@ -1,5 +1,9 @@
 @media (max-width:1920px) {
-
+    .active__client_div{
+            &>input{
+                font-size: 13px;
+            }
+        }
     .tarif__block-title {
         margin-bottom: 24px;
     }

@@ -1,3 +1,21 @@
+@media screen and (max-width:1240px) {
+    .active__client_div{
+            &>input{
+                font-size: 10px;
+            }
+        }
+    .clients__content-item {
+        
+            
+        
+        &>a{
+            &>input{
+                font-size: 10px;
+            }
+        }
+    }
+}
+
 @media screen and (max-width:1024px) {
 
     .content__blocks {
