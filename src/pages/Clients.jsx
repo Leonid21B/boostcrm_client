@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, Redirect, Route } from 'react-router-dom'
 import ClientService from 'requests/service/ClientService'
 import { _getCartId, _getCurrentCart } from 'redux/redusers/CartReduser'
-import { _clearClients, _getClients, _getClientsCarts, _getCurrentClient, _setClientsPage, _setColumns } from 'redux/redusers/ClientReduser'
+import { _clearClients, _getClients, _getClientsCarts, _getCurrentClient, _setClients, _setClientsPage, _setColumns } from 'redux/redusers/ClientReduser'
 
 import { ContentStatesStore } from 'StoreStates'
 import { useIMask } from 'react-imask'
@@ -412,9 +412,10 @@ function Clients() {
     if (result) {
       setActiveErrorAlert(false)
       setAlertErrorText('')
-      dispatch(_getClients(clients))
+      dispatch(_setClients(clients))
       dispatch(_getCompanySpace(space))
       dispatch(_getCompanyTakenSpace(takenSpace))
+      setNumber(1)
       return
     }
     setActiveErrorAlert(true)
@@ -425,7 +426,7 @@ function Clients() {
     if ( e.target.scrollHeight - e.target.scrollTop < 500){
       if(load){
         setLoad(false)
-        getNewClients()
+        await getNewClients()
         setTimeout(() => {
           setLoad(true)
         },2000)
