@@ -155,7 +155,7 @@ function CRMfree () {
                                           : 'Безлимит цена по запросу'
                                     }
                 </span>
-                <BlueBtn func={plugTarif}>Подключить</BlueBtn>
+                <button className='btn_free_experience' onClick={plugTarif}>Подключить</button>
               </div>
             </div>
           </div>

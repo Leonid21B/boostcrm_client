@@ -223,12 +223,13 @@
         // }
 
 
-        &-column {
+        &-column { 
             margin-right: 24px;
             min-width: 307px;
             width: 307px;
             max-width: 307px;
             &>div {
+                height: calc(attr(data-length) * 500px);
                 padding-bottom: 5px;
                 border-right: 1px solid #777A8F;
             }
@@ -397,7 +398,7 @@
 
             &:hover {
                 transition: all .2s ease-in-out;
-                transform: translateX(10px);
+                transform: translateY(10px);
             }
 
             &:last-child {
@@ -844,4 +845,16 @@
         border-radius: 8px;
         cursor: pointer;
     }
+}
+.create_new_comand_btn{
+    padding: 9px 16px;
+    gap: 6px;
+    width: 213px;
+    height: 36px;
+    background: #73AAFC;
+    color: #fff;
+    border-radius: 8px;
+}
+.create_new_comand_bt:hover{
+    background:#5193F5;
 }

@@ -471,7 +471,7 @@ function Clients() {
                   />
                 </div>
 
-                <BlueBtn func={() => setUserAdded(prev => !prev)}>Добавить клиента</BlueBtn>
+                <button className='add_new_client_btn' onClick={() => setUserAdded(prev => !prev)}>Добавить клиента</button>
               </TopLine>
 
               <div className='clients__content'>

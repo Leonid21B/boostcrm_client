@@ -58,7 +58,6 @@ function CustomSingleSelectCountries (
   return (
 
     <div
-    style={{width:'70%'}}
       onClick={e => openDropDown(e)}
       className='custom__select-single customSelect mb-16'
       ref={singleSelectRef}

@@ -74,13 +74,26 @@ function Content() {
   // const [newStageTitle, setNewStageTitle] = useState('')
 
   const [newStageActive, setNewStageActive] = useState(false)
-
+  const [maxCards,setMax]  = useState(0)
   const [stageId, setStageId] = useState('')
   const [seacrh, setSeacrh] = useState('')
 
   const [userAndComandCards, setUserAndComandCards] = useState(carts)
   const [stageColumnID, setStageColumnID] = useState('')
   // const [active, setactive] = useState(false)
+  const columns = document.querySelectorAll('.content__blocks-column')
+  useEffect(() => {
+    let max = maxCards
+    for (let it of columns){
+      if (it.children[0].children.length > max){
+        max = it.children[0].children.length
+      }
+    }
+    if(max != maxCards){
+      setMax(max)
+      console.log(max)
+    }
+  },[columns])
 
   const menuRef = useRef()
   const cardRef = useRef()
@@ -306,11 +319,11 @@ function Content() {
                   </div>
                   {
                     user?.role === 'admin'
-                      ? <BlueBtn
-                        func={setActiveCreateComandModal(true)}
+                      ? <button className='create_new_comand_btn'
+                        onClick={setActiveCreateComandModal(true)}
                       >
                         Создать команду продаж
-                      </BlueBtn>
+                      </button>
                       : null
                   }
 
@@ -365,7 +378,7 @@ function Content() {
                         data-type='Column'
                       >
 
-                        <div>
+                        <div data-length={maxCards} style={{height:`${100 * maxCards + 50}px`}}>
                           <div
                             className={`content__block-title 
                                               ${stageColumnID === stage._id ? 'active' : ''} `}

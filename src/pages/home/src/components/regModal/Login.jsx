@@ -1,4 +1,4 @@
-import { close } from 'img'
+import { closeGraySvg} from 'img'
 import React, { useContext, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { login } from 'redux/asyncRedux/UserAuthAsync'
@@ -108,7 +108,7 @@ function Login ({ body, active, setActive }) {
         <div className='reg__modal'>
           <div className='reg__modal-top'>
             <h1>Вход</h1>
-            <img onClick={() => exitHandler()} src={close} alt='' />
+            <img onClick={() => exitHandler()} src={closeGraySvg} alt='' />
           </div>
           <span>Данные для доступа придут вам на почту</span>
           <form onSubmit={e => e.preventDefault()}>

@@ -1,5 +1,5 @@
 import phoneMaskValid from 'functions/phoneMask'
-import { close, emptyAvatar } from 'img'
+import { closeGraySvg, emptyAvatar } from 'img'
 import React, { useEffect, useRef, useState } from 'react'
 import { useIMask } from 'react-imask'
 import { useSelector, useDispatch } from 'react-redux'
@@ -12,7 +12,7 @@ import SelectWorkers from 'ui/select/SelectWorkers'
 import '../../Styles/StyleModul/reggistration.scss'
 import Countries from './Countries/Countries'
 
-function Registraton ({ body, active, setActive, setActiveSuccessRegistrationModal }) {
+function Registraton({ body, active, setActive, setActiveSuccessRegistrationModal }) {
   const refPhone = useRef()
 
   const countries = ['+7 Россия, Казахстан', '+1 США', '+33 Франция', '+380 Украина', '+374 Армения', '+375 Беларусь', '+49 Германия', '+998 Узбекистан']
@@ -21,8 +21,8 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
   const [email, setEmail] = useState('')
 
   const [country, setCountry] = useState('7')
-  const [tel, setTel] = useState(phoneMaskValid(null,null,country.length + 1,country).strNew)
-  
+  const [tel, setTel] = useState(phoneMaskValid(null, null, country.length + 1, country).strNew)
+
   const multi = useRef()
   const single = useRef()
 
@@ -41,7 +41,7 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
 
   const [validation, setValidation] = useState(false)
 
-  function exitHandler () {
+  function exitHandler() {
     setActive(false)
     body[0].style.overflowY = 'scroll'
     resetInputs()
@@ -50,7 +50,7 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
     setCountry(cur)
     setTel(phoneMaskValid(null, null, cur.length + 1, cur).strNew)
   }
-  function resetInputs () {
+  function resetInputs() {
     setFio('')
     setEmail('')
     setTel('')
@@ -61,7 +61,7 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
   }
 
   let GB = 1
-  async function reg () {
+  async function reg() {
     if (fio.length > 1 && email.length != 0 && tel.length != 0 && validation) {
       if (JSON.parse(localStorage.getItem('GB'))) {
         GB = JSON.parse(localStorage.getItem('GB'))
@@ -111,7 +111,7 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
   useEffect(() => {
   }, [authUser])
 
-  function fioHandler (e) {
+  function fioHandler(e) {
     setFio(e.target.value)
     if (e.target.value.length > 0) {
       setInputErrorState({
@@ -124,28 +124,28 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
     })
   }
 
-  function emailHandler (e) {
+  function emailHandler(e) {
     const regex = [/^(([0-9A-Za-z^{}[\]<>\.;:_]{1,3}[0-9A-Za-z-\.]{1,}[0-9A-Za-z]{1})@([A-Za-z0-9]{1,}\.){1,2}[A-Za-z]{2,5})$/]
     setEmail(e.target.value)
     checkInputContent(regex, e, 'emailError')
-    
+
   }
 
-  function setPos(num,e){
-    setTimeout(() => {refPhone.current.selectionStart = refPhone.current.selectionEnd = num},0) 
+  function setPos(num, e) {
+    setTimeout(() => { refPhone.current.selectionStart = refPhone.current.selectionEnd = num }, 0)
   }
 
-  function telHandler (e) {
-    const regex = [/^\+([0-9]{1} \([0-9]{3}\) [0-9]{3} [0-9]{2} [0-9]{2})$/,/^\+([0-9]{2} \([0-9]{3}\) [0-9]{3} [0-9]{2} [0-9]{2})$/,/^\+([0-9]{3} \([0-9]{3}\) [0-9]{3} [0-9]{2} [0-9]{2})$/]
-    let data = phoneMaskValid(e.target.value,tel,e.target.selectionStart ,country)
+  function telHandler(e) {
+    const regex = [/^\+([0-9]{1} \([0-9]{3}\) [0-9]{3} [0-9]{2} [0-9]{2})$/, /^\+([0-9]{2} \([0-9]{3}\) [0-9]{3} [0-9]{2} [0-9]{2})$/, /^\+([0-9]{3} \([0-9]{3}\) [0-9]{3} [0-9]{2} [0-9]{2})$/]
+    let data = phoneMaskValid(e.target.value, tel, e.target.selectionStart, country)
     setTel(data.strNew)
     setPos(data.numb, e)
     checkInputContent(regex, e, 'telError')
 
   }
 
-  function checkInputContent (regex, e, type) {
-    for (let item of regex){
+  function checkInputContent(regex, e, type) {
+    for (let item of regex) {
       if (item.test(String(e.target.value).toLocaleLowerCase())) {
         setInputErrorState({ ...inputErrorState, [type]: false })
         setValidation(true)
@@ -154,7 +154,7 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
     }
     setInputErrorState({ ...inputErrorState, [type]: true })
     setValidation(false)
-    
+
   }
 
 
@@ -164,7 +164,7 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
         <div className='reg__modal'>
           <div className='reg__modal-top'>
             <h1>Регистрация</h1>
-            <img onClick={exitHandler} src={close} alt='' />
+            <img onClick={exitHandler} src={closeGraySvg} alt='' />
           </div>
           <span>Данные для доступа придут вам на почту</span>
           <form onSubmit={e => e.preventDefault()}>
@@ -188,7 +188,7 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
                 <div className={`reg__input ${inputErrorState.emailError ? 'errorInputEmail' : null}`}>
                   <input
                     type='email'
-                    
+
                     name='email'
                     value={email} onChange={e => emailHandler(e)}
                     autoComplete='off'
@@ -201,11 +201,11 @@ function Registraton ({ body, active, setActive, setActiveSuccessRegistrationMod
               <li>
                 <label htmlFor='tel'>Телефон</label>
                 <p>Выберите код страны</p>
-                <CustomSingleSelectCountries whatToDo = {chooseCountry} multiSelectRef={multi} singleSelectRef={single} itemsForDropDown={countries} itemForView={countries.find(item => { return item.slice(1, item.indexOf(' ')) == country})}/>
+                <CustomSingleSelectCountries whatToDo={chooseCountry} multiSelectRef={multi} singleSelectRef={single} itemsForDropDown={countries} itemForView={countries.find(item => { return item.slice(1, item.indexOf(' ')) == country })} />
                 <div className={`reg__input ${inputErrorState.telError ? 'errorInputTel' : null} `}>
                   <input
                     placeholder={`+${country} (987) 654 32 10`}
-                    ref={ refPhone }
+                    ref={refPhone}
                     type='tel'
                     name='tel'
                     value={tel} onChange={e => telHandler(e)}

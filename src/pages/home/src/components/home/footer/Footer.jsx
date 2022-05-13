@@ -33,7 +33,7 @@ function Footer () {
           </div>
           <h1 className='footer__info-title'> На огонь, воду и рост продаж можно смотреть бесконечно</h1>
           <p className='footer__info-text'>Мы даем вам 2 недели на испытание BOOSTCRM  абсолютно бесплатно </p>
-          <BlueBtn func={openModal}>Попробовать бесплатно</BlueBtn>
+          <button className='btn_free_experience' onClick={openModal}>Попробовать бесплатно</button>
         </div>
 
         <div className='footer__bottom'>

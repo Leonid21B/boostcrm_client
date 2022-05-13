@@ -20,6 +20,7 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
 
   function dragOverHandler (e) {
     e.preventDefault()
+    console.log(e)
   }
 
   function dragStartHandler (e, stage, card) {
@@ -37,7 +38,9 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
     }
     return 'orange-day'
   }
-
+  const click = (e) => {
+    e.preventDefault()
+  }
   function showCardCornerUnit (task) {
     const tasks = task.filter(t => t.status === 'active')
 
@@ -63,16 +66,19 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
   }
 
   return (
-    <Link key={card._id} to={`/card/${card._id}`}>
+    <Link key={card._id} to={`/card/${card._id}`} 
+      draggable
+      onDragOver={e => dragOverHandler(e, card)}
+      onDragEnd = {e => e.preventDefault()}
+      onDragStart={e => dragStartHandler(e, stage, card)}>
       <div
         onClick={() => openCurrentCart(card._id, stage._id)}
         style={{ marginBottom: '12px' }}
+        
       >
 
         <div
-          draggable
-          onDragOver={e => dragOverHandler(e, card)}
-          onDragStart={e => dragStartHandler(e, stage, card)}
+          
                   // onClick={onClick}
           className='content__blocks-item'
           data-type='Card'

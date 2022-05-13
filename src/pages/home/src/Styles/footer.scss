@@ -4,7 +4,25 @@
     &__info {
         text-align: center;
         margin-bottom: 114px;
+        &> .btn_free_experience{
+        cursor: pointer;
+        line-height: 24px;
+        padding: 9px 18px;
+        border-radius: 10px;
+        font-size: 18px;
+        font-weight: 400;
+        background-color: #73AAFC;
+        color: #fff;
+        border: 2px solid transparent;
 
+        &:focus {
+            border: 2px solid #5193F5;
+        }
+        &:hover{
+            transition: all .2s ease-in;
+            background-color: #649FF8;
+        }
+    }
         &-img-wrapp {
             width: 80px;
             height: 80px;
