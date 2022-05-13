@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { registration } from 'redux/asyncRedux/UserAuthAsync'
 import BlueBtn from 'ui/btns/BlueBtn'
+import GrayBtn from 'ui/btns/GrayBtn'
 import CustomSingleSelect from 'ui/select/CustomSingleSelect'
 import CustomSingleSelectCountries from 'ui/select/CustomSingleSelectCountries'
 import SelectWorkers from 'ui/select/SelectWorkers'
@@ -19,7 +20,7 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
   const dispatch = useDispatch()
   const [fio, setFio] = useState('')
   const [email, setEmail] = useState('')
-
+  const [successData,setSuccess] = useState(false)
   const [country, setCountry] = useState('7')
   const [tel, setTel] = useState(phoneMaskValid(null, null, country.length + 1, country).strNew)
 
@@ -32,15 +33,25 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
   const { authUser } = useSelector(state => state.user)
 
   const [inputErrorState, setInputErrorState] = useState({
-    nameError: false,
-    emailError: false,
-    telError: false
+    nameError: true,
+    emailError: true,
+    telError: true
   })
 
   const [emailText, setEmailText] = useState('Введите email')
 
   const [validation, setValidation] = useState(false)
 
+  const checkInps = () => {
+    if (!successData && inputErrorState.emailError == false && inputErrorState.nameError == false && inputErrorState.telError == false){
+      setSuccess(true)
+    }else{
+      if(successData){
+        setSuccess(false)
+      }
+    }
+      
+  }
   function exitHandler() {
     setActive(false)
     body[0].style.overflowY = 'scroll'
@@ -55,7 +66,7 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
     setEmail('')
     setTel('')
     setInputErrorState({
-      ...inputErrorState, nameError: false, emailError: false, telError: false
+      ...inputErrorState, nameError: true, emailError: true, telError: true
     })
     setEmailText('Введите email')
   }
@@ -112,6 +123,7 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
   }, [authUser])
 
   function fioHandler(e) {
+    checkInps()
     setFio(e.target.value)
     if (e.target.value.length > 0) {
       setInputErrorState({
@@ -125,6 +137,7 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
   }
 
   function emailHandler(e) {
+    checkInps()
     const regex = [/^(([0-9A-Za-z^{}[\]<>\.;:_]{1,3}[0-9A-Za-z-\.]{1,}[0-9A-Za-z]{1})@([A-Za-z0-9]{1,}\.){1,2}[A-Za-z]{2,5})$/]
     setEmail(e.target.value)
     checkInputContent(regex, e, 'emailError')
@@ -140,8 +153,13 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
     let data = phoneMaskValid(e.target.value, tel, e.target.selectionStart, country)
     setTel(data.strNew)
     setPos(data.numb, e)
-    checkInputContent(regex, e, 'telError')
-
+    let k = {
+      target:{
+        value:data.strNew
+      }
+    }
+    checkInputContent(regex, k, 'telError')
+    checkInps()
   }
 
   function checkInputContent(regex, e, type) {
@@ -217,7 +235,7 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
               </li>
             </ul>
             <div className='reg__btn'>
-              <BlueBtn func={reg}>Зарегистрироваться</BlueBtn>
+              {successData ? <BlueBtn func={reg}>Зарегистрироваться</BlueBtn> : <button className='disabled_btn_reg'>Зарегистрироваться</button>}
             </div>
           </form>
         </div>

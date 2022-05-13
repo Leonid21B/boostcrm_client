@@ -107,7 +107,9 @@ function Clients() {
   const [fieldsState,setFields] = useState([])
   const body = document.getElementsByTagName('body')[0]
   useEffect(() => {
-    setFields(fields.split('|'))
+    if(fields){
+      setFields(fields?.split('|'))
+    }
   },[fields])
 
   const removeclient = (id) => {

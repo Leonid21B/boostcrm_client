@@ -78,8 +78,16 @@ function Analitica () {
   // let mIndex = monthIndex
   const settertMonthIndex = new Date().getMonth()
   const [monthIndex, setMonthIndex] = useState(settertMonthIndex)
-
+  const clickHahdler = (e) => {
+    if (e.target?.classList[0] != 'selectedItem' && e.target?.classList[0] != 'analitics__select-input'){
+      console.log(comandRef?.current?.classList)
+      comandRef?.current?.classList.remove('open')
+      comandListSelectRef?.current?.classList.remove('open')
+    }
+    console.log(e.target.classList[0])
+  }
   useEffect(() => {
+    document.addEventListener('click', clickHahdler)
     async function fetchdata () {
       if (localStorage.getItem('token')) {
         // const destrucuredAnaliticsData = user.role == 'admin'
@@ -152,6 +160,7 @@ function Analitica () {
       logOut(dispatch)
     }
     fetchdata()
+    return () => document.removeEventListener('click', clickHahdler)
   }, [])
 
   useEffect(() => {

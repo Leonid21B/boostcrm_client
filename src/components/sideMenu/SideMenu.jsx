@@ -159,7 +159,7 @@ function SideMenu () {
                   to='/tarif'
                   draggable={false}
                 >
-                  <p className={takenSpace + 100 >= space * 1024 || nowTime >= -3 ? 'active_error_end' : 'non_active'}>!</p>
+                  <p className={takenSpace + 100 >= space * 1024 || nowTime >= -3 ? 'active_error_end' : 'non_active'}><div/></p>
                   <div className=''>
                     <div className='menu__nav-talk'>
                       <span className='talk'>Тарифы</span>

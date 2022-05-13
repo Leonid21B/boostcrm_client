@@ -125,7 +125,8 @@ function Tarif () {
         const userId = user.id
         const data = await axios.get(`${BASE_SERVER_URL}/generatePay/${userId}/${sum * cur}/${isAutoPayState}/${space}`)
           .then(link => link.data)
-        window.location.href = data
+        
+        window.open(data,'_blank')
       }
     }
   }
@@ -189,8 +190,7 @@ function Tarif () {
                   <span>
                     {takenSpace > 1024
                       ? takenSpace / 1024
-                      : takenSpace}
-                    {takenSpace > 1024 ? 'GB' : 'MB'}
+                      : takenSpace} {takenSpace > 1024 ? 'GB' : 'MB'}   
                   </span>
                 </li>
                 <li className='tarif__block-item'>

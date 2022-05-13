@@ -255,7 +255,10 @@
 
         &-item {
             cursor: pointer;
-
+            &:last-child{
+                border-bottom-left-radius: 8px;
+                border-bottom-right-radius: 8px;
+            }
             &>span {
                 overflow: hidden;
                 white-space: nowrap;

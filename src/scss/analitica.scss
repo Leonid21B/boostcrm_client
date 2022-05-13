@@ -301,6 +301,7 @@
         width: 100%;
 
         &-top {
+            
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -516,7 +517,6 @@
                 padding-bottom: 12px;
                 border-bottom: 1px solid #F1F2F5;
                 margin-bottom: 4px;
-                
 
 
                 &>li {
@@ -687,6 +687,28 @@
                     }
                 }
             }
+        }
+    }
+}
+.analitics__block-content-top{
+    &> li{
+        &:first-child{
+            max-width: 225px;
+        }
+        &:last-child{
+            margin-left: 12px;
+            margin-right: -2px;
+        }
+    }
+    
+}
+.analitics__block-content-stages{
+    &> li{
+        &>div{
+            margin-left: 8px;
+        }
+        &:nth-child(4){
+            margin-left: 16px;
         }
     }
 }

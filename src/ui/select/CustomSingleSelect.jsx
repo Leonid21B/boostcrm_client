@@ -19,8 +19,8 @@ function CustomSingleSelect (
   )
   const clickHandler = (e) => {
     if (e.target.classList[0] != 'selectedItem' && e.target.classList[0] != 'select__workers' && (e.target.firstChild?.classList ? e.target.firstChild?.classList[0] : '') != 'select__input-single'){
-      multiSelectRef?.current.classList.remove('open')
-      singleSelectRef.current?.classList.remove('open')
+      multiSelectRef?.current?.classList.remove('open')
+      singleSelectRef?.current?.classList.remove('open')
     }
   }
 

@@ -244,3 +244,22 @@
 .non_active{
     display: none;
 }
+.disabled_btn_reg{
+    display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 9px 16px;
+gap: 6px;
+width: 177px;
+height: 36px;
+background: #F2F2F2;
+border-radius: 8px;
+font-family: 'Nunito Sans';
+font-style: normal;
+font-weight: 400;
+font-size: 15px;
+line-height: 18px;
+font-feature-settings: 'tnum' on, 'lnum' on;
+color: #C1C5D6;
+}

@@ -401,6 +401,7 @@ function UserCabinet() {
                             data-value='selectedItem'
                             data-id={3}
                             className='selectedItem'
+                            style={{ borderBottomLeftRadius: '8px', borderBottomRightRadius: '8px'}}
                           >
                             <img className='customSelectedItemImg' src={activeItem} alt='' />
                             Менеджер

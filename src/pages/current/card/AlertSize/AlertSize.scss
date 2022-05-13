@@ -2,45 +2,41 @@
   width: 100vw;
   height: 100vh;
   position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   left: 0;
   top: 0;
   background-color: rgba(193, 193, 193, 0.273);
   &> .alert_size_wrap{
-    width: 30vw;
-    height: 10vw;
+    width: 490px;
+    height: 140px;
     border-radius: 10px;
     background-color: white;
-    padding: 1vw;
-    position: absolute;
-    top: 35vh;
-    left: 35vw;
+    padding: 28px 32px;
     &> h1{
+      font-family: 'Nunito Sans';
+      font-style: normal;
+      font-weight: 700;
       font-size: 20px;
-      width: 100%;
-      text-align: center;
+      line-height: 24px;
     }
     &> .alert_size_footer{
-      height: 3vw;
+      margin-top: 23px;
       display: flex;
-      width: 100%;
-      margin-top: 2vw;
-      justify-content: center;
       &> .alert_size_btn{
-          padding: 9px 10vw;
-          text-align: center;
-          font-weight: 400;
-          font-size: 15px;
-          border-radius: 8px;
-          background-color: #73AAFC;
-          margin-right: 0;
-          color: #ffff; 
-          border: 2px solid transparent ;
           cursor: pointer;
-          @media (max-width: 1300px) {
-            font-size: 11px;
-            line-height: 11px;
-          }
-        
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          padding: 9px 16px;
+          gap: 6px;
+          background: #73AAFC;
+          border-radius: 8px;
+          width: 78px;
+          height: 36px;
+          color:white;
+          margin-left: auto;
       }
     }
   }

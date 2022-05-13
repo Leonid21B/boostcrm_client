@@ -90,11 +90,16 @@
                     }
 
                 &> .active_error_end{
+                    &> div{
+                        background:#FF4D4D;
+                        width: 10px;
+                        height: 10px;
+                        border-radius: 50%;
+                    }
                     position: absolute;
-                    color:#FF4D4D;
                     z-index: 5;
                     top: 3px;
-                    right: 5px;
+                    right: 3px;
                     font-size: 25px;
                 }
                 &.active {
