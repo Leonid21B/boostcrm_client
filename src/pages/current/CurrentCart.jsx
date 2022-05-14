@@ -339,7 +339,7 @@ function CurrentCart({ isClientCreateCard = true }) {
       ? `${filteredTasks.length} задачи`
       : tasks.filter(t => t.status == 'active').length > 0
         ? `${tasks.filter(t => t.status == 'active').length} задачи`
-        : 'без-задач'
+        : 'без задач'
   }
 
   function checkCardsResponsible(card) {

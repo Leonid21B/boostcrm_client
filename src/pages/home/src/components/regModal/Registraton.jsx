@@ -37,14 +37,23 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
     emailError: true,
     telError: true
   })
-
+  useEffect(() => {
+    setTimeout(() => { checkInps() }, 0) 
+  },[inputErrorState])
   const [emailText, setEmailText] = useState('Введите email')
 
   const [validation, setValidation] = useState(false)
 
   const checkInps = () => {
-    if (!successData && inputErrorState.emailError == false && inputErrorState.nameError == false && inputErrorState.telError == false){
-      setSuccess(true)
+    if (inputErrorState.emailError == false && inputErrorState.nameError == false && inputErrorState.telError == false){
+
+      console.log(inputErrorState.emailError)
+      console.log(inputErrorState.nameError)
+      console.log(inputErrorState.telError)
+      if (!successData) { 
+        setSuccess(true)
+      }
+      
     }else{
       if(successData){
         setSuccess(false)
@@ -90,6 +99,7 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
       }
       setInputErrorState({ ...inputErrorState, emailError: true })
       setEmailText('Такой пользователь уже есть')
+      setTimeout(() => { checkInps() }, 0) 
     }
 
     if (fio.length == 0 && email.length == 0 && tel.length == 0) {
@@ -123,7 +133,7 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
   }, [authUser])
 
   function fioHandler(e) {
-    checkInps()
+    
     setFio(e.target.value)
     if (e.target.value.length > 0) {
       setInputErrorState({
@@ -134,14 +144,14 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
     setInputErrorState({
       ...inputErrorState, nameError: true
     })
+
   }
 
   function emailHandler(e) {
-    checkInps()
     const regex = [/^(([0-9A-Za-z^{}[\]<>\.;:_]{1,3}[0-9A-Za-z-\.]{1,}[0-9A-Za-z]{1})@([A-Za-z0-9]{1,}\.){1,2}[A-Za-z]{2,5})$/]
     setEmail(e.target.value)
     checkInputContent(regex, e, 'emailError')
-
+    
   }
 
   function setPos(num, e) {
@@ -159,7 +169,6 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
       }
     }
     checkInputContent(regex, k, 'telError')
-    checkInps()
   }
 
   function checkInputContent(regex, e, type) {
@@ -172,7 +181,7 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
     }
     setInputErrorState({ ...inputErrorState, [type]: true })
     setValidation(false)
-
+    
   }
 
 

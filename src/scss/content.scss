@@ -229,9 +229,7 @@
             width: 307px;
             max-width: 307px;
             &>div {
-                height: calc(attr(data-length) * 500px);
                 padding-bottom: 5px;
-                border-right: 1px solid #777A8F;
             }
             &>a{
                 background: #000;
@@ -391,14 +389,13 @@
             box-shadow: 0px 0px 0px 1px rgba(0, 44, 94, 0.1), 0px 2px 2px -1px rgba(0, 44, 94, 0.15);
             border-radius: 12px;
             margin-bottom: 12px;
-        
-            min-width: 290px;
-            margin-right: 10px;
+            min-width: 307px;
+
             transition: all .2s ease-in-out;
 
             &:hover {
                 transition: all .2s ease-in-out;
-                transform: translateY(10px);
+                transform: translateX(10px);
             }
 
             &:last-child {

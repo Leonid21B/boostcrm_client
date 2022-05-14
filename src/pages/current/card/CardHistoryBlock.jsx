@@ -11,8 +11,11 @@ function CardHistoryBlock ({ logRef ,currentCart}) {
   
   console.log(historyState)
   useEffect(() => {
-    setHistory(Array.from(currentCart.history))
-    console.log(Array.from(currentCart.history))
+    if(currentCart.history){
+      setHistory(Array.from(currentCart.history))
+      console.log(Array.from(currentCart.history))
+    }
+    
     
   },[currentCart.history])
   const dispatch = useDispatch()

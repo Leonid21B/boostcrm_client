@@ -31,6 +31,7 @@ function InputStatement ({ innerLogScroll }) {
   async function uploadFile (e) {
     const file = e.target.files[0]
     if(15 <= file.size / 1024 / 1024){
+      console.log(true)
       setAlertSize(true)
       return
     }
