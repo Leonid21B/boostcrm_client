@@ -16,7 +16,7 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
   }
 
   const values = [[90, '€'], [80, '$'], [1, '₽']]
-  const currency = useSelector(state => state.user.user.currency)
+  const currency = useSelector(state => state.user.user?.currency)
 
   function dragOverHandler (e) {
     e.preventDefault()

@@ -19,9 +19,9 @@ function Tarif () {
   
  
   const { user } = useSelector(state => state.user)
-  let currency = user.currency
+  let currency = user?.currency
   useEffect(() => {
-    currency = user.currency
+    currency = user?.currency
     if(currency == 90){
       setSymb('€')
     }

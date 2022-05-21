@@ -23,7 +23,7 @@ function NewDealCart ({ stageID, currentStage, setStageId }) {
   const [address, setAddress] = useState('')
   const [addNenTask, setAddNenTask] = useState(false)
   const values = [[90, '€'], [80, '$'], [1, '₽']]
-  const currency = useSelector(state => state.user.user.currency)
+  const currency = useSelector(state => state.user.user?.currency)
   const [inputTitleError, setInputTitleError] = useState(false)
   const [inputEmailError, setInputEmailError] = useState(false)
   const [inputCompanyError, setInputCompanyError] = useState(false)

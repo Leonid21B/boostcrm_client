@@ -37,7 +37,7 @@ function CurrentCart({ isClientCreateCard = true }) {
   const [active, setActive] = useState(false)
   const [addNenTask, setAddNenTask] = useState(false)
   const values = [[90, '€'], [80, '$'], [1, '₽']]
-  const currency = useSelector(state => state.user.user.currency)
+  const currency = useSelector(state => state.user.user?.currency)
   const [succsessTask, setSuccsessTask] = useState(null)
   const [notSuccsessTask, setNotSuccsessTask] = useState(null)
   const [closeTask, setCloseTask] = useState(false)
