@@ -43,7 +43,7 @@ function NewDealCart ({ stageID, currentStage, setStageId }) {
     title,
     company,
     name: person,
-    price: price * user.currency,
+    price: price * user?.currency,
     tel,
     email,
     address,
