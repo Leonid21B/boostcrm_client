@@ -163,7 +163,7 @@ function Tarif () {
                         ? 'active'
                         : null}`}
       >
-        <span>До конца оплаченного периода {dateDifferent + `${dateDifferent == 1 ? 'сутки' : 'суток'}`}</span>
+        <span>До конца оплаченного периода {dateDifferent + ' ' + `${dateDifferent == 1 ? 'сутки' : 'суток'}`}</span>
         {/* <span>Пополнить счет</span> */}
         <button onClick={openPayModal(priceGB, GB)}>Пополнить счет</button>
       </div>

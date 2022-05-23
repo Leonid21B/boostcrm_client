@@ -13,7 +13,7 @@ function SideMenu () {
   const params = useHistory()
   useEffect(() => {
     console.log(params)
-    if (params.location.pathname != '/tarif' && (takenSpace + 100 >= space * 1024 && takenSpace && space /*|| nowTime >= -3*/)){
+    if (params.location.pathname != '/tarif' && (takenSpace + 100 >= space * 1024 && takenSpace && space || nowTime >= -3)){
       console.log(params.location.pathname)
       const loc = `${document.location.href.slice(0, document.location.href.indexOf(params.location.pathname))}/tarif`
       document.location.replace(loc)

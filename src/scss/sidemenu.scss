@@ -366,3 +366,6 @@ span.talk:after {
     right: 100%;
     margin-top: -9px;
 }
+.disabled_link{
+    pointer-events: none;
+}
