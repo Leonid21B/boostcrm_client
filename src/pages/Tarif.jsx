@@ -144,7 +144,12 @@ function Tarif () {
     }else{
       timeDifferent = Math.abs(date.getTime() - payDate.getTime())
     }
-    
+    useEffect(() => {
+      if(space != currentTarifPlace){
+        setCurrentTarifPlace(space)
+        setStartPosition(space)
+      }
+    })
     const result = Math.ceil(timeDifferent / (1000 * 3600 * 24))
     return result
   }
