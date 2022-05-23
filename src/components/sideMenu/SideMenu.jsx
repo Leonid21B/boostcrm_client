@@ -13,8 +13,8 @@ function SideMenu () {
   const params = useHistory()
   useEffect(() => {
     console.log(params)
-    if (params.location.pathname != '/tarif' && (takenSpace + 100 >= space * 1024 && takenSpace && space || nowTime >= -3)){
-      console.log(params.location.pathname)
+    console.log(nowTime)
+    if (params.location.pathname != '/tarif' && (takenSpace + 100 >= space * 1024 && takenSpace && space || nowTime <= 0)){
       const loc = `${document.location.href.slice(0, document.location.href.indexOf(params.location.pathname))}/tarif`
       document.location.replace(loc)
     }
@@ -26,9 +26,10 @@ function SideMenu () {
   const { overdueCards } = useSelector(state => state.newCart)
   const { workers } = useSelector(state => state.worker)
   const { space, takenSpace, paymentDate } = useSelector(state => state.companySpace)
-  let nowTime = (new Date() - new Date(paymentDate)) / (60 * 60 * 24 * 1000)
+  let nowTime = (new Date().getTime() - new Date(paymentDate).getTime()) / (60 * 60 * 24 * 1000)
   useEffect(() => {
-    nowTime = (new Date() - new Date(paymentDate)) / (60 * 60 * 24 * 1000)
+    nowTime = (new Date(paymentDate).getTime() - new Date().getTime() ) / (60 * 60 * 24 * 1000)
+    console.log(new Date().getTime())
   },[paymentDate])
   console.log( new Date(paymentDate).getDate())
   const menu = useRef()

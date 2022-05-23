@@ -79,7 +79,7 @@ function Analitica () {
   const settertMonthIndex = new Date().getMonth()
   const [monthIndex, setMonthIndex] = useState(settertMonthIndex)
   const clickHahdler = (e) => {
-    if (e.target?.classList[0] != 'selectedItem' && e.target?.classList[0] != 'analitics__select-input'){
+    if (e.target?.classList[0] != 'selectedItem' && e.target?.classList[0] != 'analitics__select-input' && e.target?.classList[0] != 'analitics__blocks-select'){
       console.log(comandRef?.current?.classList)
       comandRef?.current?.classList.remove('open')
       comandListSelectRef?.current?.classList.remove('open')
