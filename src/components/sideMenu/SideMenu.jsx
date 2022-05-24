@@ -8,13 +8,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { ContentStatesStore } from 'StoreStates'
 import ExitCrm from 'componentStore/modals/ExitCrm'
 import { useNavigate, useParams } from 'react-router'
+import { getCompany } from 'redux/asyncRedux/ClientsAsync'
 
 function SideMenu () {
   const params = useHistory()
+  
+  useEffect(() => {
+    getCompany(dispatch)
+  },[])
   useEffect(() => {
     console.log(params)
     console.log(nowTime)
-    if (params.location.pathname != '/tarif' && (takenSpace + 100 >= space * 1024 && takenSpace && space || nowTime >= 0)){
+    if (!activePopup &&(params.location.pathname != '/tarif') && (takenSpace + 100 >= space * 1024 && takenSpace && space || nowTime >= 0)){
       const loc = `${document.location.href.slice(0, document.location.href.indexOf(params.location.pathname))}/tarif`
       document.location.replace(loc)
     }
@@ -29,9 +34,9 @@ function SideMenu () {
   let nowTime = (new Date().getTime() - new Date(paymentDate).getTime()) / (60 * 60 * 24 * 1000)
   useEffect(() => {
     nowTime = (new Date(paymentDate).getTime() - new Date().getTime() ) / (60 * 60 * 24 * 1000)
-    console.log(new Date().getTime())
+    console.log(nowTime)
   },[paymentDate])
-  console.log( new Date(paymentDate).getDate())
+  
   const menu = useRef()
   const history = useHistory()
 

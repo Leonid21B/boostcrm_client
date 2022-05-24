@@ -1,6 +1,6 @@
 import { _getALLCarts } from 'redux/redusers/CartReduser'
 import { _createClient, _deleteClient, _getAll, _getClients, _getClientsCarts, _getClientsLength, _getCurrentClient, _updateClient, _updateFlag } from 'redux/redusers/ClientReduser'
-import { _getCompanySpace, _getCompanyTakenSpace, _getFieldsStr } from 'redux/redusers/CompanyReduser'
+import { _getCompanyPaymentDate, _getCompanySpace, _getCompanyTakenSpace, _getFieldsStr } from 'redux/redusers/CompanyReduser'
 import { _getInvitedWorker } from 'redux/redusers/WorkerReduser'
 import ClientService from 'requests/service/ClientService'
 
@@ -11,6 +11,12 @@ export const createClient = async (dispatch, { name, org, iin, tel, email, userI
   dispatch(_getCompanyTakenSpace(resp.takenSpace))
 }
 
+export const getCompany = async(dispatch) => {
+  const resp = await ClientService.getCompany().then(data => data.data)
+  dispatch(_getCompanySpace(resp.space))
+  dispatch(_getCompanyTakenSpace(resp.takenSpace))
+  dispatch(_getCompanyPaymentDate(resp.paymentDate))
+}
 export const flagClient = async(dispatch,userId) => {
   const resp = await ClientService.updateFlag(userId)
   dispatch(_updateFlag)

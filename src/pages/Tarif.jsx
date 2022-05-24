@@ -69,12 +69,13 @@ function Tarif () {
         (sliserRef.current.querySelector('.slider').getAttribute('step') /
                     sliserRef.current.querySelector('.slider').getAttribute('max')) * 100
       )
-      setDateDifferent(check(paymentDate))
       return
     }
     logOut(dispatch)
   }, [])
-
+  useEffect(() => {
+    setDateDifferent(check(paymentDate))
+  },[paymentDate])
   const closeModal = () => {
     setActive(false)
   }
@@ -146,6 +147,7 @@ function Tarif () {
     }
     
     const result = Math.ceil(timeDifferent / (1000 * 3600 * 24))
+    console.log(result)
     return result
   }
 
@@ -155,6 +157,7 @@ function Tarif () {
       setStartPosition(space)
     }
   }, [space])
+
   function openHelpModalToCallUs () {
     setOpenHelpModal(true)
   }
