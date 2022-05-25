@@ -695,11 +695,10 @@ function Clients() {
                                         onChange={e => inputChangeHandler(e)}
                                         data-type={item.value}
                                         onBlur={setDataToLocalStorage(valuesOfInputs)}
-
                                         onMouseLeave={setDataToLocalStorage(valuesOfInputs)}
                                         maxLength={item.value == 'tel' ? 18 : 45}
                                         data-id='1' data-value='01'
-                                      />
+                                      ><img className="clear_input_btn"/></input>
                                     )
                                   }
                                   </div>

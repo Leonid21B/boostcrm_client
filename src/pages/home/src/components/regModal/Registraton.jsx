@@ -93,8 +93,8 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
         })
         setEmailText('Введите email')
         setActiveSuccessRegistrationModal(true)
-        setActive(false)
         resetInputs()
+        setActive(false)
         return
       }
       setInputErrorState({ ...inputErrorState, emailError: true })
