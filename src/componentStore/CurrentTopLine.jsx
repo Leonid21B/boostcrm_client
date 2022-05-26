@@ -57,7 +57,7 @@ function CurrentTopLine ({ exit, title, children, path, cardId, card }) {
                           </div>
                     }
           {
-                        card.status == 'active'
+                        card?.status == 'active'
                           ? <img
                               src={pencil}
                               onClick={redactField}

@@ -5,7 +5,7 @@ import { changeCur } from "redux/asyncRedux/UserAuthAsync";
 const ChooseCurrency = (props) => {
   const dispatch = useDispatch()
   const currency = useSelector(state => state.user.user?.currency)
-  const userId = useSelector(state => state.user.user.id)
+  const userId = useSelector(state => state.user.user?.id)
   const [currentItem, setCurrentItem] = useState(0)
   const items = [['$', 80], ['€', 90], ['₽', 1]]
 

@@ -17,7 +17,7 @@ function CardHistoryBlock ({ logRef ,currentCart}) {
     }
     
     
-  },[currentCart.history])
+  },[currentCart?.history])
   const dispatch = useDispatch()
   //const { currentCart } = useSelector(state => state.newCart)
   const deleteFile = async (file) => {
