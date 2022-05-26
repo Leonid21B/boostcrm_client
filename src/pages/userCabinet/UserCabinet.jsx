@@ -273,7 +273,7 @@ function UserCabinet() {
   }
 
   function removeAvatar(e) {
-    if (user.avatar?.length != 0) {
+    if (user?.avatar?.length != 0) {
       deleteUserAvatar(dispatch, user?.id)
 
       setStateAvatar('')
@@ -317,7 +317,7 @@ function UserCabinet() {
     dispatch(_getUserInfo(userProfileInfo.user))
   }
   function openRoleSelect(e, worker) {
-    if (worker.role != 'admin' && worker._id != user.id) {
+    if (worker.role != 'admin' && worker._id != user?.id) {
       setCurrentWorkerId(worker._id)
       e.target.classList.toggle('active')
       setIsRoleSelected(!isRoleSelected)
@@ -496,7 +496,7 @@ function UserCabinet() {
                                   ref={avatarRef}
                                   src={
                                     user?.avatar?.length != 0
-                                      ? `${process.env.REACT_APP_STATIC_SERVER_PATH}/${user.avatar}`
+                                      ? `${process.env.REACT_APP_STATIC_SERVER_PATH}/${user?.avatar}`
                                       : useravatar2
                                   } alt=''
                                 />

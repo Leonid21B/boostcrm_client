@@ -412,7 +412,7 @@ function Analitica () {
                         >Сводка
                         </button>
                         {
-                                    user.role == 'admin'
+                                    user?.role == 'admin'
                                       ? <button
                                           onClick={() => setSelected(false)}
                                           className={selected ? null : 'active'}
@@ -425,7 +425,7 @@ function Analitica () {
                       </div>
                       <div className='analitics__settings-right' ref={dateRef}>
                         {
-                                    user.role == 'admin'
+                                    user?.role == 'admin'
                                       ? <div
                                           onClick={e => openDropDown(e)}
                                           ref={comandListSelectRef}
@@ -554,10 +554,10 @@ function Analitica () {
                                   </ul>
                                 </div>
                                 {
-                                        user.role == 'admin'
+                                        user?.role == 'admin'
                                           ? <div className='analitics__blocks'>
                                             {
-                                                    user.role == 'admin'
+                                                    user?.role == 'admin'
                                                       ? comandListView?.map(cmd =>
                                                         <ComandCard
                                                           key={cmd._id}

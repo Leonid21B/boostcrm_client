@@ -772,7 +772,7 @@ function Clients() {
         setColumns={setFields}
         valuesOfInputs={valuesOfInputs}
         setValuesOfInputs={setValuesOfInputs}
-        userId={user.id}
+        userId={user?.id}
       />}
 
       <ExportColumn
