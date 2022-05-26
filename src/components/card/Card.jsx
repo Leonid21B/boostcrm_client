@@ -31,7 +31,7 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
 
   function showCardCornerUnitColor (task) {
     const tasks = task.filter(t => t.status === 'active')
-    console.log(tasks)
+    
     if (tasks.filter(t => setDateSeconds(t.date) < setDateSeconds(new Date())).length > 0 && !isTasksToday) {
       return 'red-day'
     }
@@ -48,6 +48,7 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
     e.preventDefault()
   }
   function showCardCornerUnit (task) {
+    console.log(task)
     const tasks = task.filter(t => t.status === 'active')
 
     if (tasks.filter(t => setDateSeconds(t.date) < setDateSeconds(new Date())).length > 0 && !isTasksToday) {
