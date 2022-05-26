@@ -558,7 +558,7 @@ function Clients() {
                     </div>
                   </div>
                   {
-                    user.role == 'admin'
+                    user?.role == 'admin'
                       ? <div className='clients__content-topBtns'>
                         <button onClick={imporColumn}>Импорт</button>
                         <button onClick={exportcolumn}>Экспорт</button>

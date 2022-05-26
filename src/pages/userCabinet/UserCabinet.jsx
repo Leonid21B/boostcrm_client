@@ -495,7 +495,7 @@ function UserCabinet() {
                                 <img
                                   ref={avatarRef}
                                   src={
-                                    user.avatar?.length != 0
+                                    user?.avatar?.length != 0
                                       ? `${process.env.REACT_APP_STATIC_SERVER_PATH}/${user.avatar}`
                                       : useravatar2
                                   } alt=''

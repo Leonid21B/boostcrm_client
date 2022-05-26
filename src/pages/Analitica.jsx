@@ -53,7 +53,7 @@ function Analitica () {
   const dateRef = useRef()
   const changeMonthRef = useRef()
 
-  const [comandId, setComandId] = useState(user.companyId)
+  const [comandId, setComandId] = useState(user?.companyId)
 
   const [activeNotSuccessModal, setActiveNotSuccessModal] = useState(false)
   const [activeSuccessModal, setActiveSuccessModal] = useState(false)
