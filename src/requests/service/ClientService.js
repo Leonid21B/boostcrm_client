@@ -17,7 +17,8 @@ export default class ClientService {
   }
   static async getCompany(){
     try {
-      return api.get(`/company_data/`)
+      
+      return api.get(`/company_data/`,{refresh: localStorage.getItem('token')})
     } catch (e) {
 
     }  

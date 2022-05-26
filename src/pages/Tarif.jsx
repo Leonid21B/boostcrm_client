@@ -10,6 +10,7 @@ import { formatFyllDate } from 'functions/FormatDate'
 import bb from 'ui/scssModule/blueBtn.module.scss'
 import HelpModal from 'componentStore/modals/HelpModal'
 import { ContentStatesStore } from 'StoreStates'
+import { getCompany } from 'redux/asyncRedux/ClientsAsync'
 
 function Tarif () {
   const [active, setActive] = useState(false)
@@ -54,7 +55,10 @@ function Tarif () {
   const [range, setRange] = useState(3)
 
   const [isMaxOfSliderRange, setIsMaxOfSliderRange] = useState(false)
-
+  
+  useEffect(() => {
+    getCompany(dispatch)
+  }, [])
   const [isAutoPayState, setIsAutoPayState] = useState(false)
   const [dateDifferent, setDateDifferent] = useState(0)
 
@@ -197,9 +201,9 @@ function Tarif () {
                 <li className='tarif__block-item'>
                   <span>Занято</span>
                   <span>
-                    {takenSpace > 1024
-                      ? takenSpace / 1024
-                      : takenSpace} {takenSpace > 1024 ? 'GB' : 'MB'}   
+                    {takenSpace > 1
+                      ? takenSpace
+                      : takenSpace * 1024} {takenSpace > 1 ? 'GB' : 'MB'}   
                   </span>
                 </li>
                 <li className='tarif__block-item'>

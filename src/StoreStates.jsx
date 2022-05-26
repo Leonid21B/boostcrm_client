@@ -22,6 +22,7 @@ import { _getInvitedWorker } from 'redux/redusers/WorkerReduser'
 import { _getALLTask } from 'redux/redusers/NewTaskReduser'
 import HelpModal from 'componentStore/modals/HelpModal'
 import UserAgreement from 'pages/home/src/components/home/agreement/UserAgreement'
+import { getCompany } from 'redux/asyncRedux/ClientsAsync'
 
 export const ContentStatesStore = createContext({})
 
@@ -31,7 +32,6 @@ function StoreStates () {
   const [activePopup,setPopup] = useState(false)
   const { isAuth, user } = useSelector(state => state.user)
   const [newStageActive, setNewStageActive] = useState(false)
-
   const [openHelpModal, setOpenHelpModal] = useState(false)
 
   const [isLoading, setIsLoading] = useState(false)
@@ -46,7 +46,6 @@ function StoreStates () {
 
   const singleRef = useRef()
   const multiSelectRef = useRef()
-
   function checkClickOnSomeOfSelect (typeOfSelect, refOfselect) {
     console.log({
       typeOfSelect,

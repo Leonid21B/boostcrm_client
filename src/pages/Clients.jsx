@@ -8,7 +8,7 @@ import RemoveClients from 'componentStore/modals/RemoveClients'
 import ColumnSettings from 'componentStore/modals/ColumnSettings'
 import ExportColumn from 'componentStore/modals/ExportColumn'
 import ImportColumn from 'componentStore/modals/ImportColumn'
-import { checkClient, createClient, flagClient, getAllClients, getClients, updateClient } from 'redux/asyncRedux/ClientsAsync'
+import { checkClient, createClient, flagClient, getAllClients, getClients, getCompany, updateClient } from 'redux/asyncRedux/ClientsAsync'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Redirect, Route } from 'react-router-dom'
 import ClientService from 'requests/service/ClientService'
@@ -436,7 +436,9 @@ function Clients() {
     }
   }
 
- 
+  useEffect(() => {
+    getCompany(dispatch)
+  }, [])
 
   useCallback(() => {
     function setPage(page) {
@@ -457,9 +459,9 @@ function Clients() {
             <div className='clients__inner'>
               <TopLine title='Клиенты'>
                 <div className={tl.firstseacrch}>
-                  <span>занято {takenSpace > 1024 * 8
-                    ? takenSpace / 1024 
-                    : takenSpace } {takenSpace > 1024 ? 'GB' : 'MB'} / {space}GB до {formatDateAndMonth(paymentDate)}
+                  <span>занято {takenSpace >= 1
+                    ? takenSpace  
+                    : takenSpace *1024} {takenSpace >= 1 ? 'GB' : 'MB'} / {space}GB до {formatDateAndMonth(paymentDate)}
                   </span>
                   <input
                     value={seacrch}

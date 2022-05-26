@@ -29,7 +29,7 @@ export const getClients = async (dispatch, userId, limit, page) => {
   dispatch(_getClientsLength(resp.clientsLength)) 
   dispatch(_getCompanySpace(resp.space))
   dispatch(_getFieldsStr(resp.fields))
-  dispatch(_getCompanyTakenSpace(resp.takenSpace))
+  //dispatch(_getCompanyTakenSpace(resp.takenSpace))
   return { success: resp.success, refusual: resp.refusual,notDeal:resp.notDeal }
 }
 

@@ -172,7 +172,7 @@ function CurrentCart({ isClientCreateCard = true }) {
       setCardsInputsStates({
         ...cardsInputsStates,
         title: card.title,
-        price: card.price,
+        price: card.price == ''? '' : card.price,
         person: card.name,
         tel: card.tel,
         email: card.email,
@@ -610,7 +610,7 @@ function CurrentCart({ isClientCreateCard = true }) {
             <NewContact
               setActive={setActive}
               active={active}
-              id={currentCart._id}
+              id={currentCart?._id}
               logRef={logRef}
             />
 

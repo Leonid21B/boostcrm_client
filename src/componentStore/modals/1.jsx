@@ -14,7 +14,7 @@ function PayModal ({ active, setActive }) {
   const { user } = useSelector(state => state.user)
 
   const [sha256, setSha256] = useState('')
-  debugger
+  
   function closeModal () {
     setActive(false)
   }

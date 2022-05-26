@@ -52,6 +52,7 @@ function Content() {
   const { stages } = useSelector(state => state.newStages)
   const { comandId } = useSelector(state => state.comand)
   const { space, takenSpace, paymentDate } = useSelector(state => state.companySpace)
+  
   const [arrForCards, setArrForCards] = useState(carts)
 
   const [checkBoxSortMenuStates, setCheckBoxSortMenuStates] = useState({
@@ -258,7 +259,7 @@ function Content() {
   }
 
   function checkTakenSpace(targetSpace) {
-    const result = targetSpace > 1024 ? Math.floor(targetSpace / 1024) : takenSpace
+    const result = targetSpace > 1 ? targetSpace : takenSpace * 1024
     return result
   }
 
@@ -304,7 +305,7 @@ function Content() {
                     {
                       user?.role === 'admin'
                         ? <span>
-                          занято {checkTakenSpace(takenSpace)} {takenSpace > 1024 ? 'GB' : 'MB'} / {space}GB до {formatDateAndMonth(paymentDate)}
+                          занято {checkTakenSpace(takenSpace)} {takenSpace >= 1 ? 'GB' : 'MB'} / {space}GB до {formatDateAndMonth(paymentDate)}
                         </span>
                         : null
                     }

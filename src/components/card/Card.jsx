@@ -1,8 +1,9 @@
 import { formatDate, setDateSeconds } from 'functions/FormatDate'
 import { useravatar2 } from 'img'
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { getCompany } from 'redux/asyncRedux/ClientsAsync'
 
 function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, cardRef, onClick, isTasksToday }) {
   const { workers } = useSelector(state => state.worker)
@@ -30,6 +31,7 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
 
   function showCardCornerUnitColor (task) {
     const tasks = task.filter(t => t.status === 'active')
+    console.log(tasks)
     if (tasks.filter(t => setDateSeconds(t.date) < setDateSeconds(new Date())).length > 0 && !isTasksToday) {
       return 'red-day'
     }
@@ -38,6 +40,10 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
     }
     return 'orange-day'
   }
+  const dispatch = useDispatch()
+  useEffect(() => {
+    getCompany(dispatch)
+  }, [])
   const click = (e) => {
     e.preventDefault()
   }
@@ -74,7 +80,6 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
       <div
         onClick={() => openCurrentCart(card._id, stage._id)}
         style={{ marginBottom: '12px' }}
-        
       >
 
         <div
