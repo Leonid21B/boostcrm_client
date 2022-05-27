@@ -1,6 +1,6 @@
 import { formatDate, setDateSeconds } from 'functions/FormatDate'
 import { useravatar2 } from 'img'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getCompany } from 'redux/asyncRedux/ClientsAsync'
@@ -15,7 +15,7 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
       console.log('error', error)
     }
   }
-
+  const [cardTasks,setTasks] = useState([])
   const values = [[90, '€'], [80, '$'], [1, '₽']]
   const currency = useSelector(state => state.user.user?.currency)
 
@@ -43,6 +43,9 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
   const click = (e) => {
     e.preventDefault()
   }
+  useEffect(() => {
+    setTasks([...card?.tasks])
+  },[card?.tasks])
   function showCardCornerUnit (task) {
     console.log(task)
     const tasks = task.filter(t => t.status === 'active')
@@ -92,9 +95,9 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
                 {card.title}
               </span>
               <span
-                className={`content__blocks-item-day ${showCardCornerUnitColor(card.tasks)}`}
+                className={`content__blocks-item-day ${showCardCornerUnitColor(cardTasks)}`}
               >
-                {showCardCornerUnit(card.tasks)}
+                {showCardCornerUnit(cardTasks)}
               </span>
             </div>
             <span className='content__blocks-item-name'>
