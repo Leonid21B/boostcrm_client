@@ -1,3 +1,4 @@
+import { Navigate } from 'react-router'
 import CartService from 'requests/service/CartService'
 
 export default function dragCardHandler (config) {

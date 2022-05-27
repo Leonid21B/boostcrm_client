@@ -41,9 +41,15 @@ import { checkWhoManageAccess } from './functions/checkWhoManageAccess'
 import getLengthData from './functions/getLengthData'
 import FilterMenu from 'ui/deals/FilterMenu'
 import { getCompany } from 'redux/asyncRedux/ClientsAsync'
+import { Navigate } from 'react-router'
 
 function Content() {
   const { removeStage, setIsLoading } = useContext(ContentStatesStore)
+  const [stateRedirect,setRedirect] = useState(null)
+
+  const clickCard = (path) => {
+    setRedirect(path)
+  }
 
   const dispatch = useDispatch()
 
@@ -296,7 +302,9 @@ function Content() {
   //         // setArrayOfClients(prev => [...prev, ...cl.clients])
   //     }
   // }
-
+  if (stateRedirect) {
+    return <Redirect to={stateRedirect} />
+  }
   return (
     <div className='content'>
       {
@@ -514,6 +522,7 @@ function Content() {
                                     setCurrentCard={setCurrentCard}
                                     setCurrentStage={setCurrentStage}
                                     cardRef={cardRef}
+                                    click = {clickCard}
                                     isTasksToday={isTasksToday}
                                   />
                                   : null

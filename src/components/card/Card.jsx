@@ -2,15 +2,26 @@ import { formatDate, setDateSeconds } from 'functions/FormatDate'
 import { useravatar2 } from 'img'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Navigate } from 'react-router'
 import { Link } from 'react-router-dom'
 import { getCompany } from 'redux/asyncRedux/ClientsAsync'
 
-function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, cardRef, onClick, isTasksToday }) {
+function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, cardRef, click, isTasksToday }) {
   const { workers } = useSelector(state => state.worker)
+  const [pathLink, setPathLink] = useState(`/`)
+
+  useEffect(() => {
+    if(`/card/${card?._id}` != pathLink && card._id){
+      setPathLink(`/card/${card?._id}`)
+    }
+  },[card?._id])
 
   const openCurrentCart = async (id, stgId) => {
     try {
       window.localStorage.setItem('linkCardId', id)
+      click(`/card/${card?._id}`)
+      
+      
     } catch (error) {
       console.log('error', error)
     }
@@ -21,12 +32,18 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
 
   function dragOverHandler (e) {
     e.preventDefault()
+    e.target.pathname = '/'
+    setPathLink('/')
     console.log(e)
   }
 
   function dragStartHandler (e, stage, card) {
+    console.log(e)
+    e.target.pathname = '/'
+    
     setCurrentCard(card._id)
     setCurrentStage(stage._id)
+    setPathLink('/')
   }
 
   function showCardCornerUnitColor (task) {
@@ -40,8 +57,9 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
     }
     return 'orange-day'
   }
-  const click = (e) => {
-    e.preventDefault()
+  const onDragEnd = (e) => {
+    console.log(e)
+  
   }
   useEffect(() => {
     setTasks([...card?.tasks])
@@ -63,16 +81,22 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
       : useravatar2
     return avatar
   }
-
+  
   return (
-    <Link key={card._id} to={`/card/${card._id}`} 
+    /*<Link key={card._id} to={'/'} 
       draggable
+      onDrop={e => click}
       onDragOver={e => dragOverHandler(e, card)}
-      onDragEnd = {e => e.preventDefault()}
-      onDragStart={e => dragStartHandler(e, stage, card)}>
+      onDragEnd={e => onDragEnd(e)}
+      onDragStart={e => dragStartHandler(e, stage, card)}
+      >*/
       <div
         onClick={() => openCurrentCart(card._id, stage._id)}
         style={{ marginBottom: '12px' }}
+        draggable
+        onDragOver={e => dragOverHandler(e, card)}
+        onDragEnd={e => onDragEnd(e) }
+        onDragStart={e => dragStartHandler(e, stage, card)}
       >
 
         <div
@@ -113,7 +137,7 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
           </div>
         </div>
       </div>
-    </Link>
+   /* </Link>*/
   )
 }
 
