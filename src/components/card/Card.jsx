@@ -51,14 +51,12 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
     console.log(task)
     const tasks = task.filter(t => t.status === 'active')
     console.log(tasks)
-    if (tasks?.filter(t => new Date(t.date) < new Date()).length > 0 && !isTasksToday) {
+    if (tasks?.filter(t => new Date(t.date) < new Date()).length > 0) {
       console.log(tasks)
       return `${tasks.filter(t => setDateSeconds(t.date) < setDateSeconds(new Date())).length} задачи`
     }
 
-    const todayTasks = task.filter(t => new Date(t.date).toLocaleDateString() === new Date().toLocaleDateString() &&
-      new Date(t.date) >= new Date())
-    console.log(todayTasks)
+    const todayTasks = task.filter(t => new Date(t.date).toLocaleDateString() === new Date().toLocaleDateString())
     if (todayTasks.length > 0) {
       return `${todayTasks.length} задачи`
     }
