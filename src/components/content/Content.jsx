@@ -40,6 +40,7 @@ import { sortCardByTasksLength, sortCardsByDate } from './functions/sortCards'
 import { checkWhoManageAccess } from './functions/checkWhoManageAccess'
 import getLengthData from './functions/getLengthData'
 import FilterMenu from 'ui/deals/FilterMenu'
+import { getCompany } from 'redux/asyncRedux/ClientsAsync'
 
 function Content() {
   const { removeStage, setIsLoading } = useContext(ContentStatesStore)
@@ -262,7 +263,11 @@ function Content() {
     const result = targetSpace > 1 ? targetSpace : takenSpace * 1024
     return result
   }
-
+  useEffect(() => {
+    if (user?.id) {
+      getCompany(dispatch, user.id)
+    }
+  }, [user])
   // useEffect(() => {
   //     document.addEventListener('scroll', loadDealsWhileScroling)
   //     return () => {

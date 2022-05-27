@@ -437,8 +437,10 @@ function Clients() {
   }
 
   useEffect(() => {
-    getCompany(dispatch)
-  }, [])
+    if (user?.id) {
+      getCompany(dispatch, user.id)
+    }
+  }, [user])
 
   useCallback(() => {
     function setPage(page) {

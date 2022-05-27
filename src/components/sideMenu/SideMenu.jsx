@@ -13,17 +13,6 @@ import { getCompany } from 'redux/asyncRedux/ClientsAsync'
 function SideMenu () {
   const params = useHistory()
   
-  useEffect(() => {
-    getCompany(dispatch)
-  },[])
-  useEffect(() => {
-    console.log(params)
-    console.log(nowTime)
-    if (!activePopup &&(params.location.pathname != '/tarif') && (takenSpace + 100 >= space * 1024 && takenSpace && space || nowTime >= 0)){
-      const loc = `${document.location.href.slice(0, document.location.href.indexOf(params.location.pathname))}/tarif`
-      document.location.replace(loc)
-    }
-  },[document.location.href])
   const dispatch = useDispatch()
   const [activePopup,setPopup] = useState('non_popup')
   const { user } = useSelector(state => state.user)
@@ -36,7 +25,13 @@ function SideMenu () {
     nowTime = (new Date(paymentDate).getTime() - new Date().getTime() ) / (60 * 60 * 24 * 1000)
     console.log(nowTime)
   },[paymentDate])
-  
+  useEffect(() => {
+
+    if (!activePopup && (params.location.pathname != '/tarif') && (takenSpace + 100 >= space * 1024 && takenSpace && space || nowTime >= 0)) {
+      const loc = `${document.location.href.slice(0, document.location.href.indexOf(params.location.pathname))}/tarif`
+      document.location.replace(loc)
+    }
+  }, [document.location.href])
   const menu = useRef()
   const history = useHistory()
 

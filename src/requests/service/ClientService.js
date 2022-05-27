@@ -15,12 +15,12 @@ export default class ClientService {
 
     }  
   }
-  static async getCompany(){
+  static async getCompany(userId){
     try {
       
-      return api.get(`/company_data/`,{refresh: localStorage.getItem('token')})
+      return api.get(`/company_data/${userId}`)
     } catch (e) {
-
+      console.log(e)
     }  
   }
    static async getAll(userId){

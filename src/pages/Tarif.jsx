@@ -57,8 +57,10 @@ function Tarif () {
   const [isMaxOfSliderRange, setIsMaxOfSliderRange] = useState(false)
   
   useEffect(() => {
-    getCompany(dispatch)
-  }, [])
+    if(user?.id){
+      getCompany(dispatch,user.id)
+    }
+  }, [user])
   const [isAutoPayState, setIsAutoPayState] = useState(false)
   const [dateDifferent, setDateDifferent] = useState(0)
 

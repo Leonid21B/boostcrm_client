@@ -11,8 +11,8 @@ export const createClient = async (dispatch, { name, org, iin, tel, email, userI
   dispatch(_getCompanyTakenSpace(resp.takenSpace))
 }
 
-export const getCompany = async(dispatch) => {
-  const resp = await ClientService.getCompany().then(data => data.data)
+export const getCompany = async(dispatch,userId) => {
+  const resp = await ClientService.getCompany(userId).then(data => data.data)
   dispatch(_getCompanySpace(resp.space))
   dispatch(_getCompanyTakenSpace(resp.takenSpace))
   dispatch(_getCompanyPaymentDate(resp.paymentDate))

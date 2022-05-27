@@ -40,10 +40,6 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
     }
     return 'orange-day'
   }
-  const dispatch = useDispatch()
-  useEffect(() => {
-    getCompany(dispatch)
-  }, [])
   const click = (e) => {
     e.preventDefault()
   }
