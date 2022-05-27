@@ -1,6 +1,7 @@
 import { ADDRESS_CART, ADD_NEWCART, CART_ID, COMPANY_CART, DAY_CART, DELETE_CART, EMAIL_CART, GET_ALLCARTS, GET_CURRENTCART, GET_LENGTH_CART, GET_NOTSUCCESSCART, GET_SUCCESSCART, NAME_CART, NOT_SUCCESS_CART, PERSON_CART, PRICE_CART, SUCCESS_CART, TEL_CART } from 'redux/actionsTypes'
 
 const DEL_FILE = "DEL_FILE"
+const SET_HISTORY = "SET_HISTORY"
 
 const defaultState = {
   carts: [],
@@ -28,6 +29,8 @@ export const cartReduser = (state = defaultState, { type, payload }) => {
 
     case GET_LENGTH_CART:
       return { ...state, cartLength: [...payload] }
+    case SET_HISTORY:
+      return{...state, currentCart : {...state.currentCart, history : [...payload]}}
     case DEL_FILE:
       let newHistory = payload.data.history ? Array.from(payload.data.history):[]
       let newCurrentCart = {...state.currentCart, history: newHistory}
@@ -73,6 +76,6 @@ export const _deleteFile = (payload) => ({ type: DEL_FILE, payload })
 
 export const _createNotSuccessCart = (payload) => ({ type: NOT_SUCCESS_CART, payload })
 export const _getNotSuccessCart = (payload) => ({ type: GET_NOTSUCCESSCART, payload })
-
+export const _setHistory = (payload) => ({type:SET_HISTORY,payload})
 export const _getALLCarts = (payload) => ({ type: GET_ALLCARTS, payload })
 export const _getOverdueCards = (payload) => ({ type: 'GET_OVERDUE_CARDS', payload })

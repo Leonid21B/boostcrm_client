@@ -1,5 +1,6 @@
-import { _getCurrentCart } from 'redux/redusers/CartReduser'
+import { _getCurrentCart, _setHistory } from 'redux/redusers/CartReduser'
 import { _createField, _getFields } from 'redux/redusers/NewFieldReduser'
+import CartService from 'requests/service/CartService'
 import NewFieldService from 'requests/service/NewFieldService'
 
 export const createNewField = async (dispatch, title, value, id, userId) => {
@@ -7,6 +8,11 @@ export const createNewField = async (dispatch, title, value, id, userId) => {
   dispatch(_getCurrentCart(card))
 }
 
+export const getHistory = async (dispatch,cartId) => {
+  const cardHistory = await CartService.getCardHistory(cartId).then(resp => resp.data)
+  console.log(cardHistory)
+  dispatch(_setHistory(cardHistory))
+}
 export const getFields = async (dispatch, cardId) => {
   await NewFieldService.get(cardId).then(data => dispatch(_getFields(data.data)))
 }

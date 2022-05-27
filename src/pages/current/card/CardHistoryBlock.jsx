@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteFileAsync } from 'redux/asyncRedux/CartTasks'
+import { getHistory } from 'redux/asyncRedux/NewFieldAsync'
 import { switchHeler } from '../functions/swittchHelpers'
 
 function CardHistoryBlock ({ logRef ,currentCart}) {
@@ -26,6 +27,9 @@ function CardHistoryBlock ({ logRef ,currentCart}) {
     console.log(currentCart._id)
     
   }
+  useEffect(() => {
+    getHistory(dispatch,currentCart._id)
+  }, [])
   function setDownLoadLink (nameLink) {
     const filePath = `${process.env.REACT_APP_STATIC_SERVER_PATH_FILE}/${nameLink}`
     return filePath
@@ -39,7 +43,7 @@ function CardHistoryBlock ({ logRef ,currentCart}) {
 
         <span className='currentcart__content-data'>
           {/* { formatFyllDate(cardsInputsStates['day']) } */}
-          {formatFyllDate(currentCart.day)}
+          {formatFyllDate(currentCart?.day)}
         </span>
 
         <div className='currentcart__content-wrapper row'>
