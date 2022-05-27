@@ -46,17 +46,19 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
   useEffect(() => {
     setTasks([...card?.tasks])
   },[card?.tasks])
+
   function showCardCornerUnit (task) {
     console.log(task)
     const tasks = task.filter(t => t.status === 'active')
     console.log(tasks)
-    if (tasks.filter(t => setDateSeconds(t.date) < setDateSeconds(new Date())).length > 0 && !isTasksToday) {
+    if (tasks?.filter(t => new Date(t.date) < new Date()).length > 0 && !isTasksToday) {
+      console.log(tasks)
       return `${tasks.filter(t => setDateSeconds(t.date) < setDateSeconds(new Date())).length} задачи`
     }
 
     const todayTasks = task.filter(t => new Date(t.date).toLocaleDateString() === new Date().toLocaleDateString() &&
-      new Date(t.date).setSeconds(0, 0) >= new Date().setSeconds(0, 0))
-
+      new Date(t.date) >= new Date())
+    console.log(todayTasks)
     if (todayTasks.length > 0) {
       return `${todayTasks.length} задачи`
     }
