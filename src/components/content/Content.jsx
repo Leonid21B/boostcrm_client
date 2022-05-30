@@ -42,6 +42,7 @@ import getLengthData from './functions/getLengthData'
 import FilterMenu from 'ui/deals/FilterMenu'
 import { getCompany } from 'redux/asyncRedux/ClientsAsync'
 import { Navigate } from 'react-router'
+import sortCards from 'functions/sortCards'
 
 function Content() {
   const { removeStage, setIsLoading } = useContext(ContentStatesStore)
@@ -60,7 +61,7 @@ function Content() {
   const { comandId } = useSelector(state => state.comand)
   const { space, takenSpace, paymentDate } = useSelector(state => state.companySpace)
   
-  const [arrForCards, setArrForCards] = useState(carts)
+  const [arrForCards, setArrForCards] = useState([])
 
   const [checkBoxSortMenuStates, setCheckBoxSortMenuStates] = useState({
     cardsLength: 0,
@@ -86,7 +87,7 @@ function Content() {
   const [stageId, setStageId] = useState('')
   const [seacrh, setSeacrh] = useState('')
 
-  const [userAndComandCards, setUserAndComandCards] = useState(carts)
+  const [userAndComandCards, setUserAndComandCards] = useState([])
   const [stageColumnID, setStageColumnID] = useState('')
   // const [active, setactive] = useState(false)
   const columns = document.querySelectorAll('.content__blocks-column')
@@ -102,7 +103,10 @@ function Content() {
       console.log(max)
     }
   },[columns])
-
+  useEffect(() => {
+    console.log(sortCards([...carts]))
+    setArrForCards(sortCards([...carts]))
+  },[carts])
   const menuRef = useRef()
   const cardRef = useRef()
   const inputRef = useRef()
@@ -161,7 +165,7 @@ function Content() {
         'tasks', 'overdueCards'
       ],
     (data) => {
-      setArrForCards(data.cards)
+      //setArrForCards(data.cards)
       setUserAndComandCards(data.cards)
 
       setCheckBoxSortMenuStates({
@@ -175,7 +179,7 @@ function Content() {
   )
 
   useEffect(() => {
-    setArrForCards(carts)
+    //setArrForCards(carts)
     setUserAndComandCards(carts)
 
     setCheckBoxSortMenuStates({
@@ -266,7 +270,7 @@ function Content() {
   }
 
   function checkTakenSpace(targetSpace) {
-    const result = targetSpace > 1 ? targetSpace : takenSpace * 1024
+    const result = targetSpace > 1 ? targetSpace : Math.floor(takenSpace * 1024)
     return result
   }
   useEffect(() => {
@@ -507,8 +511,6 @@ function Content() {
 
                           {
                             arrForCards
-                              .sort(sortCardsByDate)
-                              .sort(sortCardByTasksLength)
                               .filter(item =>
                                 item.title.toLowerCase().includes(seacrh.toLowerCase())
                               )

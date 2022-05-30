@@ -154,7 +154,7 @@ function NewDealCart ({ stageID, currentStage, setStageId }) {
               name='company'
               value={company}
               onChange={e => companyHandler(e)}
-              placeholder='Название компании'
+              placeholder='Название компании*'
               autoComplete='off'
               maxLength={20}
             />

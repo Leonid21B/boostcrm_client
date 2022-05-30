@@ -19,7 +19,7 @@ function ImportColumn ({ active, func, exportFunc, clients,size, rows }) {
               <span>{clients.length} клиентов.</span>
               <span>{rows} строк.</span>
               <span>Формат xls.</span>
-              <span>Размер {size}МБ.</span>
+              <span>Размер {Math.round(size * 10) / 10} МБ.</span>
             </div>
             <div className={icm.importColumnModalBtns}>
               <GrayBtn func={func}>Отменить</GrayBtn>

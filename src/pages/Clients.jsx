@@ -387,7 +387,7 @@ function Clients() {
     keys.forEach(item => {
       data[item] = client[item]
     })
-    setValuesOfInputs(data)
+    setValuesOfInputs({...data})
     localStorage.setItem('columns', JSON.stringify(data))
     setReWriteedRowID(id)
   }
@@ -463,7 +463,7 @@ function Clients() {
                 <div className={tl.firstseacrch}>
                   <span>занято {takenSpace >= 1
                     ? takenSpace  
-                    : takenSpace *1024} {takenSpace >= 1 ? 'GB' : 'MB'} / {space}GB до {formatDateAndMonth(paymentDate)}
+                    : Math.floor(takenSpace * 1024)} {takenSpace >= 1 ? 'GB' : 'MB'} / {space}GB до {formatDateAndMonth(paymentDate)}
                   </span>
                   <input
                     value={seacrch}
