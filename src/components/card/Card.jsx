@@ -1,3 +1,4 @@
+import taskText from 'components/content/functions/taskText'
 import { formatDate, setDateSeconds } from 'functions/FormatDate'
 import { useravatar2 } from 'img'
 import React, { useEffect, useState } from 'react'
@@ -69,7 +70,7 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
     console.log(task)
     const tasks = task.filter(t => t.status === 'active')
     if (tasks.length > 0){
-      return `${tasks.length} задачи`
+      return `${tasks.length} ${taskText(tasks.length)}`
     }
     return 'без задач'
   }
