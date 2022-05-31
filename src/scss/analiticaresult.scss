@@ -145,13 +145,14 @@
                     width: 100%;
                     max-width: 127px;
                     margin-right: 0;
-                    &>span{
+                    justify-content: end;
+                    //&>span{
                         // white-space: nowrap;
                         // overflow: hidden;
                         // display: block;
                         // text-overflow: ellipsis;
                         // max-width: 70px;
-                    }
+                    //}
                 }
             }
 

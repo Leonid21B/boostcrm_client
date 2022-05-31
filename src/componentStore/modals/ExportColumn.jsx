@@ -18,7 +18,7 @@ function ExportColumn ({ active, func, setActiveErrorAlert, setErrorText, import
   async function importClients (e) {
     const file = e.target.files[0]
     const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-
+    console.log(file)
     if (file.size >= 104857600 && file.type != fileType) {
       setActiveErrorAlert(true)
       setErrorText('Слишком большой файл и неверный формат файла')

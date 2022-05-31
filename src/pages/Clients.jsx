@@ -411,13 +411,19 @@ function Clients() {
 
   async function importFile(file) {
     const { clients, result, space, takenSpace } = await ClientService.uploadClientFromFile(file, user.id).then(data => data.data)
-    if (result) {
+    console.log(result)
+    if (result != 3 && result) {
       setActiveErrorAlert(false)
       setAlertErrorText('')
       dispatch(_setClients(clients))
       dispatch(_getCompanySpace(space))
       dispatch(_getCompanyTakenSpace(takenSpace))
       setNumber(1)
+      return
+    }
+    if(result === 3){
+      setActiveErrorAlert(true)
+      setAlertErrorText('В файле больше 10000 строк!')
       return
     }
     setActiveErrorAlert(true)
