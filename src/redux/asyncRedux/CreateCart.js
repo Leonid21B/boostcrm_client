@@ -10,7 +10,6 @@ export const createAndSaveCart = async (dispatch,
           .then(data => data.data)
 
   dispatch(_addCart(resp.resultCard))
-
   dispatch(_getCompanySpace(resp.space))
   dispatch(_getCompanyTakenSpace(resp.takenSpace))
 }

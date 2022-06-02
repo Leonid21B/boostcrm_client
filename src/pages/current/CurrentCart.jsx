@@ -47,10 +47,15 @@ function CurrentCart({ isClientCreateCard = true }) {
   const cartDispatch = useDispatch()
   const taskdispatch = useDispatch()
   const dispatch = useDispatch()
-
-  //const params = window.location.href
-  //let curId = params.split('/card/')[1]
+ 
   
+  const goBack = (e) => {
+    window.location.href= window.location.origin + '/'
+  }
+  useEffect(() => {
+    window.addEventListener("popstate", goBack);
+    return () => window.removeEventListener("popstate", goBack);
+  },[])
   const {
     currentCart,
     carts
