@@ -477,7 +477,7 @@ function CurrentCart({ isClientCreateCard = true }) {
                         <input
                           type='text'
                           name='price'
-                          value={cardsInputsStates.price}
+                          value={cardsInputsStates.price ? cardsInputsStates.price : ''}
                           onBlur={e => onBlurInputHandler(e, cardsInputsStates.price, 'PRICE')}
                           onClick={e => setActiveInputHandler(e)}
                           data-id={1}

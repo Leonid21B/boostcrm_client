@@ -1,3 +1,4 @@
+import sortCards from 'functions/sortCards'
 import { activeItem, arrowdwn, emptyAvatar, smile, useravatar2 } from 'img'
 import { s1 } from 'img/emojiesPack'
 import React, { useEffect, useRef, useState } from 'react'
@@ -89,7 +90,7 @@ function SortedList (data) {
 
         const { cards, tasks, noTasks, overdueCards } = data
 
-        setArrForCards(cards)
+        setArrForCards(sortCards(cards))
         setUserAndComandCards(cards)
 
         const actions = wichType
@@ -143,7 +144,7 @@ function SortedList (data) {
       dispatch(_getComand(comands))
       dispatch(_getALLTask(tasks))
 
-      setArrForCards(cards)
+      setArrForCards(sortCards(cards))
       setUserAndComandCards(cards)
 
       setCheckBoxSortMenuStates({
