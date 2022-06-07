@@ -22,12 +22,11 @@ function SideMenu () {
   const { space, takenSpace, paymentDate } = useSelector(state => state.companySpace)
   let nowTime = (new Date().getTime() - new Date(paymentDate).getTime()) / (60 * 60 * 24 * 1000)
   useEffect(() => {
-    nowTime = (new Date(paymentDate).getTime() - new Date().getTime() ) / (60 * 60 * 24 * 1000)
+    nowTime = (new Date().getTime() - new Date(paymentDate).getTime()   ) / (60 * 60 * 24 * 1000)
     console.log(nowTime)
   },[paymentDate])
   useEffect(() => {
-
-    if (!activePopup && (params.location.pathname != '/tarif') && (takenSpace + 100 >= space * 1024 && takenSpace && space || nowTime >= 0)) {
+    if (activePopup === 'non_popup' && (params.location.pathname != '/tarif') && (takenSpace >= space && takenSpace && space || nowTime >= 0)) {
       const loc = `${document.location.href.slice(0, document.location.href.indexOf(params.location.pathname))}/tarif`
       document.location.replace(loc)
     }

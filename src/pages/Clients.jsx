@@ -23,6 +23,7 @@ import { _getCompanySpace, _getCompanyTakenSpace } from 'redux/redusers/CompanyR
 import { formatDateAndMonth } from 'functions/FormatDate'
 import Loading from 'ui/loading/Loading'
 import { Navigate, useNavigate } from 'react-router'
+import LoadAlert from 'ui/alerts/LoadAlert'
 
 function Clients() {
   // #region INITIALS STATES OF COMPONENT
@@ -104,6 +105,8 @@ function Clients() {
   const [inputError, setInputError] = useState(false)
   const [activeErrorAlert, setActiveErrorAlert] = useState(false)
   const [alertErrorText, setAlertErrorText] = useState('')
+  const [activeLoadAlert, setActiveLoadAlert] = useState(false)
+  
   const [fieldsState,setFields] = useState([])
   const body = document.getElementsByTagName('body')[0]
   useEffect(() => {
@@ -410,9 +413,11 @@ function Clients() {
   }
 
   async function importFile(file) {
+    setActiveLoadAlert(true)
     const { clients, result, space, takenSpace } = await ClientService.uploadClientFromFile(file, user.id).then(data => data.data)
     console.log(result)
     if (result != 3 && result) {
+      setActiveLoadAlert(false)
       setActiveErrorAlert(false)
       setAlertErrorText('')
       dispatch(_setClients(clients))
@@ -421,6 +426,7 @@ function Clients() {
       setNumber(1)
       return
     }
+    setActiveLoadAlert(false)
     if(result === 3){
       setActiveErrorAlert(true)
       setAlertErrorText('В файле больше 10000 строк!')
@@ -487,6 +493,11 @@ function Clients() {
               </TopLine>
 
               <div className='clients__content'>
+                <LoadAlert
+                  errorText={alertErrorText}
+                  active={activeLoadAlert}
+                  setActive={setActiveLoadAlert}
+                   />
                 <ErrorAlert
                   errorText={alertErrorText}
                   active={activeErrorAlert}

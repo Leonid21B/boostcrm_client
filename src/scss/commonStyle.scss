@@ -393,7 +393,43 @@
         }
     }
 }
+.error_alert_green {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #4dff7f;
+    padding: 14px 16px;
+    border-radius: 8px;
+    width: 600px;
+    position: absolute;
+    right: 32px;
+    top: -55px;
+    color: #FFFFFF;
+    transition: all .3s ease-in-out;
 
+    &.active {
+        top: 55px;
+    }
+
+    &>span {
+        font-weight: 400;
+        font-size: 15px;
+        line-height: 20px;
+    }
+
+    &>div {
+        display: flex;
+
+        &>button {
+            color: #FFFFFF;
+            margin-right: 20px;
+        }
+
+        &>img {
+            cursor: pointer;
+        }
+    }
+}
 
 .alert__error {
     padding: 14px 16px;

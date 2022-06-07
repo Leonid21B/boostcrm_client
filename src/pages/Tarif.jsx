@@ -174,11 +174,11 @@ function Tarif () {
       <div
         className={`tarif__alert ${dateDifferent <= 3
                     ? 'active'
-                    : (space * 1024) - takenSpace <= 100
+                    : space  - takenSpace <= 0
                         ? 'active'
                         : null}`}
       >
-        <span>До конца оплаченного периода {dateDifferent + ' ' + `${dateDifferent == 1 ? 'сутки' : 'суток'}`}</span>
+        {dateDifferent <= 3 ? <span>До конца оплаченного периода {dateDifferent + ' ' + `${dateDifferent == 1 ? 'сутки' : 'суток'}`}</span> : <span>У вас закончилась память</span>}
         {/* <span>Пополнить счет</span> */}
         <button onClick={openPayModal(priceGB, GB)}>Пополнить счет</button>
       </div>
