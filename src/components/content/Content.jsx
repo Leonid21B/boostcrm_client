@@ -165,6 +165,7 @@ function Content() {
         'tasks', 'overdueCards'
       ],
     (data) => {
+
       //setArrForCards(data.cards)
       setUserAndComandCards(data.cards)
 
@@ -187,7 +188,7 @@ function Content() {
       cardsLength: getLengthData(carts, 'length'),
       cardsTasksLength: getLengthData(tasks, 'date'),
       cardsWithoutTasks: getLengthData(carts.filter(c => !c.tasks.length), 'length'),
-      overdueCardsTasks: tasks.filter(t => new Date(t.date).setSeconds(0, 0) < new Date().setSeconds(0, 0)).length
+      overdueCardsTasks: tasks.filter(t => ((t.date === undefined ? true: new Date(t.date) < new Date()) && t.status != 'closed')).length
     })
   }, [carts])
 

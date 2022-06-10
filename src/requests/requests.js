@@ -20,7 +20,7 @@ export default class Requests {
     const resp = await StageService.deleteStage(id)
     window.localStorage.removeItem('stage-id')
     window.localStorage.removeItem('stage')
-    console.log(' del resp', resp)
+    console.log(' del resp', resp,111)
   }
 
   // carts

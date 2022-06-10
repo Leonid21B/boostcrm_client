@@ -424,6 +424,7 @@ function Clients() {
       dispatch(_getCompanySpace(space))
       dispatch(_getCompanyTakenSpace(takenSpace))
       setNumber(1)
+      window.location.reload()
       return
     }
     setActiveLoadAlert(false)

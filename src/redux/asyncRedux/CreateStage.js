@@ -24,4 +24,5 @@ export const updateStage = async (dispatch, id, title, img, userId) => {
 
 export const removeCurrentStage = async (dispatch, id, userId, transferto) => {
   const resp = await StageService.deleteStage(id, userId, transferto)
+  dispatch(_getCompanyTakenSpace(resp.data.takenSpace))
 }

@@ -39,7 +39,7 @@ function RemoveStageModal ({ data }) {
   const removeStageModal = async () => {
     const targetSatge = stages.find(item => item._id == data.id).cards?.length
     if (targetSatge == 0) {
-      await removeCurrentStage(dispatch, data.id, user.id, '12345678ac910112bafad345')
+      await removeCurrentStage(dispatch, data.id, user._id, '12345678ac910112bafad345')
       dispatch(_removeStage(stages.filter(stg => stg._id != data.id)))
     }
 

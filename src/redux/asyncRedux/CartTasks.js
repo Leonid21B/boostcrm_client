@@ -1,6 +1,7 @@
 import NewtaskService from 'requests/service/NewTaskService'
 import { _getALLTask, _postTask, _getCurrentCartTask } from 'redux/redusers/NewTaskReduser'
 import { _deleteFile, _getCurrentCart } from 'redux/redusers/CartReduser'
+import { _getCompanyTakenSpace } from 'redux/redusers/CompanyReduser'
 
 export const getTasks = async (dispatch, userId) => {
   const resp = await NewtaskService.getTasks(userId)
@@ -33,5 +34,8 @@ export const updateCardTask = async (dispatch, id, title, description, date, tim
     .then(data => dispatch(_getCurrentCart(data.data)))
 }
 export const closeCardTask = async (dispatch, id, userId, cardId) => {
-  await NewtaskService.closeTask(id, userId, cardId).then(data => dispatch(_getCurrentCart(data.data)))
+  const resp = await NewtaskService.closeTask(id, userId, cardId).then(data => data)
+
+  dispatch(_getCurrentCart(resp.data.updatedCard))
+  dispatch(_getCompanyTakenSpace(resp.data.takenSpace))
 }
