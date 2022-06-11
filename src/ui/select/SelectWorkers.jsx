@@ -39,7 +39,7 @@ function SelectWorkers (
   }
 
   function removeComandFromList (id) {
-    setSelectedWorker(prev => selectedWorker.filter(wrk => wrk._id !== id))
+    setSelectedWorker(prev => selectedWorker.filter(wrk => wrk?._id !== id))
     if (workersList.length) {
       multiSelectRef.current.querySelector(`[data-id="${id}"]`)?.classList.remove('selected')
       if (isForUpdate) {
@@ -75,15 +75,15 @@ function SelectWorkers (
                               <li
                                 key={worker._id}
                                 className={
-                                        selectedWorker?.filter(item => item._id === worker._id).length >= 1
+                                        selectedWorker?.filter(item => item?._id === worker?._id).length >= 1
                                           ? 'selectedItem selected'
                                           : 'selectedItem'
                                     }
                                 data-type='selectedItem'
-                                data-id={worker._id}
+                                data-id={worker?._id}
                               >
                                 <img className='customSelectedItemImg' src={activeItem} alt='' />
-                                <span className='customSelectedItemTitle'>{worker.fio}</span>
+                                <span className='customSelectedItemTitle'>{worker?.fio}</span>
                               </li>
                             )
                         }
