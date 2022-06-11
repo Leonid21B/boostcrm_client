@@ -181,6 +181,7 @@ function Content() {
     //setArrForCards(carts)
     setUserAndComandCards(carts)
     console.log(tasks)
+    console.log(tasks.filter(t => (new Date(t.date).getTime() < new Date().getTime()) && t.status != 'closed').length)
     setCheckBoxSortMenuStates({
       ...checkBoxSortMenuStates,
       cardsLength: getLengthData(carts, 'length'),
