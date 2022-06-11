@@ -67,7 +67,7 @@ function Card ({ card, stage, setIsLoading, setCurrentCard, setCurrentStage, car
   },[card?.tasks])
 
   function showCardCornerUnit (task) {
-    console.log(task)
+
     const tasks = task.filter(t => t.status === 'active')
     if (tasks.length > 0){
       return `${tasks.length} ${taskText(tasks.length)}`

@@ -100,11 +100,9 @@ function Content() {
     }
     if(max != maxCards){
       setMax(max)
-      console.log(max)
     }
   },[columns])
   useEffect(() => {
-    console.log(sortCards([...carts]))
     setArrForCards(sortCards([...carts]))
   },[carts])
   const menuRef = useRef()
@@ -182,7 +180,7 @@ function Content() {
   useEffect(() => {
     //setArrForCards(carts)
     setUserAndComandCards(carts)
-
+    console.log(tasks)
     setCheckBoxSortMenuStates({
       ...checkBoxSortMenuStates,
       cardsLength: getLengthData(carts, 'length'),
@@ -190,7 +188,7 @@ function Content() {
       cardsWithoutTasks: getLengthData(carts.filter(c => !c.tasks.length), 'length'),
       overdueCardsTasks: tasks.filter(t => ((t.date === undefined ? true: new Date(t.date) < new Date()) && t.status != 'closed')).length
     })
-  }, [carts])
+  }, [carts,tasks])
 
   const [activeCreateComandModal, setActiveCreateComandModal] = useActive(false)
   const [isRedactComand, setIsRedactComand] = useActive(false)
@@ -266,7 +264,6 @@ function Content() {
       const x = e.pageX - contentBlocksRef.current.offsetLeft
       const walk = x - startX
       contentBlocksRef.current.scrollLeft = scrollLeft - walk
-      // console.log('walk', walk);
     }
   }
 
