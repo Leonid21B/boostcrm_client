@@ -186,7 +186,7 @@ function Content() {
       cardsLength: getLengthData(carts, 'length'),
       cardsTasksLength: getLengthData(tasks, 'date'),
       cardsWithoutTasks: getLengthData(carts.filter(c => !c.tasks.length), 'length'),
-      overdueCardsTasks: tasks.filter(t => ((t.date === undefined ? true: new Date(t.date) < new Date()) && t.status != 'closed')).length
+      overdueCardsTasks: tasks.filter(t => ((t.date === undefined ? true : new Date(t.date).getTime() < new Date().getTime()) && t.status != 'closed')).length
     })
   }, [carts,tasks])
 
