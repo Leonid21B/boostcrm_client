@@ -172,7 +172,7 @@ function Content() {
         cardsLength: getLengthData(data.cards, 'length'),
         cardsTasksLength: getLengthData(data.tasks, 'date'),
         cardsWithoutTasks: data.cards.filter(c => !c.tasks.length).length,
-        overdueCardsTasks: getLengthData(data.overdueCards, 'length')
+        overdueCardsTasks: !tasks ? 0 : tasks.filter(t => (new Date(t.date).getTime() < new Date().getTime()) && t.status != 'closed').length
       })
     }
   )
