@@ -4,6 +4,8 @@ function switchHeler (helper) {
       return 'обновил(а) поле'
     case 'write':
       return 'написал(а)'
+    case 'deleteTask':
+      return 'удалил(а) сделку'
     case 'close':
       return 'закрыл(а) задачу'
     case 'updateT':

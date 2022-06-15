@@ -55,7 +55,7 @@ function CardHistoryBlock ({ logRef ,currentCart}) {
                               <strong>{history.name}</strong>
                               <span className='currentcart__content-text'>
                                 {
-                                           history.helper == 'download' && history.deleted == true ? switchHeler('deletedFile') : switchHeler(history.helper)
+                                  history.helper == 'download' && history.deleted == true ? switchHeler('deletedFile') : history.helper == 'task' && history.deleted == true ? switchHeler('deleteTask') : switchHeler(history.helper)
                                         }
                               </span>
 
@@ -64,7 +64,7 @@ function CardHistoryBlock ({ logRef ,currentCart}) {
                               >
                                 {
                                             (history.helper == 'download' && history.deleted == false)
-                      ? <div className=""> <a download href={setDownLoadLink(history.title)}>{history.title}</a> <div onClick={() => deleteFile(history.title)} alt="" className="delete_file_img" /> </div> : (history.helper == 'download' && history.deleted == true) ? <div className=""> <p className='delete_file_history'>{history.title}</p></div>
+                      ? <div className=""> <a download href={setDownLoadLink(history.title)}>{history.title}</a> <div onClick={() => deleteFile(history.title)} alt="" className="delete_file_img" /> </div> : ((history.helper == 'task' || history.helper == 'download')&& history.deleted == true  ) ? <div className=""> <p className='delete_file_history'>{history.title}</p></div>
                                               : history.title
                                         }
                               </strong>

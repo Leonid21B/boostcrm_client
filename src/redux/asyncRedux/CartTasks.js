@@ -22,7 +22,9 @@ export const createTask = async (dispatch, { title, description, date, time, id,
 }
 
 export const deletTask = async (dispatch, id, cardId) => {
-  await NewtaskService.deleteTask(id, cardId).then(data => data.data)
+  const resp = await NewtaskService.deleteTask(id, cardId).then(data => data.data)
+  dispatch(_getCurrentCart(resp))
+  console.log(resp)
 }
 
 export const getCurrentCartTasks = async (dispatch, id) => {
