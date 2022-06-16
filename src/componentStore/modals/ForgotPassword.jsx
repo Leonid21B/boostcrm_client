@@ -149,6 +149,7 @@ function ForgotPassword({ active, setActive }) {
             <div className={`${fpm.input} ${inputsError.newPassError ? fpm.newPassError : ''}`}>
               <label htmlFor=''>Новый пароль</label>
               <input
+                maxLength={10}
                 value={newPassword}
                 onChange={e => newPassHandler(e)}
                 type={showPassForNewPass ? 'text' : 'password'}
@@ -162,6 +163,7 @@ function ForgotPassword({ active, setActive }) {
             <div className={`${fpm.input} ${inputsError.repNewPass ? fpm.repeatNewPassError : ''}`}>
               <label htmlFor=''>Повторить новый пароль</label>
               <input
+                maxLength={10}
                 value={repeatNewPassword}
                 onChange={e => mewPassRepeatHandler(e)}
                 type={showPassForRepeatNewPass ? 'text' : 'password'}
