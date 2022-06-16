@@ -14,7 +14,7 @@ function RemoveClients ({ activeModal, closeClientModal, rowId }) {
 
   const remove = () => {
     deleteClient(dispatch, rowId, user.id)
-    dispatch(_getClients(clients.filter(client => client._id != rowId)))
+    //dispatch(_getClients(clients.filter(client => client._id != rowId)))
     closeClientModal()
   }
   return (

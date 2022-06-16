@@ -34,7 +34,12 @@ export const getClients = async (dispatch, userId, limit, page) => {
 }
 
 export const deleteClient = async (dispatch, id, userId) => {
-  await ClientService.delete(id, userId)
+  const clients = await ClientService.delete(id, userId).then(data => data.data)
+  if(clients.status){
+    dispatch(_deleteClient(id))
+    dispatch(_getCompanyTakenSpace(clients.space))
+  }
+
 }
 
 export const getAllClients = async (dispatch,userId) => {

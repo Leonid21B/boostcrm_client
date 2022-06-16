@@ -32,7 +32,8 @@ export const clientReduser = (state = defaultState, { type, payload }) => {
       return { ...state, clients: [...state.clients, ...payload] }
 
     case DELETE_CLIENT:
-      return { ...state, clients: [...payload] }
+      const resCl = [...state.clients].filter(it => it._id != payload)
+      return { ...state, clients: [...resCl] }
     case CLEAR_CLIENTS:
       return { ...state, clients: [] }
 
