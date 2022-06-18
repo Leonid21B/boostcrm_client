@@ -21,7 +21,7 @@ function Tarif () {
  
   const { user } = useSelector(state => state.user)
   let currency = user?.currency
-  useEffect(() => {
+  {/*useEffect(() => {
     currency = user?.currency
     if(currency == 90){
       setSymb('€')
@@ -33,7 +33,7 @@ function Tarif () {
       setSymb('₽')
     }
     console.log(currency)
-  },[user])
+  },[user])*/}
   
 
   const { space, takenSpace, paymentDate } = useSelector(state => state.companySpace)
@@ -43,14 +43,14 @@ function Tarif () {
 
   const [currentTarifPlace, setCurrentTarifPlace] = useState(space)
 
-  const [currencySymb,setSymb] = useState('$')
+  const [currencySymb, setSymb] = useState('₽')
 
   const [startPosition, setStartPosition] = useState(currentTarifPlace)
 
   const [coefficient, setСoefficient] = useState('0')
 
   const [GB, setGB] = useState(currentTarifPlace)
-  const [priceGB, setPriceGB] = useState((currentTarifPlace * 8 + 2)  * 80 / currency)
+  const [priceGB, setPriceGB] = useState((currentTarifPlace * 8 + 2)  * 80 )
 
   const [range, setRange] = useState(3)
 
@@ -99,7 +99,7 @@ function Tarif () {
     setGB(sliserRef.current.querySelector('.slider').value)
     setPriceGB(
       sliserRef.current.querySelector('.slider').value != 0
-        ? (sliserRef.current.querySelector('.slider').value * 8 + 2) * 80 / currency
+        ? (sliserRef.current.querySelector('.slider').value * 8 + 2) * 80
         : 0
     )
     sliserRef.current.querySelector('.progress').style.width = val
@@ -130,7 +130,7 @@ function Tarif () {
     return async () => {
       if (!isMaxOfSliderRange) {
         const userId = user.id
-        const data = await axios.get(`${BASE_SERVER_URL}/generatePay/${userId}/${sum * cur}/${isAutoPayState}/${space}`)
+        const data = await axios.get(`${BASE_SERVER_URL}/generatePay/${userId}/${sum}/${isAutoPayState}/${space}`)
           .then(link => link.data)
         
         window.open(data,'_blank')
@@ -210,7 +210,7 @@ function Tarif () {
                 </li>
                 <li className='tarif__block-item'>
                   <span>Оплата</span>
-                  <span>{Math.round((currentTarifPlace * 8 + 2) * 80 / currency)} {currencySymb} </span>
+                  <span>{(currentTarifPlace * 8 + 2) * 80} {currencySymb} </span>
                 </li>
                 <li className='tarif__block-item'>
                   <span>Списание</span>
@@ -240,7 +240,7 @@ function Tarif () {
                     <div
                       className='current__tooltip'
                     >
-                      {`${currentTarifPlace} GB / ${Math.round((currentTarifPlace * 8 + 2) * 80 / currency)} ${currencySymb}`}
+                      {`${currentTarifPlace} GB / ${Math.round((currentTarifPlace * 8 + 2) * 80)} ${currencySymb}`}
                     </div>
                   </div>
                   <div style={{ width: startPosition * coefficient + '%' }} className='progress' />
