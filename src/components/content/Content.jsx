@@ -233,8 +233,12 @@ function Content() {
     }
     setCreateStageStateTitle(false)
     setCurrentActiveStateImg(false)
+    console.log(1111)
   }
-
+  const activateImage = () => {
+    setCurrentActiveStateImg(true)
+    console.log(2222)
+  }
   // Drag Horizontal scroll
 
   let isDown = false
@@ -283,7 +287,7 @@ function Content() {
   //         document.removeEventListener('scroll', loadDealsWhileScroling)
   //     }
   // }, []);
-
+  
   // let nextPage = 2
   // let unit = null
   // async function loadDealsWhileScroling(e) {
@@ -541,7 +545,7 @@ function Content() {
                       <div
                         className='content__blocks-stage-wrapper selectImgParent'
                         onMouseLeave={closeCreateStageImgDropDown}
-                        onClick={() => setCurrentActiveStateImg(true)}
+                        onClick={() => activateImage()}
                       >
                         <img
                           onClick={() => setActiveSetStageImg(!activeSetStageImg)}
@@ -555,7 +559,7 @@ function Content() {
                           setActiveStageImg={setActiveStageImg}
                         />
                         <input
-                          onClick={() => setCreateStageStateTitle(true)}
+                          onClick={() => {setCreateStageStateTitle(true);}}
                           onBlur={createStageInputOnBlur}
                           value={stageInputHanlder.value}
                           onChange={stageInputHanlder.onChange}
@@ -572,7 +576,10 @@ function Content() {
                             : { pointerEvents: 'none' }}
                         >
                           <img
-                            onClick={
+                            onClick={ (e) =>{
+                              setTimeout(() => {
+                                setCurrentActiveStateImg(false)
+                              }, 10) 
                               createNewStage(
                                 stageImg,
                                 dispatch,
@@ -582,11 +589,11 @@ function Content() {
                                 [
                                   setNewStageActive,
                                   setActiveSetStageImg,
-                                  setCurrentActiveStateImg,
                                   setCreateStageStateTitle
                                 ]
                               )
-                            }
+                              
+                            }}
                             src={bird}
                             alt=''
                           />

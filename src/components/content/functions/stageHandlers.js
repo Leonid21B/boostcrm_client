@@ -1,11 +1,10 @@
 import { emoje } from 'img'
 import { createStage } from 'redux/asyncRedux/CreateStage'
 
-function createNewStage (imgRef, dispatch, title, userId, setTitle, stagesAction) {
-  return async () => {
+async function createNewStage (imgRef, dispatch, title, userId, setTitle, stagesAction) {
     const img = imgRef.current.src.split('/').pop()
     createStage(dispatch, title, img, userId)
-    imgRef.current.setAttribute('src', emoje)
+    //imgRef.current.setAttribute('src', emoje)
 
     setTitle('')
 
@@ -14,7 +13,6 @@ function createNewStage (imgRef, dispatch, title, userId, setTitle, stagesAction
         action(false)
       }
     )
-  }
 }
 
 function clickOnStageTitle (stage, callBack) {
