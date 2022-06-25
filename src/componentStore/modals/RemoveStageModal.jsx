@@ -67,7 +67,7 @@ function RemoveStageModal ({ data }) {
             </button>
           </div>
           {
-                        carts.filter(card => card.stageId == data.id).length != 0
+                        carts.filter(card => card?.stageId == data.id).length != 0
                           ? <>
                             <p className='modalText w_350'>Перед тем как удалить этот этап, выберите куда переместить сделки</p>
                             <div className='removestage__madal-toggle'>
