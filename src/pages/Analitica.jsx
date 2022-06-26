@@ -278,7 +278,7 @@ function Analitica () {
       e: e.target,
       currentMonthIndex
     })
-    if (!e.classList.contains('active') && type != 'MONTH' && type != 'CHANGE_MONTH') {
+    if (!e?.classList?.contains('active') && type != 'MONTH' && type != 'CHANGE_MONTH') {
       dateRef.current.querySelectorAll('[data-type="date"]').forEach(d => { d.classList.remove('active') })
       e.classList.add('active')
 
@@ -303,7 +303,6 @@ function Analitica () {
         return
       }
    
-
       const { clients, cards, success, refusual } =
         await MainService.getAnaliticsUserInfoByDate({ type: type, userId: user.id, unitMonth: new Date().getMonth() })
                   .then(data => data.data)
@@ -312,14 +311,15 @@ function Analitica () {
         ...analiticsTopBlocksState,
         clientsLength: clients,
         cardsLength: cards,
-        successLength: success.length,
-        refusalLength: refusual.length
+        successLength: success?.length,
+        refusalLength: refusual?.length
       })
       dispatch(_getNotSuccessCart(refusual))
       dispatch(_getSuccessCart(success))
       return
     }
     if(type == 'MONTH'){
+      console.log(11111, 'dsdsgdfs')
       dateRef.current.querySelectorAll('[data-type="date"]').forEach(d => { d.classList.remove('active') })
       e.classList.add('active')
       console.log(monthIndex)
@@ -343,6 +343,22 @@ function Analitica () {
 
         return
       }
+      const { clients, cards, success, refusual, workers } =
+        await MainService.getAnaliticsUserInfoByDate(
+          { type: type, userId: user.id, unitMonth: monthIndex }
+        )
+          .then(data => data.data)
+
+      setAnaliticsTopBlocksState({
+        ...analiticsTopBlocksState,
+        clientsLength: clients,
+        cardsLength: cards,
+        successLength: success.length,
+        refusalLength: refusual.length
+      })
+      dispatch(_getInvitedWorker(workers))
+      dispatch(_getNotSuccessCart(refusual))
+      dispatch(_getSuccessCart(success))
       
     }
     if(type == 'CHANGE_MONTH'){
@@ -369,6 +385,25 @@ function Analitica () {
 
         return
       }
+      const { clients, cards, success, refusual, workers } =
+        await MainService.getAnaliticsUserInfoByDate(
+          { type: 'MONTH', userId: user.id, unitMonth: currentMonthIndex }
+        )
+          .then(data => data.data)
+
+      setAnaliticsTopBlocksState({
+        ...analiticsTopBlocksState,
+        clientsLength: clients,
+        cardsLength: cards,
+        successLength: success.length,
+        refusalLength: refusual.length
+      })
+      dispatch(_getInvitedWorker(workers))
+      dispatch(_getNotSuccessCart(refusual))
+      dispatch(_getSuccessCart(success))
+
+      return
+
 
     }
     e.classList.remove('active')

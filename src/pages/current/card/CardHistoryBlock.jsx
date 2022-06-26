@@ -28,7 +28,9 @@ function CardHistoryBlock ({ logRef ,currentCart}) {
     
   }
   useEffect(() => {
-    getHistory(dispatch,currentCart._id)
+    if(currentCart?._id){
+      getHistory(dispatch,currentCart._id)
+    }
   }, [])
   function setDownLoadLink (nameLink) {
     const filePath = `${process.env.REACT_APP_STATIC_SERVER_PATH_FILE}/${nameLink}`

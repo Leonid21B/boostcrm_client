@@ -59,6 +59,7 @@ export default class MainService {
 
   static async getAnaliticsUserInfoByDate ({ type, userId, unitMonth }) {
     try {
+      console.log(11111,type)
       return api.get(`/get-analitics-user-info-byDate/${type}/${userId}/${unitMonth}`)
     } catch (error) {
       console.log('getAnaliticsUserInfoByDate error', error)

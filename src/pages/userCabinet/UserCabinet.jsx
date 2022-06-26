@@ -525,7 +525,7 @@ function UserCabinet() {
                             <div className='usercabinet__left-name-input'>
                               <input
                                 type='text'
-                                placeholder={'Иванов Василий Васильевич'}
+                                placeholder={'Дуайт Шрут'}
                                 value={fio}
                                 onBlur={e => updateUserInfoHandlerOnBlur(e, fio, 'fio')}
                                 onKeyUp={e => updateUserInfoHandlerKeyUp(e, fio, 'fio')}
@@ -539,7 +539,7 @@ function UserCabinet() {
                         <div className='usercabinet__left-email-input email'>
                           <input
                             type='email'
-                            placeholder='vasilii@gmail.com'
+                            placeholder='schrute__top@dundermifflin.com'
                             value={email}
                             onBlur={e => updateUserInfoHandlerOnBlur(e, email, 'email')}
                             onKeyUp={e => updateUserInfoHandlerKeyUp(e, email, 'email')}
@@ -579,7 +579,7 @@ function UserCabinet() {
                           onKeyUp={e => updateUserInfoHandlerKeyUp(e, company, 'company')}
                           onChange={e => inputChangeHandler(e.target.value, setCompany, 'company')}
                           maxLength={40}
-                          placeholder='ООО Василий'
+                          placeholder='ООО Дандер Миффлин'
                         />
                       </div>
 

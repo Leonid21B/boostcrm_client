@@ -41,12 +41,21 @@ export const cartReduser = (state = defaultState, { type, payload }) => {
       return { ...state, successCarts: [...payload] }
 
     case GET_SUCCESSCART:
+      if(!payload){
+        return { ...state, successCarts: [] }
+      }
       return { ...state, successCarts: [...payload] }
 
     case NOT_SUCCESS_CART:
+      if(!payload){
+        return { ...state, notSuccessCarts: [] }
+      }
       return { ...state, notSuccessCarts: [...payload] }
 
     case GET_NOTSUCCESSCART:
+      if(!payload){
+        return { ...state, notSuccessCarts: [] }
+      }
       return { ...state, notSuccessCarts: [...payload] }
 
     case CART_ID:
