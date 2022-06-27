@@ -42,11 +42,111 @@
         }
 
         &.left {
-            padding: 46px 48px;
+            padding-top: 48px;
+            padding-bottom: 48px;
+            padding-left: 3%;
+            padding-right: 3%;
         }
 
         &.right {
-            padding: 46px 24px;
+            padding: 48px 24px 20px;
+            width: 307px;
+            &> .image_block{
+                display: flex;
+                justify-content: center;
+                 &> .right_love_image{
+                    width: 48px;
+                    height: 48px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+            &> .zag_block{
+                margin-top: 8px;
+                font-family: 'Nunito Sans';
+                font-style: normal;
+                font-weight: 900;
+                font-size: 28px;
+                line-height: 36px;
+                text-align: center;
+                font-feature-settings: 'pnum' on, 'lnum' on;
+                &> .zag_block__first{
+                    justify-content: center;
+                    display: flex;
+                    &> .boostcrm_blue{
+                        color: #73AAFC;
+                    }
+                }
+            }
+            &> .boostcrm_pay{
+                margin-top: 8px;
+                font-family: 'Nunito Sans';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 24px;
+                text-align: center;
+                font-feature-settings: 'pnum' on, 'lnum' on;
+                color: #333342;
+                margin-bottom: 32px;
+            }
+            &>.pluses_block{
+                &> .boostcrm_plus{
+                    margin-left: 5%;
+                    height: 48px;
+                    display: flex;
+                    align-items: center;
+                    margin-bottom: 24px;
+                    &> .boostcrm_image_plus{
+                        width: 16px;
+                        height: 20px;
+                        margin-right: 20px;
+                    }
+                    &> .boostcrm_text_plus{
+                        font-family: 'Nunito Sans';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 18px;
+                        line-height: 24px;
+                        display: flex;
+                        align-items: center;
+                        font-feature-settings: 'tnum' on, 'lnum' on;
+                        color: #333342;
+                    }
+                }
+            }
+            &> .boostcrm_month_free{
+                font-family: 'Nunito Sans';
+                font-style: normal;
+                margin-top: 8px;
+                font-weight: 900;
+                font-size: 20px;
+                line-height: 24px;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                font-feature-settings: 'pnum' on, 'lnum' on;
+                color: #66D48B;
+            }
+            &> .button_reccomendate{
+                display: flex;
+                margin-top: 32px;
+                color:#FFFFFF;
+                font-family: 'Nunito Sans';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 24px;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding: 9px 18px;
+                gap: 8px;
+                width: 201px;
+                height: 42px;
+                background: #73AAFC;
+                border-radius: 8px;
+            }
         }
 
         &-title {

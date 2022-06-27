@@ -4,8 +4,12 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import 'scss/tarif.scss'
 import BlueBtn from 'ui/btns/BlueBtn.jsx'
+import human from './img/human.svg'
+import lines from './img/lines.svg'
+import phone from './img/phone.svg'
+import graph from './img/graph.svg'
 import { logOut } from 'redux/asyncRedux/UserAuthAsync'
-
+import love_em from './img/love_em.svg'
 import { formatFyllDate } from 'functions/FormatDate'
 import bb from 'ui/scssModule/blueBtn.module.scss'
 import HelpModal from 'componentStore/modals/HelpModal'
@@ -205,7 +209,7 @@ function Tarif () {
                   <span>
                     {takenSpace > 1
                       ? takenSpace
-                      : takenSpace * 1024} {takenSpace > 1 ? 'GB' : 'MB'}   
+                      : Math.floor(takenSpace * 1024)} {takenSpace > 1 ? 'GB' : 'MB'}   
                   </span>
                 </li>
                 <li className='tarif__block-item'>
@@ -254,7 +258,6 @@ function Tarif () {
                   />
                 </div>
               </div>
-
               <div className='tarif__block-toggle'>
                 {
                                     range < (taskenplace / 1024)
@@ -285,6 +288,41 @@ function Tarif () {
                                     Оплатить
                                   </button>
                             }
+            </div>
+            <div className='tarif__block right'>
+              <div className='image_block'>
+                <img className='right_love_image' src={love_em} alt="" />
+              </div>
+              <div className="zag_block">
+                <div className="zag_block__first">
+                  <p className="boostcrm_blue">BOOST</p>
+                  <p className="boostcrm_black">CRM</p>
+                </div>
+                <div className="zag_block__second">
+                  <p className="boostcrm_blue">БЕСПЛАТНАЯ!</p>
+                </div>
+              </div>
+              <p className="boostcrm_pay">Вы платите только <br /> за хранение данных</p>
+              <div className="pluses_block">
+                <div className="boostcrm_plus">
+                  <img src={human} alt="" className="boostcrm_image_plus" />
+                  <p className="boostcrm_text_plus">Безлимитные<br/>пользователи</p>
+                </div>
+                <div className="boostcrm_plus">
+                  <img src={lines} alt="" className="boostcrm_image_plus" />
+                  <p className="boostcrm_text_plus">Безлимитные<br />воронки продаж</p>
+                </div>
+                <div className="boostcrm_plus">
+                  <img src={graph} alt="" className="boostcrm_image_plus" />
+                  <p className="boostcrm_text_plus">Полная аналитика</p>
+                </div>
+                <div className="boostcrm_plus">
+                  <img src={phone} alt="" className="boostcrm_image_plus" />
+                  <p className="boostcrm_text_plus">Поддержка 24/7</p>
+                </div>
+              </div>
+              {/*<h2 className="boostcrm_month_free">Месяц в подарок за рекомендацию!</h2>
+              <button className='button_reccomendate'>Рекомендовать нас</button>*/}
             </div>
           </div>
         </div>
