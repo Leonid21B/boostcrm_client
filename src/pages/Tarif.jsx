@@ -15,6 +15,7 @@ import bb from 'ui/scssModule/blueBtn.module.scss'
 import HelpModal from 'componentStore/modals/HelpModal'
 import { ContentStatesStore } from 'StoreStates'
 import { getCompany } from 'redux/asyncRedux/ClientsAsync'
+import getPrice from 'components/content/functions/getPrice'
 
 function Tarif () {
   const [active, setActive] = useState(false)
@@ -54,7 +55,7 @@ function Tarif () {
   const [coefficient, setСoefficient] = useState('0')
 
   const [GB, setGB] = useState(currentTarifPlace)
-  const [priceGB, setPriceGB] = useState((currentTarifPlace * 8 + 2)  * 80 )
+  const [priceGB, setPriceGB] = useState(getPrice(currentTarifPlace) )
 
   const [range, setRange] = useState(3)
 
@@ -103,7 +104,7 @@ function Tarif () {
     setGB(sliserRef.current.querySelector('.slider').value)
     setPriceGB(
       sliserRef.current.querySelector('.slider').value != 0
-        ? (sliserRef.current.querySelector('.slider').value * 8 + 2) * 80
+        ? getPrice(sliserRef.current.querySelector('.slider').value)
         : 0
     )
     sliserRef.current.querySelector('.progress').style.width = val
@@ -214,7 +215,7 @@ function Tarif () {
                 </li>
                 <li className='tarif__block-item'>
                   <span>Оплата</span>
-                  <span>{(currentTarifPlace * 8 + 2) * 80} {currencySymb} </span>
+                  <span>{getPrice(currentTarifPlace)} {currencySymb} </span>
                 </li>
                 <li className='tarif__block-item'>
                   <span>Списание</span>
@@ -244,7 +245,7 @@ function Tarif () {
                     <div
                       className='current__tooltip'
                     >
-                      {`${currentTarifPlace} GB / ${Math.round((currentTarifPlace * 8 + 2) * 80)} ${currencySymb}`}
+                      {`${currentTarifPlace} GB / ${getPrice(currentTarifPlace) } ${currencySymb}`}
                     </div>
                   </div>
                   <div style={{ width: startPosition * coefficient + '%' }} className='progress' />

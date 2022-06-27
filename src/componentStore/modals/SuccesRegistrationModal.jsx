@@ -15,7 +15,7 @@ function SuccesRegistrationModal ({ active, setActive, body }) {
             <h3 className='modalTopLine__title'>Вы успешно зарегистрированы</h3>
             <img onClick={closeModal} className='modalTopLine__close' src={closeGraySvg} alt='' />
           </div>
-          <p className='modalText' style={{ marginBottom: '0' }}>Данные для доступа придут вам на почту</p>
+          <p className='modalText' style={{ marginBottom: '0' }}>Ссылка для подтверждения и новый пароль отправлены на вашу почту. Письмо может идти до 5-и минут. Обязательно проверьте папку "спам".</p>
         </div>
       </div>
     </div>

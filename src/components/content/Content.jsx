@@ -58,6 +58,7 @@ function Content() {
   const { tasks } = useSelector(state => state.newTask)
   const { user, userId } = useSelector(state => state.user)
   const { stages } = useSelector(state => state.newStages)
+  console.log('Stages!!!!',stages)
   const { comandId } = useSelector(state => state.comand)
   const { space, takenSpace, paymentDate } = useSelector(state => state.companySpace)
   
@@ -103,7 +104,7 @@ function Content() {
     }
   },[columns])
   useEffect(() => {
-    setArrForCards(sortCards([...carts]))
+    if(carts && carts != []) setArrForCards(sortCards([...carts]))
   },[carts])
   const menuRef = useRef()
   const cardRef = useRef()
