@@ -32,7 +32,7 @@ function Footer () {
             <img src={Money} alt='' className='footer__info-img' />
           </div>
           <h1 className='footer__info-title'> На огонь, воду и рост продаж можно смотреть бесконечно</h1>
-          <p className='footer__info-text'>Мы даем вам 2 недели на испытание BOOSTCRM  абсолютно бесплатно </p>
+          <p className='footer__info-text'>Мы даем вам 7 дней на испытание BOOSTCRM абсолютно бесплатно </p>
           <button className='btn_free_experience' onClick={openModal}>Попробовать бесплатно</button>
         </div>
 

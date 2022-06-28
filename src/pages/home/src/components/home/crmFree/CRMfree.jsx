@@ -118,12 +118,12 @@ function CRMfree () {
               <div className='crmfree__item-img'>
                 <img src={Phone} alt='' />
               </div>
-              <span className='crmfree__item-text'>Полная аналитика</span>
+              <span className='crmfree__item-text'>Поддержка<br/>24/7</span>
             </li>
           </ul>
 
           <div className='crmfree__data'>
-            <h2 className='crmfree__data-title'>Выберите объем информации</h2>
+            <h2 className='crmfree__data-title'>Выберите объем необходимой памяти</h2>
             <div className='crmfree__data-input'>
               <div className='tarif__block-calculator'>
 

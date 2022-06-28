@@ -24,7 +24,7 @@ function MainScreen () {
             Добавьте 🔥🔥🔥 продажам с помощью <span>BOOST</span>CRM
           </h1>
           <p className='main__screen-text'>Деньги — это кровь любого бинеса.<br />
-            BOOSTCRM увеличивает продажи, с помощью трех удобных функций
+            BOOSTCRM увеличивает продажи с помощью трех удобных функций
           </p>
         </div>
         <div className='main__screen-subinfo'>
@@ -34,14 +34,14 @@ function MainScreen () {
                 <img src={Hand} alt='' />
               </div>
               <h3 className='main__screen-item title'>Все как на ладони</h3>
-              <p className='main__screen-item text'>Аналитика текущиз продаж компании в реальном времени</p>
+              <p className='main__screen-item text'>Аналитика текущих продаж компании в реальном времени</p>
             </li>
             <li className='main__screen-item'>
               <div className='main__screen-item img'>
                 <img src={Finger} alt='' />
               </div>
               <h3 className='main__screen-item title'>От малого до великого</h3>
-              <p className='main__screen-item text'>Безлимитное количество пользователей, и воронок продаж</p>
+              <p className='main__screen-item text'>Безлимитное количество пользователей и воронок продаж</p>
             </li>
             <li className='main__screen-item'>
               <div className='main__screen-item img'>
