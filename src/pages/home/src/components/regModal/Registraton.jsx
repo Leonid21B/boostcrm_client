@@ -33,9 +33,9 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
   const { authUser } = useSelector(state => state.user)
 
   const [inputErrorState, setInputErrorState] = useState({
-    nameError: true,
-    emailError: true,
-    telError: true
+    nameError: false,
+    emailError: false,
+    telError: false,
   })
   useEffect(() => {
     setTimeout(() => { checkInps() }, 0) 
@@ -45,6 +45,12 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
   const [validation, setValidation] = useState(false)
 
   const checkInps = () => {
+    if(!fio || !email || tel.length < 14){
+      if (successData) {
+        setSuccess(false)
+      }
+      return
+    }
     if (inputErrorState.emailError == false && inputErrorState.nameError == false && inputErrorState.telError == false){
 
       console.log(inputErrorState.emailError)
