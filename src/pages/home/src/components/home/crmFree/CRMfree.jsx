@@ -8,6 +8,7 @@ import Phone from '../../../img/icons/crmfree4.svg'
 import BlueBtn from 'ui/btns/BlueBtn'
 import cmst from '../../../Styles/StyleModul/CommonStyle.module.scss'
 import Registraton from '../../regModal/Registraton'
+import getPrice from 'components/content/functions/getPrice'
 
 function CRMfree () {
   const sliderRef = useRef()
@@ -19,7 +20,7 @@ function CRMfree () {
   const [currentTarifPlace, setCurrentTarifPlace] = useState('5')
 
   const [gigabytes, setGigabytes] = useState(currentTarifPlace)
-  const [price, setPrice] = useState(gigabytes * 8 + 2)
+  const [price, setPrice] = useState(getPrice(gigabytes))
 
   const [startPosition, setStartPosition] = useState(currentTarifPlace)
 
@@ -39,7 +40,7 @@ function CRMfree () {
     setGigabytes(sliderRef.current.querySelector('.slider').value)
     setPrice(
       sliderRef.current.querySelector('.slider').value != 0
-        ? sliderRef.current.querySelector('.slider').value * 8 + 2
+        ? getPrice(sliderRef.current.querySelector('.slider').value)
         : 0
     )
 
@@ -133,7 +134,7 @@ function CRMfree () {
                     <div className='tooltip'>
                       {
                                                 maxSliderValue != 11
-                                                  ? `${gigabytes} ГБ / ${price}$`
+                                                  ? `${gigabytes} ГБ / ${price}₽`
                                                   : 'Безлимит цена по запросу'
                                             }
                     </div>
