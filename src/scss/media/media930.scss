@@ -1,0 +1,86 @@
+@media screen and (max-width:930px) {
+  .homepage__container{
+        max-width: 740px;
+        &> .header__inner{
+            &>.header__nav-left{
+              &> .header__nav-logo{
+                margin-right: 24px;
+              }
+              &> ul{
+                
+                &>li{
+                  margin-right: 24px;
+                  &> a{
+                    margin-right: 0;
+                    font-size: 16px;
+                    line-height: 24px;
+                  }
+                }
+              }
+            }
+            &> .header__nav-right{
+              &> a{
+                &>span:first-child{
+                  display: none;
+                }
+                &>span:last-child{
+                  display: flex;
+                }
+              }
+            }
+        }
+        &> .footer__bottom{
+            &>.footer__bottom-navleft{
+              &> .header__nav-logo{
+                margin-right: 24px;
+              }
+              &> ul{
+                
+                &>li{
+                  margin-right: 24px;
+                  &> a{
+                    margin-right: 0;
+                    font-size: 16px;
+                    line-height: 24px;
+                  }
+                }
+              }
+            }
+            &> .footer__bottom-navright{
+              &> a{
+                &>span:first-child{
+                  display: none;
+                }
+                &>span:last-child{
+                  display: flex;
+                }
+              }
+            }
+        }
+  }
+  .whycrm__items{
+    &> .whycrm__items-top{
+      &> ul{
+        grid-template-columns: 251fr 218fr 183fr;
+        column-gap: 24px;
+      }
+    }
+    &> .whycrm__items-bottom{
+      &> ul{
+        &>li:last-child{
+          grid-column-start: 1;
+          grid-column-end: 4;
+          grid-row-start: 2;
+          grid-column-start: 1;
+          grid-row-end: 2;
+          margin: 0;
+          max-width: 100%;
+        }
+        display: grid;
+        row-gap:24px;
+        grid-template-rows: 172px 124px;
+        grid-template-columns: 3fr 3fr 3fr;
+      }
+    }
+  }
+}

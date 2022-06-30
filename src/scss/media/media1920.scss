@@ -1,4 +1,32 @@
 @media (max-width:1920px) {
+    .footer__bottom-right{
+         &> div{
+                a:first-child{
+                  display: flex;
+                }
+                a:last-child{
+                    display: none;
+                }
+            }
+        }
+     .header__nav-right{
+              &> div{
+                a:first-child{
+                    display: flex;
+                }
+                a:last-child{
+                    display: none;
+                }
+              }
+              &> a{
+                &>span:first-child{
+                  display: flex;
+                }
+                &>span:last-child{
+                  display: none;
+                }
+              }
+            }
     .active__client_div{
             &>input{
                 font-size: 13px;

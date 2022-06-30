@@ -66,7 +66,7 @@ function Header () {
 
           <div className='header__nav-right'>
             <HeaderBtn func={activeStartFoFreeHandler()} />
-            <a onClick={activeLoginHandler()} className='header__nav-login'><span>Войти</span></a>
+            <a onClick={activeLoginHandler()} className='header__nav-login'><span>Войти</span><span></span></a>
           </div>
         </div>
       </div>

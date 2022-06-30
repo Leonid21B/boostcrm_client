@@ -4,6 +4,7 @@ function HeaderBtn ({ func }) {
   return (
     <div>
       <a onClick={func} className={hb.hb}>Попробовать бесплатно</a>
+      <a onClick={func} className={hb.hb}>Попробовать</a>
     </div>
   )
 }
