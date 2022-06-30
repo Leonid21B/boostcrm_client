@@ -187,7 +187,7 @@ function Content() {
       ...checkBoxSortMenuStates,
       cardsLength: getLengthData(carts, 'length'),
       cardsTasksLength: getLengthData(tasks, 'date'),
-      cardsWithoutTasks: getLengthData(carts.filter(c => !c.tasks.length), 'length'),
+      cardsWithoutTasks: getLengthData(carts.filter(c => !c?.tasks?.length), 'length'),
       overdueCardsTasks: tasks.filter(t => (new Date(t.date).getTime() < new Date().getTime()) && t.status != 'closed').length
     })
   }, [carts,tasks])

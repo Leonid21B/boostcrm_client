@@ -1,5 +1,8 @@
 function sortCardsByDate (a, b) {
   return () => {
+    if(!a?.tasks || !b?.tasks){
+      return 0
+    }
     const one = a.tasks.filter(t => new Date(t.date).getTime() < new Date().getTime()).length
     const two = b.tasks.filter(t => new Date(t.date).getTime() < new Date().getTime()).length
 
@@ -11,8 +14,10 @@ function sortCardsByDate (a, b) {
 
 function sortCardByTasksLength (a, b) {
   return () => {
-    const result = a.tasks.length > b.tasks.length ? -1 : 1
-
+    const result = a?.tasks?.length > b.tasks.length ? -1 : 1
+    if(!result){
+      return 0
+    }
     return result
   }
 }

@@ -1,0 +1,7 @@
+@media screen and (max-width:1350px) {
+  .active__client_div{
+    &>input{
+      max-width: 160px;
+    }
+  }
+}
