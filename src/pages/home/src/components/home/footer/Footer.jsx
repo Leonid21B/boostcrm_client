@@ -55,15 +55,16 @@ function Footer () {
                 </a>
               </li>
               <li className='footer__bottom-navlink'>
-                <a onClick={openLoginModal}>
-                  Войти
-                </a>
+                <Link to={'./blog'}>
+                  Блог
+                </Link>
               </li>
             </ul>
           </div>
 
           <div className='footer__bottom-right'>
             <HeaderBtn func={openModal} />
+            <a onClick={() => openLoginModal()} className='header__nav-login'><span>Войти</span><span></span></a>
           </div>
         </div>
         <div className='footer__bottom-copyright'>

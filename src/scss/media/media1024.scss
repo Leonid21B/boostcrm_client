@@ -28,13 +28,24 @@
                 display: grid;
                 width: 100%;
                 grid-template-columns: 3fr 3fr 3fr 3fr;
+                grid-column-gap: 20px;
                 &> li{
                     margin: 0;
                     min-width: 0;
+                    &>span{
+                        font-size: 18px;
+                    }
+                    
                 }
             }
         }
     }
+    .footer{
+        &> .homepage__container{
+        padding: 0;
+    }
+    
+  }
 }
 
 @media screen and (max-width:1024px) {
@@ -296,4 +307,22 @@
               }
             }
         }
+    .footer__bottom-copyright{
+        display: block;
+        .footer__bottom-copyright-left{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        &> ul{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            &> li{
+                text-align: center;
+            }
+        }
+    }
+    .footer{
+        padding-bottom: 24px;;
+    }
 }

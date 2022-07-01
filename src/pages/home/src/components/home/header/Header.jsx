@@ -5,7 +5,7 @@ import '../../../Styles/header.scss'
 import HeaderBtn from '../../../UI/Buttons/HeaderBtn'
 import Login from '../../regModal/Login'
 import Registraton from '../../regModal/Registraton'
-
+import { Link } from 'react-router-dom'
 function Header () {
   const [activeStartFoFree, setActiveStartFoFree] = useState(false)
   const [activeLogin, setActiveLogin] = useState(false)
@@ -60,6 +60,11 @@ function Header () {
                 <a className='header__nav' onClick={e => slowScrollToBlock(e, 'free')} href='#free'>
                   Стоимость
                 </a>
+              </li> 
+              <li className='header__nav-link'>
+                <Link to={'./blog'}>
+                  Блог
+                </Link>
               </li>
             </ul>
           </div>
