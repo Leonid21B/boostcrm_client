@@ -256,6 +256,30 @@
   }
 }
 @media screen and (max-width:500px) {
+  .alert_home_cont{
+  &> .alert_home_wrap{
+    max-width: 300px;
+    padding: 21px 24px;
+    &> h1{
+      font-weight: 700;
+      font-size: 18px;
+    }
+  }
+}
+  .reg__modal{
+    padding: 18px 24px;
+    max-width: 300px;
+  }
+  .reb_wrapper{
+    padding: 21px 24px;
+    &> .reb_head{
+      &> .reb_zag{
+        font-size: 18px;
+      }
+    }
+    box-sizing:border-box;
+    max-width: 300px;
+  }
   .footer__bottom-copyright{
         display: block;
         .footer__bottom-copyright-left{
