@@ -152,7 +152,7 @@ function CRMfree () {
                 <span ref={sumRef}>
                   {
                                         maxSliderValue != 11
-                                          ? `${gigabytes} ГБ / ${price}$`
+                      ? `${gigabytes} ГБ / ${price}₽`
                                           : 'Безлимит цена по запросу'
                                     }
                 </span>
