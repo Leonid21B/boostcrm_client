@@ -1,5 +1,5 @@
 import SuccesRegistrationModal from 'componentStore/modals/SuccesRegistrationModal'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from '../../../img/logo.svg'
 import '../../../Styles/header.scss'
 import HeaderBtn from '../../../UI/Buttons/HeaderBtn'
@@ -21,7 +21,11 @@ function Header () {
       console.log('body.style', body[0].style)
     }
   }
-
+  useEffect(() => {
+    const div = document.querySelector('.wrapper')
+    console.log(div)
+    div.classList.add('wrapper_white')
+  }, [])
   function activeLoginHandler () {
     return () => {
       setActiveLogin(true)

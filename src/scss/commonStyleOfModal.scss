@@ -122,7 +122,15 @@
 
 }
 
-
+.activeInputError{
+    border:1px solid #F20008;
+    margin-bottom: 0;
+}
+.activeFieldError{
+    margin-bottom:24px;
+    font-size: 13px;
+    color:#F20008;
+}
 .modal__checkbox {
     display: flex;
     align-items: center;
