@@ -60,7 +60,7 @@ function HelpModal () {
           </div>
           <p className='modalText'>Задайте вопрос и менеджер ответит </p>
           <label className='modal__Label'>Тема</label>
-          <input maxLength={150} value={title} onChange={e => {setTitle(e.target.value);setInputsError(it => ({...it, theme: false}))}} className={`modal__Input ${inputsError.theme ? 'activeInputError' : null}`} type='text' />
+          <input maxLength={150} value={title} onChange={e => {setTitle(e.target.value);setInputsError(it => ({...it, theme: false}))}} className={`modal__Input ${inputsError.theme ? 'activeInputErr' : null}`} type='text' />
           <p style={!inputsError.theme ? { display: 'none' } : { display: 'flex' }} className={`${inputsError.theme ? 'activeFieldError' : null}`}>
             Поле пустое
           </p>
@@ -68,7 +68,7 @@ function HelpModal () {
           <textarea
             value={comment}
             onChange={e => {setComment(e.target.value);setInputsError(it => ({...it,text:false}))}}
-            className={`modal__TextArea h_100Up ${inputsError.text ? 'activeInputError' : null}`}
+            className={`modal__TextArea h_100Up ${inputsError.text ? 'activeInputErr' : null}`}
             maxLength={500}
           />
           <p className={`${inputsError.text ? 'activeFieldError' : null}`} style={!inputsError.text ? { display: 'none' }: {display: 'flex'}}>

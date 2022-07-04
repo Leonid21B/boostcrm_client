@@ -25,6 +25,7 @@ function Header () {
     const div = document.querySelector('.wrapper')
     console.log(div)
     div.classList.add('wrapper_white')
+    return () => { div.classList.remove('wrapper_white')}
   }, [])
   function activeLoginHandler () {
     return () => {
