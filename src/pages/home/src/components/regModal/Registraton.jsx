@@ -97,10 +97,14 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
         setInputErrorState({
           ...inputErrorState, nameError: false, emailError: false, telError: false
         })
+         
         setEmailText('Введите email')
-        setActiveSuccessRegistrationModal(true)
+        setTimeout(() => { setActive(false) }, 0)
+        setTimeout(() => { setActiveSuccessRegistrationModal(true) }, 100)
+        
         resetInputs()
-        setActive(false)
+        setTimeout(() => { checkInps() }, 0) 
+        
         return
       }
       setInputErrorState({ ...inputErrorState, emailError: true })
