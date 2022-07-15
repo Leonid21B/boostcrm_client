@@ -9,32 +9,44 @@ import { Link } from 'react-router-dom'
 import Login from '../../regModal/Login'
 import { telegram, telegramSvg } from 'img'
 
-function Footer () {
+function Footer ({isBlog}) {
   const [active, setActive] = useState(false)
   const [activeLoginModal, setActiveLoginModal] = useState(false)
   const body = document.getElementsByTagName('body')
 
   function openModal () {
     setActive(true)
-    body[0].style.overflow = 'hidden'
+    if(isBlog){
+      if(body.style){
+        body.style.overflow = 'hidden'
+      }
+    }else{
+      body[0].style.overflow = 'hidden'
+    }
   }
 
   function openLoginModal () {
     setActiveLoginModal(true)
-    body[0].style.overflow = 'hidden'
+    if (isBlog) {
+      if (body.style) {
+        body.style.overflow = 'hidden'
+      }
+    } else {
+      body[0].style.overflow = 'hidden'
+    }
   }
 
   return (
-    <div className='footer'>
+    <div className= {`footer ${isBlog ? 'footer-non-margin' : ''}`}>
       <div className='homepage__container'>
-        <div className='footer__info'>
+        {!isBlog && <div className='footer__info'>
           <div className='footer__info-img-wrapp'>
             <img src={Money} alt='' className='footer__info-img' />
           </div>
           <h1 className='footer__info-title'> На огонь, воду и рост продаж можно смотреть бесконечно</h1>
           <p className='footer__info-text'>Мы даем вам 7 дней на испытание BOOSTCRM абсолютно бесплатно </p>
           <button className='btn_free_experience' onClick={openModal}>Попробовать бесплатно</button>
-        </div>
+        </div>}
 
         <div className='footer__bottom'>
           <div className='footer__bottom-navleft'>
@@ -67,7 +79,7 @@ function Footer () {
             <a onClick={() => openLoginModal()} className='header__nav-login'><span>Войти</span><span></span></a>
           </div>
         </div>
-        <div className='footer__bottom-copyright'>
+        {!isBlog && <div className='footer__bottom-copyright'>
           <div className='footer__bottom-copyright-left'>
             <h3>© 2021 BOOSTCRM</h3>
             <a href='https://t.me/ralphfr1sko'>
@@ -92,7 +104,7 @@ function Footer () {
               </Link>
             </li>
           </ul>
-        </div>
+        </div>}
       </div>
       <Registraton body={body} active={active} setActive={setActive} />
       <Login body={body} active={activeLoginModal} setActive={setActiveLoginModal} />

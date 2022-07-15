@@ -5,8 +5,8 @@ import '../../../Styles/header.scss'
 import HeaderBtn from '../../../UI/Buttons/HeaderBtn'
 import Login from '../../regModal/Login'
 import Registraton from '../../regModal/Registraton'
-import { Link } from 'react-router-dom'
-function Header () {
+import { Link, Redirect } from 'react-router-dom'
+function Header ({isBlog}) {
   const [activeStartFoFree, setActiveStartFoFree] = useState(false)
   const [activeLogin, setActiveLogin] = useState(false)
   const [activeSuccessRegistrationModal, setActiveSuccessRegistrationModal] = useState(false)
@@ -37,12 +37,18 @@ function Header () {
 
   function slowScrollToBlock (e, where) {
     e.preventDefault()
-    const targetScroll = document.getElementById(where)
-    const elementPosition = targetScroll.getBoundingClientRect().top
-    window.scrollBy({
-      top: elementPosition,
-      behavior: 'smooth'
-    })
+    if(!isBlog){
+      const targetScroll = document.getElementById(where)
+      const elementPosition = targetScroll.getBoundingClientRect().top
+      window.scrollBy({
+        top: elementPosition,
+        behavior: 'smooth'
+      })
+    }
+    if(isBlog){
+      console.log(111111)
+      return <Redirect to={'../'}/>
+    }
   }
 
   return (
@@ -51,9 +57,9 @@ function Header () {
         <div className='header__inner'>
           <div className='header__nav-left'>
             <div className='header__nav-logo'>
-              <a id='header__nav' href='#' className='header__nav-logo-img'>
-                <img src={Logo} alt='' />
-              </a>
+              <Link to={'../../'} id='header__nav' href='#' className='header__nav-logo-img'>
+                  <img src={Logo} alt='' />
+              </Link>
             </div>
             <ul className='header__nav-links'>
               <li className='header__nav-link'>
@@ -66,9 +72,9 @@ function Header () {
                   Стоимость
                 </a>
               </li> 
-              <li className='header__nav-link'>
-                <Link to={'./blog'}>
-                  Блог
+              <li  className={`header__nav-link ${isBlog ? 'active-link' : ''}`}>
+                <Link className={`${isBlog ? 'active-link' : ''}`} to={'../blog'}>
+                  Блог 
                 </Link>
               </li>
             </ul>

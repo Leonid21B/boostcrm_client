@@ -23,6 +23,10 @@ import { _getALLTask } from 'redux/redusers/NewTaskReduser'
 import HelpModal from 'componentStore/modals/HelpModal'
 import UserAgreement from 'pages/home/src/components/home/agreement/UserAgreement'
 import { getCompany } from 'redux/asyncRedux/ClientsAsync'
+import MainBlog from 'pages/Blog/MainBlog/MainBlog'
+import Header from 'pages/home/src/components/home/header/Header'
+import CurrentPost from 'pages/Blog/CurrentPost/CurrentPost'
+import Footer from 'pages/home/src/components/home/footer/Footer'
 
 export const ContentStatesStore = createContext({})
 
@@ -104,7 +108,8 @@ function StoreStates () {
           <Route path='/popup' exact><PopupLink setPopup = {setPopup}/> </Route>
           <Route path='/policy' exact><Policy /></Route>
           <Route path='/userAgreement' exact><UserAgreement /></Route>
-          <Redirect to='/' exact />
+          <Route path='/blog/:postId' exact><Header isBlog={true} /><CurrentPost /><Footer isBlog={true} /></Route>
+          <Route path='/blog' exact><Header isBlog = {true}/><MainBlog /> <Footer isBlog = {true}/></Route>
         </ContentStatesStore.Provider>
       </Switch>
     )

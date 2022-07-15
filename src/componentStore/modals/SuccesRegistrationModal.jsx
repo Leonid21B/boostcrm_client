@@ -4,7 +4,7 @@ import React from 'react'
 function SuccesRegistrationModal ({ active, setActive, body }) {
   function closeModal () {
     setActive(false)
-    body[0].style.overflow = 'auto'
+    body[0] ? body[0].style.overflow = 'auto' : body.style.overflow = 'auto'
   }
 
   return (

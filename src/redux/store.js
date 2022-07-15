@@ -11,6 +11,7 @@ import { contollActionAboutCart } from './redusers/ControlActionAboutCart'
 import { MenuReduser } from './redusers/MenuReduser'
 import { NewFieldReduser } from './redusers/NewFieldReduser'
 import { taskReduser } from './redusers/NewTaskReduser'
+import postReducer from './redusers/PostReducer'
 import { stageReduser } from './redusers/StageReduser'
 import { UserReduser } from './redusers/UserReduser'
 import { WorkerReduser } from './redusers/WorkerReduser'
@@ -26,7 +27,8 @@ const rootReduser = combineReducers({
   user: UserReduser,
   comand: ComandReduser,
   worker: WorkerReduser,
-  companySpace: companyReduser
+  companySpace: companyReduser,
+  post:postReducer,
 })
 
 const persistConfig = {

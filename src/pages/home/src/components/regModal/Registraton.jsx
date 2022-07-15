@@ -13,7 +13,7 @@ import SelectWorkers from 'ui/select/SelectWorkers'
 import '../../Styles/StyleModul/reggistration.scss'
 import Countries from './Countries/Countries'
 
-function Registraton({ body, active, setActive, setActiveSuccessRegistrationModal }) {
+function Registraton({ body, active, setActive, setActiveSuccessRegistrationModal,isBlog }) {
   const refPhone = useRef()
 
   const countries = ['+7 Россия, Казахстан', '+1 США', '+33 Франция', '+380 Украина', '+374 Армения', '+375 Беларусь', '+49 Германия', '+998 Узбекистан']
@@ -69,7 +69,7 @@ function Registraton({ body, active, setActive, setActiveSuccessRegistrationModa
   }
   function exitHandler() {
     setActive(false)
-    body[0].style.overflowY = 'scroll'
+    isBlog ? body.style.overflowY = 'scroll' : body[0].style.overflowY = 'scroll'
     resetInputs()
   }
   const chooseCountry = (cur) => {
