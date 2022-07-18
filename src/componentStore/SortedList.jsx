@@ -186,7 +186,7 @@ function SortedList (data) {
                 <img className='customSelectedItemImg' src={activeItem} alt='' />
                 <span className='name'>Любой ответственный</span>
               </li>
-              { workresList.filter(it => it._id)?.map(worker =>
+              { workresList.filter(it => it?._id)?.map(worker =>
                                   <li
                                     key={worker._id}
                                     className='selectedItem dropDwn-item'

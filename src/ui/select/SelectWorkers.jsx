@@ -70,7 +70,7 @@ function SelectWorkers (
 
         <div className='selectDropDown'>
           <ul>
-            {workers.filter(it => it._id)?.map(worker =>
+            {workers.filter(it => it?._id)?.map(worker =>
                               <li
                                 key={worker._id}
                                 className={
