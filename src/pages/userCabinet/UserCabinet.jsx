@@ -526,7 +526,7 @@ function UserCabinet() {
                               <input
                                 type='text'
                                 placeholder={'Дуайт Шрут'}
-                                value={fio}
+                                value={fio === 1 ? '' :fio}
                                 onBlur={e => updateUserInfoHandlerOnBlur(e, fio, 'fio')}
                                 onKeyUp={e => updateUserInfoHandlerKeyUp(e, fio, 'fio')}
                                 onChange={e => inputChangeHandler(e.target.value, setFio, 'fio')}
@@ -540,7 +540,7 @@ function UserCabinet() {
                           <input
                             type='email'
                             placeholder='schrute__top@dundermifflin.com'
-                            value={email}
+                            value={email === 1 ? '' : email}
                             onBlur={e => updateUserInfoHandlerOnBlur(e, email, 'email')}
                             onKeyUp={e => updateUserInfoHandlerKeyUp(e, email, 'email')}
                             onChange={e => inputChangeHandler(e.target.value, setEmail, 'email')}
@@ -554,7 +554,7 @@ function UserCabinet() {
                             ref={ref}
                             type='tel'
                             placeholder='+7 (937) 123 45 67'
-                            value={tel}
+                            value={tel === 1 ? '' : tel}
                             onBlur={e => updateUserInfoHandlerOnBlur(e, tel, 'tel')}
                             onKeyUp={e => updateUserInfoHandlerKeyUp(e, tel, 'tel')}
                             onChange={e => inputChangeHandler(e.target.value, setTel, 'tel')}
